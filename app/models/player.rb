@@ -1,5 +1,6 @@
 # Create Adventurer with Name, Class, HP, WeaponDMG, Alive? Boolean
-class Adventurer < ActiveRecord::Base
+class Player < ActiveRecord::Base
+    has_many :dungeons, through: :dungeon_crawls
 
     attr_accessor :hp, :dmg, :alive
     attr_reader :name
