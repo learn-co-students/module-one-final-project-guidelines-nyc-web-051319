@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
     ###add show to queue###
   end
 
+  def remove_view
+  end
+
   def finished_episode
     ###selet episode returns episode ids, return specific episode ids that match user ids####
     ####returns a list of viewed episodes####
@@ -32,14 +35,12 @@ class User < ActiveRecord::Base
     end
   end####Select by episode helper method####
 
-  def most_popular
-    ###iterate through ALL views and find most watched episode/show####
-  end
+  
 
 
 
 
-  ###watch show####
+
 
 
 
