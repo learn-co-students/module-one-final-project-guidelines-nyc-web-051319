@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
   end
 
   def delete_user
-    self.commits.delete
     self.delete
   end
 

@@ -7,10 +7,12 @@ class ApplicationController
   end
 
   def main
-
     puts "Welcome to Your CLI Student Database!!! What's your name?"
     username = gets.strip
     puts "Welcome #{username}, what would you like to do? "
+    lists
+  end
+  def lists
     puts ""
     puts "1. List of Students"
     puts ""
@@ -56,7 +58,9 @@ class ApplicationController
     puts ""
     puts "4. Add student"
     puts ""
-    puts "5. Go back to Main Menu"
+    puts "5. Delete student"
+    puts ""
+    puts "6. Go back to Main Menu"
     new_input = gets.strip
 
     case new_input
@@ -84,9 +88,16 @@ class ApplicationController
       name = gets.strip
       User.create(name: name)
       puts "Student #{name} has been added!"
-      students
+      lists
     when "5"
-      main
+      puts "What's the name of the student you want to delete?"
+      name = gets.strip
+      dead_student = User.find_by(name: name)
+      dead_student.delete_user
+      puts "Student #{name} has been deleted!"
+      lists
+    when "6"
+      lists
     end
   end
 
@@ -96,7 +107,8 @@ class ApplicationController
     puts "2. Project with most commits"
     puts "3. Project with least commits"
     puts "4. Add a project"
-    puts "5. Go back to Main Menu"
+    puts "5. Delete a project"
+    puts "6. Go back to Main Menu"
     new_input = gets.strip
 
     case new_input
@@ -123,9 +135,16 @@ class ApplicationController
       due_date = gets.strip # unless due date is not in right format!
       Project.create(title: title, description: description, due_date: due_date)
       puts "Project has been created!"
-      projects
+      lists
     when "5"
-      main
+      puts "What's the title of the project you want to delete?"
+      title = gets.strip
+      dead_project = Project.find_by(title: title)
+      dead_project.delete_project
+      puts "Project #{title} has been deleted!"
+      lists
+    when "6"
+      lists
     end
   end
 
