@@ -15,8 +15,9 @@ class User < ActiveRecord::Base
     ###add show to queue###
   end
 
-  def finish_episode
-    ###complete show(remove from queue)###
+  def finished_episode
+    ####returns a list of viewed episodes####
+  
     ##maybe add to watched list###
   end
 
