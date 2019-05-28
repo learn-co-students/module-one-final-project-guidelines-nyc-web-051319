@@ -16,9 +16,8 @@ class User < ActiveRecord::Base
   end
 
   def finished_episode
-
+    ###selet episode returns episode ids, return specific episode ids that match user ids####
     ####returns a list of viewed episodes####
-
     ##maybe add to watched list###
   end
 
@@ -26,6 +25,12 @@ class User < ActiveRecord::Base
     View.create(user_id: self.id, episode_id: episode_id, rating: rating)
     ###rate episode (1-5 stars)###
   end
+
+  def select_episode(ep_id)
+    View.all.select do |ep|
+      ep.episode_id = ep_id
+    end
+  end####Select by episode helper method####
 
   def most_popular
     ###iterate through ALL views and find most watched episode/show####
