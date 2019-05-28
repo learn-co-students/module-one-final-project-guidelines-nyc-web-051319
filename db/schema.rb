@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 9) do
 
   create_table "genres", force: :cascade do |t|
     t.string "genre"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 8) do
     t.string   "name"
     t.datetime "release_date"
     t.integer  "runtime"
+    t.float    "rating"
   end
 
   create_table "reviews", force: :cascade do |t|
