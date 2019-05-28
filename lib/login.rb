@@ -15,7 +15,7 @@ class Login < ActiveRecord::Base
         Login.create(email: email, password: password, user_id: new_user.id)
         
         puts "Your account has been successfully created."
-        puts "Welcome to Ripe Eggplant! 🍆"
+        new_user
     end
 
 end
