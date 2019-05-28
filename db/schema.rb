@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 8) do
 
   create_table "genres", force: :cascade do |t|
     t.string "genre"
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.string  "email"
+    t.string  "password"
+    t.integer "user_id"
   end
 
   create_table "movie_genres", force: :cascade do |t|
@@ -24,6 +30,7 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "movies", force: :cascade do |t|
     t.string   "name"
     t.datetime "release_date"
+    t.integer  "runtime"
   end
 
   create_table "reviews", force: :cascade do |t|
