@@ -7,14 +7,12 @@ class User < ActiveRecord::Base
   end###works
 
 
-  def watch_episode
-    View.create
+  def watch_episode(episode_id)
+    View.create(user_id: self.id, episode_id: episode_id)
   end
 
   def hot_list
-
     ###add show to queue###
-
   end
 
   def finish_episode
@@ -23,6 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def rate
+
     ###rate show###
   end
 
