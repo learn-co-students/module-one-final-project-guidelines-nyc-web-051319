@@ -1,14 +1,13 @@
 class Dungeon < ActiveRecord::Base
-  has_many :monsters
-  attr_reader :name, :location
-  attr_accessor :type, :clear
+  has_many :monsters, through: :monster_infestation
+  attr_reader :name, :difficulty
+  attr_accessor :clear
 
   @@all = []
 
-  def initialize(name, location, type)
+  def initialize(name, difficulty)
     @name = name
-    @location = location
-    @type = type
+    @difficulty = difficulty
     @clear = false
 
     @@all << self

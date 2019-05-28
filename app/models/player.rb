@@ -1,16 +1,15 @@
 # Create Adventurer with Name, Class, HP, WeaponDMG, Alive? Boolean
 class Adventurer < ActiveRecord::Base
 
-    attr_accessor :hp, :weapon_dmg, :alive
-    attr_reader :name, :class
+    attr_accessor :hp, :dmg, :alive
+    attr_reader :name
 
     @@all = []
 
-    def initialize(name, class, hp, weapon_dmg)
+    def initialize(name)
         @name = name
-        @class = class
-        @hp = hp
-        @weapon_dmg = weapon_dmg
+        @hp = 100
+        @dmg = 50
         @alive = true
 
         @@all << self
