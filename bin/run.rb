@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
 require_relative '../config/environment'
 
+puts "Greetings, Adventurer! What would you like to do?"
+puts "\s\s\s1. Explore dungeon"
 
-
-puts "HELLO WORLD"
+user_input = gets.chomp
