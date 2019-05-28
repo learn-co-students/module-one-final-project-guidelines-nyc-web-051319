@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "episodes", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "bio"
   end
 
   create_table "views", force: :cascade do |t|
