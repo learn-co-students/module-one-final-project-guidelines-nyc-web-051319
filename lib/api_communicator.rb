@@ -2,9 +2,10 @@ require 'rest-client'
 require 'json'
 require 'pry'
 
+
 # URL = ("http://www.dnd5eapi.co/api/monsters/")
 
-# Gets to the API level info for each monster 
+# Gets to the API level info for each monster
 # def get_monster_info
 #     monster_string = RestClient.get(URL)
 #     monster_hash = JSON.parse(monster_string)
@@ -43,7 +44,16 @@ require 'pry'
 #     type =get_monster_type_by_id(num)
 #     hp = get_monster_hp_by_id(num)
 #     str = get_monster_str_by_id(num)
-    
+
 # end
 
 # puts generate_monster(37)
+
+# URL = ("http://www.dnd5eapi.co/monsters/")
+def get_monster_info
+    monster_string = RestClient.get('http://www.dnd5eapi.co/api/monsters/')
+    monster_hash = JSON.parse(monster_string)
+    monster_info = monster_hash["results"]
+    monster_info
+    binding.pry
+end
