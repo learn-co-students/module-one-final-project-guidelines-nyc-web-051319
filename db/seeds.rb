@@ -8,7 +8,7 @@ user_2 = User.create(name: "Will")
 user_3 = User.create(name: "Buddy Holly")
 user_4 = User.create(name: "Mary Tyler Moore")
 
-view_1 = View.create
+
 
 
 

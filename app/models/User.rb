@@ -16,14 +16,15 @@ class User < ActiveRecord::Base
   end
 
   def finished_episode
+
     ####returns a list of viewed episodes####
-  
+
     ##maybe add to watched list###
   end
 
-  def rate
-
-    ###rate show###
+  def rate(episode_id, rating)
+    View.create(user_id: self.id, episode_id: episode_id, rating: rating)
+    ###rate episode (1-5 stars)###
   end
 
   def most_popular
