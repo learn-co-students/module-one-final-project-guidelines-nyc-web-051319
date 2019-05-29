@@ -33,6 +33,5 @@ class Monster < ActiveRecord::Base
     puts monster_damage
     end
 
-    binding.pry
-    0
+    
 end

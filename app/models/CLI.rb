@@ -2,8 +2,9 @@ class CLI < ActiveRecord::Base
 
   #displays title screen
   def self.title
+    title = "Working Title!"
     puts "*" * 60
-    puts "\t\tWorking Title!"
+    puts title.center(60, ".")
     puts "*" * 60
   end
 
@@ -18,7 +19,7 @@ class CLI < ActiveRecord::Base
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @current_player = Player.create(:name => name_input, :max_hp => 200, :current_hp => 200, :min_dmg => 6, :max_dmg => 12, :alive => true, :level => 1, :battlecry => battlecry_input, :accuracy => 50, :weapon => weapon_input)
+    @current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 50, weapon: weapon_input)
   end
 
   #allows player to create new character, pick an existent one, or reloads if they fail to do either -- choice leads to dungeon selection menu
@@ -33,13 +34,16 @@ class CLI < ActiveRecord::Base
       self.create_player(name_input, battlecry_input, weapon_input)
       choose_dungeon
     elsif user_input == "2"
-      puts "Please type the name of the character you want to play as"
+      puts "Which character would you like to play as?"
+      player_array = []
       Player.all.each_with_index do |player, n|
+        player_array << player.name
         puts "   #{n + 1}. #{player.name}"
       end
-      character_selection = gets.chomp
-      puts "You picked #{Player.find_by_name(character_selection).name}!"
-      @current_player = Player.find_by_name(character_selection)
+      character_selection = gets.chomp.to_i
+      puts "You picked #{Player.find_by_name(player_array[character_selection - 1]).name}!"
+      sleep(1)
+      @current_player = Player.find_by_name(player_array[character_selection - 1])
       self.choose_dungeon
     elsif user_input != "1" && user_input != "2"
       puts "That is not a valid command. Stop it."
@@ -49,9 +53,9 @@ class CLI < ActiveRecord::Base
 
   #chooses a dungeon and calls method to instantiate dungeon crawl
   def self.choose_dungeon
-    puts "Which dungeon do you dare enter?"
+    puts "Which dungeon do you dare to enter?"
     Dungeon.all.each_with_index do |dungeon, n|
-      puts "   #{n + 1} #{dungeon.name} -- #{dungeon.difficulty}"
+      puts "   #{n + 1}. #{dungeon.name} -- #{dungeon.difficulty}"
     end
     dungeon_input = gets.chomp.to_i
     @current_dungeon = Dungeon.all[dungeon_input - 1]

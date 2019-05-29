@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
         puts "#{self.battlecry}!!!"
     end
 
-    # Rest function resets current health to max health. Will be called when leveled up. 
+    # Rest function resets current health to max health. Will be called when leveled up.
     def rest
         self.current_hp = self.max_hp
         puts "A warm hearth and a stein of mead at an Inn reinvigors you!"
@@ -62,7 +62,5 @@ class Player < ActiveRecord::Base
         self.level += 1
     end
 
-    binding.pry
-    0
 
 end
