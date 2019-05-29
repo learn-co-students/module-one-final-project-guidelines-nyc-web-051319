@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "commits", force: :cascade do |t|
     t.string   "commit_message"
@@ -26,8 +26,14 @@ ActiveRecord::Schema.define(version: 3) do
     t.datetime "due_date"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "teachers", force: :cascade do |t|
     t.string "name"
+    t.string "password"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string  "name"
+    t.integer "teacher_id"
   end
 
 end

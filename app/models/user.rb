@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
   has_many :commits
   has_many :projects, through: :commits
+  belongs_to :teacher
 
-  def self.all_student_names
+  def self.all_student
     self.all.map do |user|
-      user.name
+      user.find_by(teacher_id: teacher).name
     end
   end
+
 
   def self.laziest
     all_commits = self.all.map do |user|
@@ -56,18 +58,18 @@ class User < ActiveRecord::Base
   end
 
   def on_time_completed_projects # returns the number of on time completed projects
-    commit_project_ids = commits.map do |commit|
-      if commit.on_time # if it is on time...
-        commit.project.title # return the user's project
-      end
+    on_time_commits = self.commits.each do |commit|
+       commit.on_time?
+    end
+    on_time_commits.map do |commit|
+      commit.project.title # return the user's project
     end
   end
 
   def late_completed_projects # returns the number of on time completed projects
-    commits.map do |commit|
-      if !commit.on_time # if it is on time...
-        commit.project.title # return the user's project
-      end
+    late_commits = self.commits.select {|commit| commit.on_time? == false}
+    late_commits.map do |commit| 
+      commit.project.title # return the user's project
     end
   end
 

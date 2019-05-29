@@ -3,12 +3,14 @@ class Project < ActiveRecord::Base
   has_many :users, through: :commits
 
   def self.all_project_names
+    i = 0
     self.all.map do |project|
-      project.title
+      i += 1
+      "#{i}. #{project.title}"
     end
   end
 
-  def self.least_committed_project
+  def self.most_committed_project
     all_commits = self.all.map do |project|
       project.commits.count
     end
@@ -20,7 +22,7 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def self.most_committed_project
+  def self.least_committed_project
     all_commits = self.all.map do |project|
       project.commits.count
     end
@@ -53,7 +55,22 @@ class Project < ActiveRecord::Base
   end
 
   def extend_due_date(amount_of_time) # changes the due date of a project
-    self.datetime + amount_of_time
+    self.due_date += amount_of_time
+    self.save
+  end
+
+  def project_details
+    new_hash = Hash.new
+    project_name = self.title
+    new_hash[project_name] = []
+      self.commits.select {|commit| commit.project_id == self.id}.map do |commit|
+        $teacher.users.select {|user| user.id == commit.user_id}.map do |user|
+          new_hash[project_name] << [user.name, commit.commit_date, commit.on_time?]
+        end
+      end
+    new_hash[project_name].map do |array|
+      "#{array}".strip
+    end
   end
 
 end
