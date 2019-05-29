@@ -5,9 +5,14 @@ require_relative '../config/environment'
 puts "*" * 60
 puts "\t\tWorking Title!"
 puts "*" * 60
+
+def greeting
 puts "Greetings, Adventurer! What would you like to do?"
 puts "\s\s\s1. Create Character"
 puts "\s\s\s2. Load Character"
+user_input = gets.chomp
+character_select(user_input)
+end
 
 
 def create_player(name_input, battlecry_input)
@@ -23,8 +28,8 @@ def character_select(user_input)
     create_player(name_input, battlecry_input)
   elsif user_input == "2"
     puts "Please select a character"
-    character_list = Player.each_with_index do |player, n|
-      puts "#{n + 1}. #{player.name}"
+    Player.all.each_with_index do |player, n|
+      puts "\t#{n + 1}. #{player.name}"
     end
     character_selection = gets.chomp
     if character_list[character_selection]
@@ -32,11 +37,10 @@ def character_select(user_input)
     else
       puts "That character doesn't exist. Please try again."
     end
-  else
-    "That is not a valid command. Stop it."
+  elsif user_input != "1" && user_input != "2"
+    puts "That is not a valid command. Stop it."
+    greeting
   end
 end
 
-user_input = gets.chomp
-
-character_select(user_input)
+greeting
