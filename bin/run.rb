@@ -58,13 +58,30 @@ case user_option
       binding.pry
   when "update plan"
     puts "Which plan would you like to update?"
-    current_user.plans.all.map {|plan| puts "#{plans.index(plan) + 1}. #{plan.activity.name} - #{plan.date}"}
+    current_user.view_plans
     plan_to_update = gets.chomp
-    puts "What would like to change?"
+    puts "What would you like to change?"
     puts "1. Activity"
     puts "2. Date"
-    thing_to_update = gets.chomp
-    
+    thing_to_update = gets.chomp.to_i
+    if thing_to_update == 1
+      puts "Which activity would you like to do instead?"
+      Activity.all.map {|activity| puts activity.name}
+      puts "---------------------------------------------------"
+      activity_name = gets.chomp.split.map(&:capitalize).join(" ")
+      new_plan = Plan.new
+      new_plan.date = Time.now.strftime('%y/%m/%d')
+      Activity.find_by(name: "#{activity_name}").plans << new_plan
+      current_user.plans << new_plan
+      current_user.plans[plan_to_update.to_i - 1].delete
+      puts "Plan updated!"
+    elsif thing_to_update == 2
+      puts "Please enter new date: (yyyy/mm/dd)"
+      new_date = gets.chomp
+      Plan.update(current_user.plans[plan_to_update.to_i - 1].id, :date => new_date)
+      binding.pry
+      puts "Date updated!"
+    end
   when "view plans"
     current_user.view_plans
   when "remove"
