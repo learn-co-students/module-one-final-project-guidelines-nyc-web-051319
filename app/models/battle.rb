@@ -83,6 +83,7 @@ def test_battle_round(current_player, current_monster)
         #delete player
     end
 
+    # Method that will start chance to flee (forfieting a round of attack if failed)
     def player_flee
         puts "#{current_player.name} tried to get away ..."
         sleep(1)
@@ -92,14 +93,13 @@ def test_battle_round(current_player, current_monster)
         sleep(1)
         puts "ANNNNNDDD ....."
         sleep(1)
-        if rand(0..100) > (current_player.level * 10) - current_monster.hp
+        #conditional for escaping. Easier to run if you're a higher level and/or monster is injured.
+        if rand(0..200) > (current_player.level * 20) - current_monster.hp
             puts "SLIPPED AWAY!"
             battle_over = true
         else
             puts "couldn't escape!"
         end
     end
-
-
 
 end

@@ -1,3 +1,17 @@
+# UNTITLED DUNGEON CRAWLER
+
+Welcome to the world of NAME. In UNTITLED, you play as a brave warrior who must battle through grim dungeon levels of monsters. This game is a roguelike adventure where if you lose, that character is forever lost to the depths of the dungeon.
+
+## Starting out
+
+Every adventurer needs to etch his/her destiny so that songs and tales can be passed down from generation to generation. Provide your champions name, weapon of choice and famous battlecry, which you're known for screaming whilst charging into the fray!
+
+Name: Name of your choosing plus titles, class, whatever!
+Melee Weapon: This experience works best if you use a hand-held melee weapon
+Battlecry: Something you want your character to scream into battle!
+
+
+
 # Module One Final Project Guidelines
 
 Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
