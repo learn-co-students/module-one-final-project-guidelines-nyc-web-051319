@@ -14,13 +14,17 @@ class Movie < ActiveRecord::Base
         puts "\n"
         puts "\nMost Recent Review".blue
         puts "==============================".blue
-        puts "\nReviewed By: #{user_name}"
-        puts "\nUpdated At: #{last_updated_review.short_updated_date_with_time}"
-        print "\n#{user_name}'s Rating: "
+        print "\nReviewed By: ".green
+        puts "#{user_name}"
+
+        print "\nUpdated At: ".green
+        puts "#{last_updated_review.short_updated_date_with_time}"
+
+        print "\n#{user_name}'s Rating: ".green
         print rating_to_eggplants(last_updated_review.rating)
         print " (#{last_updated_review.rating})"
         puts "\n"
-        print "\nWhat #{user_name} has to say about #{self.name}: "
+        print "\nWhat #{user_name} has to say about #{self.name}: ".green
         print "\"#{last_updated_review.content}\""
         puts "\n\n"
         puts "==============================".blue
@@ -31,10 +35,10 @@ class Movie < ActiveRecord::Base
       matched_movies = Movie.where('rating >= ?', rating).order(rating: :desc)
       
       if matched_movies.empty?
-        puts "No movies found with rating #{rating} or greater."
+        puts "No movies found with rating #{rating} or greater.".red
       else
-        puts "\n#{matched_movies.count} MOVIE(S) FOUND WITH RATING #{rating} OR GREATER:"
-        puts "=============================="
+        puts "\n#{matched_movies.count} Movie(s) Found With Rating #{rating} or Greater:".green
+        puts "========================================".blue
         matched_movies.each_with_index do |movie, index|
           puts "#{index + 1}. #{movie.name} (#{movie.long_release_date}) - Rating: #{movie.rating}"
         end

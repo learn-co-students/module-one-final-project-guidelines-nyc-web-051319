@@ -2,14 +2,17 @@
 
 def selected_movie_menu(movie)
     #Name
-    puts "\nName: #{movie.name}"
+    print "\nMovie Name: ".green
+    puts "#{movie.name}"
+
     #Release Date
-    puts "\nRelease Date: #{movie.release_date.strftime("%B %d, %Y")}"
+    print "\nRelease Date: ".green
+    puts "#{movie.long_release_date}"
 
     #Rating
-    print "\nAverage Rating: "
+    print "\nAverage Rating: ".green
     print rating_to_eggplants(movie.rating)
-    print " (#{movie.rating})"
+    puts " (#{movie.rating})"
 
     #Latest Review
     movie.print_latest_review
@@ -23,22 +26,23 @@ def find_movie_by_name_menu
     matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
     #show movie name ordered by release date
     if matched_movies.empty?
-        puts "No movies found for \"#{movie_name}.\""
+        puts "No movies found for \"#{movie_name}.\"".red
     else
-        puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\""
+        puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\"".green
+        puts "===================================".blue
         matched_movies.each_with_index do |movie, index|
             puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
         end
         print "\nPlease select a movie: "
-        movie_picked = gets.strip
-        selected_movie = matched_movies[movie_picked.to_i - 1]
+        movie_picked = gets.strip.to_i
+        selected_movie = matched_movies[movie_picked - 1]
         selected_movie_menu(selected_movie)
     end
     selected_movie
 end
 
 def movie_menu
-    puts "\n BROWSE MOVIES"
+    puts "\n ========== Browse Movies ========== ".blue
     puts "1. Find Movies by Name" #duplicates
     puts "2. Find Movies by Rating" #allow range?
     puts "3. Back to Main Menu"
@@ -47,15 +51,20 @@ def movie_menu
 
     case menu_input
     when "1" #find movies by name
-        find_movie_by_name
+        sleep 0.3
+        find_movie_by_name_menu
         true
     when "2" #find movies by rating
         #returns movies greater than selection
-        print "Please enter rating: "
+        sleep 0.3
+        print "\nPlease enter rating: "
         rating = gets.strip.to_i
         Movie.print_movies_by_rating(rating)
         true
     when "3"
         false #go back to main menu
+    else
+        puts "Invalid input. Please select options 1, 2, or 3.".red
+        true
     end
 end

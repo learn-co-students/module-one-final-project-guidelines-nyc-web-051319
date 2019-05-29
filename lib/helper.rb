@@ -1,3 +1,5 @@
+require 'uri'
+
 def rating_to_eggplants(rating)
     if rating == 0.0
         "No one review this movie yet."
@@ -12,4 +14,8 @@ def rating_to_eggplants(rating)
     elsif rating <= 5
         "🍆🍆🍆🍆🍆"
     end
+end
+
+def valid_email?(email)
+    email.match(URI::MailTo::EMAIL_REGEXP).present?
 end

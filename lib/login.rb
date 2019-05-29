@@ -6,7 +6,7 @@ class Login < ActiveRecord::Base
     end
 
     def self.create_account(email)
-        print "Please enter your password: " ##remember to check for mix of letter and numbers
+        print "\nPlease enter your password: " ##remember to check for mix of letter and numbers
         password = gets.strip
         print "\nPlease enter your name: "
         name = gets.strip
@@ -14,7 +14,7 @@ class Login < ActiveRecord::Base
         new_user = User.create(name: name, created_at: Time.now, updated_at: Time.now)
         Login.create(email: email, password: password, user_id: new_user.id)
         
-        puts "\nYour account has been successfully created.".blue
+        puts "\nYour account has been successfully created.".green
         sleep 0.5
         new_user
     end
