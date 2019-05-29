@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   def projecttitles
     self.projects.map do |project|
       project.title
-    end.join(", ")
+    end
   end
 
   def on_time_completed_projects # returns the number of on time completed projects
@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
   def late_completed_projects # returns the number of on time completed projects
     late_commits = self.commits.select {|commit| commit.on_time? == false}
-    late_commits.map do |commit| 
+    late_commits.map do |commit|
       commit.project.title # return the user's project
     end
   end

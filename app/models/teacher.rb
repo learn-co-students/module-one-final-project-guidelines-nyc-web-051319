@@ -24,6 +24,18 @@ class Teacher < ActiveRecord::Base
     end
   end
 
+  def busiest_instance
+    all_commits = self.users.map do |user|
+      user.commits.count
+    end
+    least_commits = all_commits.sort.first
+    self.users.map do |user|
+      if user.commits.count == least_commits
+        return user
+      end
+    end
+  end
+
   def laziest_student
     all_commits = self.users.map do |user|
       user.commits.count
@@ -32,6 +44,18 @@ class Teacher < ActiveRecord::Base
     self.users.map do |user|
       if user.commits.count == most_commits
         return user.name
+      end
+    end
+  end
+
+  def laziest_instance
+    all_commits = self.users.map do |user|
+      user.commits.count
+    end
+    most_commits = all_commits.sort.last
+    self.users.map do |user|
+      if user.commits.count == most_commits
+        return user
       end
     end
   end

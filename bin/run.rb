@@ -10,17 +10,22 @@ class ApplicationController
 
   def main
     puts "Welcome to Your CLI Student Database for Teachers!!! What's your username?"
+    puts ""
     username = gets.strip.capitalize
+    puts ""
 
     case username
       when username
         person = Teacher.find_by(name: username)
           if person != nil
             puts "Hi #{person.name}, what's your password?"
+            puts ""
+            puts ""
             password = STDIN.noecho(&:gets).chomp #gets.strip.downcase
+            puts ""
             weird_person = Teacher.find_by(password: person.password)
             if password == weird_person.password
-              puts "Welcome #{person.name}, what would you like to do? "
+              puts "Welcome #{person.name}, what would you like to do?"
               $teacher = person
               lists
             else
@@ -106,11 +111,17 @@ class ApplicationController
     puts "4. Change Password"
     puts ""
     puts "5. Delete Self"
+    puts ""
     input = gets.strip
+    puts ""
 
     case input
       when "1"
+        puts "***********************************"
+        puts "Names:"
+        puts "***********************************"
         puts $teacher.find_students
+        puts "***********************************"
         puts ""
         puts ""
         students
@@ -169,27 +180,57 @@ class ApplicationController
     puts "5. Delete student"
     puts ""
     puts "6. Go back to Main Menu"
+    puts ""
     new_input = gets.strip
 
     case new_input
       when "1"
+        puts ""
+        puts ""
         puts "Which student's projects would you like to see?"
+        puts ""
         name = gets.strip
         person = User.find_by(name: name)
+        puts ""
+        puts ""
+        puts "Projects:"
+        puts "******************"
         puts person.projecttitles
+        puts "******************"
+        puts ""
         puts "Would you like to see which projects are submitted on time? (y/n)"
+        puts ""
         answer = gets.strip
         if answer == "y"
+          puts ""
+          puts "On-Time Projects:"
+          puts "*****************************"
           puts person.on_time_completed_projects
+          puts "*****************************"
+          puts ""
+          students
         elsif answer == "n"
+          puts ""
           puts "Would you like to see which projects are submitted late? (y/n)"
+          puts ""
           answer = gets.strip
+          puts ""
           if answer == "y"
+            puts ""
+            puts "Late Projects:"
+            puts "*****************************"
             puts person.late_completed_projects
-          elsif answer == "n"
+            puts "*****************************"
+            puts ""
             students
+          elsif answer == "n"
+            puts ""
+            students
+            puts ""
           else
+            puts ""
             puts "Invalid input. Please try again."
+            puts ""
             students
           end
         else
@@ -197,20 +238,37 @@ class ApplicationController
           students
         end
       when "2"
-        puts $teacher.laziest_student
+        puts ""
+        puts "*****************************************"
+        puts "BEST STUDENT: #{$teacher.laziest_student} (#{$teacher.laziest_instance.commits.count} commits)"
+        puts "*****************************************"
+        puts ""
         students
       when "3"
-        puts $teacher.busiest_student
+        puts ""
+        puts "*****************************************"
+        puts "LAZIEST STUDENT: #{$teacher.busiest_student} (#{$teacher.busiest_instance.commits.count} commits)"
+        puts "*****************************************"
+        puts ""
         students
       when "4"
+        puts ""
+        puts ""
         puts "What's the name of the student?"
+        puts ""
         name = gets.strip
         $teacher.users << User.create(name: name, teacher_id: $teacher.id)
+        puts ""
         puts "Student #{name} has been added!"
+        puts ""
+        puts ""
         lists
       when "5"
+        puts ""
         puts "What's the name of the student you want to delete?"
+        puts ""
         name = gets.strip
+        puts ""
         dead_student = User.find_by(name: name, teacher_id: $teacher.id)
         if User.all.include?(dead_student)
           dead_student.delete_user
@@ -218,15 +276,20 @@ class ApplicationController
           puts "Student #{name} has been deleted!"
           lists
         else
+          puts ""
           puts "Student does not exist, try again!"
+          puts ""
           lists
         end
       when "6"
+        puts ""
         lists
+        puts ""
       end
   end
 
   def projects
+    puts ""
     puts "What would you like to find out?"
     puts "1. Details of a Project"
     puts ""
@@ -241,10 +304,12 @@ class ApplicationController
     puts "6. Extend a Project Due Date"
     puts ""
     puts "7. Go back to Main Menu"
+    puts ""
     new_input = gets.strip
 
     case new_input
       when "1"
+        puts ""
         puts "which project would you like to see details for?"
         id = gets.strip
         project = Project.find_by(id: id)
@@ -253,12 +318,15 @@ class ApplicationController
         puts ""
         projects
       when "2"
+        puts ""
         puts Project.least_committed_project
         projects
       when "3"
+        puts ""
         puts Project.most_committed_project
         projects
       when "4"
+        puts ""
         puts "What's the project's title?"
         title = gets.strip
         puts "What's the project's description?"
@@ -270,6 +338,7 @@ class ApplicationController
         puts "Project has been created!"
         lists
       when "5"
+        puts ""
         puts "What's the title of the project you want to delete?"
         title = gets.strip
         dead_project = Project.find_by(title: title)
@@ -282,6 +351,7 @@ class ApplicationController
           lists
         end
       when "6"
+        puts ""
         puts "What's the id of the project you'd like to extend?"
         id = gets.strip
         puts "How many days would you like to extend it by?"
