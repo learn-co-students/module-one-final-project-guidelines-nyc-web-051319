@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.integer "level"
     t.string "battlecry"
     t.integer "accuracy"
+    t.string "weapon"
   end
 
 end
