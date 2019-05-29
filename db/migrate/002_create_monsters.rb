@@ -5,7 +5,6 @@ class CreateMonsters < ActiveRecord::Migration[5.0]
       t.string :creature_type
       t.integer :hp
       t.integer :dmg
-      t.boolean :alive
       t.integer :difficulty
     end
   end
