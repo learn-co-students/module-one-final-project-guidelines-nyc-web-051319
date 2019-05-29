@@ -6,3 +6,7 @@ def seed_monsters
 end
 
 seed_monsters
+
+def create_player(name_input, battlecry_input)
+  Player.create(:name => name_input, :max_hp => 200, :current_hp => 200, :min_dmg => 6, :max_dmg => 12, :alive => true, :level => 1, :battlecry => battlecry_input, :accuracy => 50)
+end
