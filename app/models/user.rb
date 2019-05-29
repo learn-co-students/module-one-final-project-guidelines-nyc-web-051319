@@ -34,9 +34,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def which_student_completed_most_on_time
-  end
-
   def delete_user
     self.delete
   end
