@@ -1,17 +1,4 @@
-def rating_to_eggplants(rating)
-    if rating <= 1.5 
-        "🍆"
-    elsif rating <= 2.5
-        "🍆🍆"
-    elsif rating <= 3.5
-        "🍆🍆🍆"
-    elsif rating <= 4.5
-        "🍆🍆🍆🍆"
-    elsif rating <= 5
-        "🍆🍆🍆🍆🍆"
-    end
-end
-
+#BROWSE MOVIES MENU
 
 def selected_movie_menu(movie)
     #Name
@@ -29,20 +16,16 @@ def selected_movie_menu(movie)
 end
 
 def movie_menu
-
     puts "\n BROWSE MOVIES"
     puts "1. Find Movies by Name" #duplicates
     puts "2. Find Movies by Rating" #allow range?
-    puts "3. Find Movies by Year"
-    puts "4. Most Reviewed Movie"
-    puts "5. Most Popular Movie"
-    puts "6. Top 5 Movies by Year"
-
+    puts "3. Back to Main Menu"
+    print "\nWhat would you like to do? "
     menu_input = gets.strip
 
     case menu_input
-    when "1"
-        puts "Please enter name of movie"
+    when "1" #find movies by name
+        print "\nPlease enter name of movie: "
         movie_name = gets.strip.downcase #name in lowercase
         matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
         #show movie name ordered by release date
@@ -51,17 +34,20 @@ def movie_menu
         else
             puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\""
             matched_movies.each_with_index do |movie, index|
-                puts "#{index + 1}. #{movie.name} (#{movie.release_date.strftime("%B %d, %Y")})"
+                puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
             end
-            puts "\nPlease select a movie to learn more"
+            print "\nPlease select a movie to learn more: "
             selected_movie = gets.strip
             selected_movie_menu(matched_movies[selected_movie.to_i - 1])
         end
-    
-    when "2"
-        puts "Please enter rating"
-        rating = gets.strip
-
-        #get reviews with 
+        true
+    when "2" #find movies by rating
+        #returns movies greater than selection
+        print "Please enter rating: "
+        rating = gets.strip.to_i
+        Movie.print_movies_by_rating(rating)
+        true
+    when "3"
+        false #go back to main menu
     end
 end
