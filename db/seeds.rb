@@ -1,6 +1,7 @@
 require 'pry'
 require_relative '../lib/api_communicator.rb'
 require_relative '../config/environment.rb'
+require_relative '../app/models/monster.rb'
 
 
 def seed_monsters

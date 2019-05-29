@@ -1,5 +1,7 @@
 # Created with Name, Type, HP, DMG, Dungeon, Alive?
+require 'pry'
 class Monster < ActiveRecord::Base
+    has_many :dungeons, through: :monster_infestations
     attr_accessor :hp, :dmg, :alive
     attr_reader :name, :type
 
@@ -19,5 +21,4 @@ class Monster < ActiveRecord::Base
     def self.all
         @@all
     end
-
 end
