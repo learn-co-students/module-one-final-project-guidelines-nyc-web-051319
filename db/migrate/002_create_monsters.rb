@@ -1,4 +1,4 @@
-class CreateMonsters < ActiveRecord::Migration[5.2]
+class CreateMonsters < ActiveRecord::Migration[5.0]
   def change
     create_table :monsters do |t|
       t.string :name
@@ -7,4 +7,5 @@ class CreateMonsters < ActiveRecord::Migration[5.2]
       t.integer :dmg
       t.boolean :alive
     end
+  end
 end
