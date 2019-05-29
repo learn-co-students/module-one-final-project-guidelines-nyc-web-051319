@@ -25,7 +25,7 @@ def main
             #puts "6. Log Out" NEED TO IMPLEMENT
             menu_input = gets.strip
         when "1"
-            
+            movie_menu
         when "3" #check login
             if logged_in
                 #user = User.find(2)
