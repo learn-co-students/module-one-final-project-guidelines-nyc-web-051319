@@ -11,6 +11,7 @@ def selected_movie_menu(movie)
         print "#{genre.genre}"
         print ", " unless genre == movie.genres.last
     end
+    print "\n"
     #Release Date
     print "\nRelease Date: ".green
     puts "#{movie.long_release_date}"
