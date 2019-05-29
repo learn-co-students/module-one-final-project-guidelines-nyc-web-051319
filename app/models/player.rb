@@ -3,7 +3,7 @@ require 'pry'
 class Player < ActiveRecord::Base
     has_many :dungeons, through: :dungeon_crawls
 
-    # Attack, Level Up, Status, BattleCry, Min & Max Damage, Attack Accuracy
+    # Attack, Level Up, Status, BattleCry, Min & Max Damage, Attack Accuracy, Weapon
 
     # View all current stats of a character
     def print_status
@@ -11,6 +11,7 @@ class Player < ActiveRecord::Base
         puts "Health: #{self.current_hp}/#{self.max_hp}"
         puts "Damage: #{self.min_dmg} to #{self.max_dmg} DMG per attack."
         puts "Accuracy Modifer: #{self.accuracy}% to hit."
+        puts "Weapon: #{self.weapon}"
         puts "#{self.battlecry}!!!"
     end
 
@@ -35,10 +36,10 @@ class Player < ActiveRecord::Base
     def attack
         swing = rand(1..100)
         if swing < self.accuracy
-            puts "You hit the #{current_monster}!"
+            puts "You swing your #{self.weapon} and hit the #{current_monster}!"
             player_damage = current_monster.hp - rand(self.min_dmg..self.max_dmg)
         else
-            puts "You missed!"
+            puts "You missed! WHOOSH!"
             player_damage = 0
         end
     puts player_damage
@@ -46,7 +47,7 @@ class Player < ActiveRecord::Base
 
     # Battle option for potential for monster to miss a turn
     def intimidate
-        puts "You roar with beastial vigor!"
+        puts "You raise your #{self.weapon} and roar with beastial vigor!"
         sleep(1)
         puts "#{self.battlecry}!!!"
         sleep(1)
