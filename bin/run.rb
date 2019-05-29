@@ -67,7 +67,7 @@ def see_more_menu(list_of_movies)
 
     case answer
     when "y"
-            puts "\nWhich movie do you want more info on? (1 - 10) "
+            print "\nWhich movie do you want more info on? (1 - 10) "
             movie_num = gets.strip.to_i
             if movie_num <= list_of_movies.count && movie_num > 0
                 selected_movie_menu(list_of_movies[movie_num - 1])
