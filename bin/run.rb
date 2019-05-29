@@ -19,7 +19,7 @@ require_rel '../app'
 # puts "===================================================================================="
 # sleep 2
 
-puts "Please write your name"
+puts "Please enter your name:"
 #need a method that finds user by name
 #if name is in database
 #puts welcome back
@@ -38,7 +38,7 @@ end
 puts "Hey #{current_user.name}, what would you like to do?"
 puts ""
 sleep 0.5
-puts "Create new plan ('new plan'), view plan ('view plan'), update plan ('update plan'), remove activity/plan ('remove')"
+puts "Create new plan ('new plan'), view plans ('view plans'), update plan ('update plan'), remove activity/plan ('remove')"
 user_option = gets.chomp.downcase
 # binding.pry
 
@@ -58,8 +58,14 @@ case user_option
       binding.pry
   when "update plan"
     puts "Which plan would you like to update?"
-    current_user.plans.all.map {|plan| puts "#{plan.activity} - #{plan.date}"}
-  when "view plan"
+    current_user.plans.all.map {|plan| puts "#{plans.index(plan) + 1}. #{plan.activity.name} - #{plan.date}"}
+    plan_to_update = gets.chomp
+    puts "What would like to change?"
+    puts "1. Activity"
+    puts "2. Date"
+    thing_to_update = gets.chomp
+    
+  when "view plans"
     current_user.view_plans
   when "remove"
     puts "The tank is almost full."

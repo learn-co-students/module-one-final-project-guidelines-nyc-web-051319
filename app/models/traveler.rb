@@ -4,8 +4,7 @@ class Traveler < ActiveRecord::Base
 
   def view_plans
     self.plans.each do |plan|
-      puts "#{plan.id}. #{plan.activity.name} - #{plan.date}"
+      puts "#{plans.index(plan) + 1}. #{plan.activity.name} - #{plan.date}"
     end
   end
-
 end
