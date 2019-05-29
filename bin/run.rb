@@ -26,21 +26,35 @@ def character_select(user_input)
     puts "Please enter a battlecry"
     battlecry_input = gets.chomp
     create_player(name_input, battlecry_input)
+    choose_dungeon
   elsif user_input == "2"
-    puts "Please select a character"
+    puts "Please type the name of the character you want to play as"
     Player.all.each_with_index do |player, n|
-      puts "\t#{n + 1}. #{player.name}"
+      puts "\t#{player.name}"
     end
     character_selection = gets.chomp
-    if character_list[character_selection]
-      character_list[character_selection]
-    else
-      puts "That character doesn't exist. Please try again."
-    end
+    puts "You picked #{Player(character_selection)}!"
+    choose_dungeon
   elsif user_input != "1" && user_input != "2"
     puts "That is not a valid command. Stop it."
     greeting
   end
 end
+
+def choose_dungeon
+  puts "Which dungeon do you dare enter?"
+  Dungeon.all.each_with_index do |dungeon, n|
+    puts "\t#{n + 1} #{dungeon.name} -- #{dungeon.difficulty}"
+  end
+  dungeon_input = gets.chomp
+  "Abandon all hope..."
+  #method instantiate dungeon crawl
+end
+
+# if character_list[character_selection]
+#   character_list[character_selection]
+# else
+#   puts "That character doesn't exist. Please try again."
+# end
 
 greeting
