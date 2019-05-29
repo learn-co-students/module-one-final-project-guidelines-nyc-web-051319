@@ -13,20 +13,43 @@ class Player < ActiveRecord::Base
         puts "Accuracy Modifer: #{self.accuracy}% to hit."
         puts "#{self.battlecry}!!!"
     end
+
     # Rest function resets current health to max health. Will be called when leveled up. 
     def rest
         self.current_hp = self.max_hp
+        puts "A warm hearth and a stein of mead at an Inn reinvigors you!"
+        sleep(1)
+        puts "Current health: #{self.current_hp}/#{self.max_hp}"
+        sleep(1)
     end
-    # Basic attack logic. % Chance to hit (Accuracy Stat), random damage within range if successful (min -> max dmg)
+
+    def damage
+        self.current_hp -= 20
+        puts "You take 20 damage!"
+        sleep(1)
+        puts "Current health: #{self.current_hp}/#{self.max_hp}"
+        sleep(1)
+    end
+
+    # Basic attack logic. % Chance to hit (Accuracy Stat), random damage within range if successful (min -> max dmg) return value is damage number, which will be sent to fight method
     def attack
-        damage = current_monster.hp - rand(self.min_dmg..self.max_dmg)
-        damage
+        swing = rand(1..100)
+        if swing < self.accuracy
+            puts "You hit the #{current_monster}!"
+            player_damage = current_monster.hp - rand(self.min_dmg..self.max_dmg)
+        else
+            puts "You missed!"
+            player_damage = 0
+        end
+    puts player_damage
     end
+
     # Battle option for potential for monster to miss a turn
     def intimidate
         puts "You roar with beastial vigor!"
-        sleep(2)
+        sleep(1)
         puts "#{self.battlecry}!!!"
+        sleep(1)
     end
     # Every successful run will increase level and up stats
     def level_up
