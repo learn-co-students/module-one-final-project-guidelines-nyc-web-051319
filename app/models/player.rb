@@ -37,12 +37,12 @@ class Player < ActiveRecord::Base
         swing = rand(1..100)
         if swing < self.accuracy
             puts "You swing your #{self.weapon} and hit the #{current_monster}!"
-            player_damage = current_monster.hp - rand(self.min_dmg..self.max_dmg)
+            player_damage = rand(self.min_dmg..self.max_dmg)
         else
             puts "You missed! WHOOSH!"
             player_damage = 0
         end
-    puts player_damage
+    player_damage
     end
 
     # Battle option for potential for monster to miss a turn
