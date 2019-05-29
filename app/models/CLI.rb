@@ -1,6 +1,4 @@
 class CLI < ActiveRecord::Base
-  @current_player = {}
-  @current_dungeon = {}
 
   #displays title screen
   def self.title
@@ -15,7 +13,7 @@ class CLI < ActiveRecord::Base
     puts "   1. Create Character"
     puts "   2. Load Character"
     user_input = gets.chomp
-    self.character_select(user_input)
+    character_select(user_input)
   end
 
   #instantiates a new Player and adds them to ActiveRecord database
@@ -56,13 +54,22 @@ class CLI < ActiveRecord::Base
       puts "   #{n + 1} #{dungeon.name} -- #{dungeon.difficulty}"
     end
     dungeon_input = gets.chomp.to_i
-    @current_dungeon = Dungeon.all[dungeon_input + 1]
-    binding.pry
+    @current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "Abandon all hope..."
     self.start_dungeon_crawl
   end
 
   def self.start_dungeon_crawl
-    DungeonCrawl.create(player_id: current_player.id, dungeon_id: current_dungeon.id)
+    DungeonCrawl.create(player_id: @current_player.id, dungeon_id: @current_dungeon.id)
+    self.start_monster_infestation
+  end
+
+  def self.start_monster_infestation
+    m1 = rand(1..325)
+    m2 = rand(1..325)
+    m3 = rand(1..325)
+    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m1).id)
+    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m2).id)
+    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m3).id)
   end
 end
