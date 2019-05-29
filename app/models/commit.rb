@@ -11,7 +11,7 @@ class Commit < ActiveRecord::Base
   # end
 
   def on_time? # takes a project instance as an argument
-    self.commit_date < self.project.due_date # if commit date is past due date
+    self.commit_date <= self.project.due_date # if commit date is past due date
     #   self.on_time = false
     #   self.save
     #   "You're late!"

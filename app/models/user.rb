@@ -58,9 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def on_time_completed_projects # returns the number of on time completed projects
-    on_time_commits = self.commits.each do |commit|
-       commit.on_time?
-    end
+    on_time_commits = self.commits.select {|commit| commit.on_time?}
     on_time_commits.map do |commit|
       commit.project.title # return the user's project
     end
