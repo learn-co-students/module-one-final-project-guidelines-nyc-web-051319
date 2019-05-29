@@ -29,10 +29,11 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "monsters", force: :cascade do |t|
     t.string  "name"
-    t.string  "type"
+    t.string  "creature_type"
     t.integer "hp"
     t.integer "dmg"
     t.boolean "alive"
+    t.integer "difficulty"
   end
 
   create_table "players", force: :cascade do |t|
