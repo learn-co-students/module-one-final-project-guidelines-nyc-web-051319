@@ -63,10 +63,3 @@ def get_monster_stats
   end
   monsters
 end
-<<<<<<< HEAD:lib/api_communicator.rb
-=======
-
-
-
-get_monster_stats
->>>>>>> aaron:app/api_communicator.rb
