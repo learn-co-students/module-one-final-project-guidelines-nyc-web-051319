@@ -69,8 +69,7 @@ def see_more_menu(list_of_movies)
     when "y"
             puts "\nWhich movie do you want more info on? (1 - 10) "
             movie_num = gets.strip.to_i
-            if movie_num < list_of_movies.count && movie_num > 0
-                valid_number = true
+            if movie_num <= list_of_movies.count && movie_num > 0
                 selected_movie_menu(list_of_movies[movie_num - 1])
             else
                 puts "Invalid option. Please selection 1 - 10 from above.".red
@@ -142,6 +141,8 @@ def main
                     sleep 0.3
                     puts "\nThank you for taking the time to review!".green
                     menu_input = '0'
+                elsif movie == -1
+                    menu_input = '4'
                 else
                     puts "\n No movies found with that name.".light_red
                     menu_input = '4'
