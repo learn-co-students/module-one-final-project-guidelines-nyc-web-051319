@@ -11,13 +11,13 @@ puts "\s\s\s2. Load Character"
 user_input = gets.chomp
 
 def character_select(user_input)
-  if user_input = 1
+  if user_input == 1
     puts "Please enter a name"
     name_input = gets.chomp
     puts "Please enter a battlecry"
     battlecry_input = gets.chomp
     create_player(name_input, battlecry_input)
-  elsif user_input = 2
+  elsif user_input == 2
     puts "Please select a character"
     character_list = Player.each_with_index do |player, n|
       puts "#{n + 1}. #{player.name}"
