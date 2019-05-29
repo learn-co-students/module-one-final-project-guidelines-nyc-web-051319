@@ -18,8 +18,8 @@ def main
             puts "\nHello, #{user.name}!" if user
             puts "\nChoose from menu below"
 
-            puts "1. Top 5 Movies of All Time"
-            puts "2. Latest Releases"
+            puts "1. Top 10 Movies of All Time"
+            puts "2. Latest 10 Releases"
             puts "3. Browse Movies"
             puts "4. Write a Review for a Movie"
             puts "5. Log In"
@@ -29,7 +29,22 @@ def main
             print "\nWhat would you like to do? "
             menu_input = gets.strip
         when "1"
-
+            puts "\nTop 10 Movies of All Time"
+            puts "========================================"
+            Movie.order(rating: :desc).limit(10).each_with_index do |movie, index|
+                puts "#{index + 1}. #{movie.name} (#{movie.release_year}) - Rating: #{movie.rating}"
+            end
+            puts "========================================"
+            menu_input = '0'
+        when "2"
+            puts "\nLatest 10 Releases"
+            puts "========================================"
+            Movie.order(release_date: :desc).limit(10).each_with_index do |movie, index|
+                puts "\n#{index + 1}. #{movie.name} - Relase Date: #{movie.long_release_date}"
+                puts "    Rating: #{movie.rating}"
+            end
+            puts "========================================"
+            menu_input = '0'
         when "3"
             go_movie_menu = true
             while(go_movie_menu)

@@ -39,4 +39,8 @@ class Movie < ActiveRecord::Base
     def long_release_date
       self.release_date.strftime("%B %d, %Y")
     end
+
+    def release_year
+      self.release_date.strftime("%Y")
+    end
 end
