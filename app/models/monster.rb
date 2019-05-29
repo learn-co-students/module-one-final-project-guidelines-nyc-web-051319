@@ -5,7 +5,7 @@ class Monster < ActiveRecord::Base
 
 
     # View all current stats of a monster
-    def print_inspect
+    def inspect
         puts "Monster: #{self.name}"
         puts "Type: #{self.type}"
         puts "Current Health: #{self.hp}"
