@@ -7,9 +7,17 @@ end
 
 seed_monsters
 
-Dungeon.create("The Sewers", "Easy")
-Dungeon.create("Tomb of Malchor", "Medium")
-Dungeon.create("Dragon's Lair", "Hard")
-Dungeon.create("Frozen Ice Cave", "Medium")
-Dungeon.create("Volcanic Caverns", "Hard")
-Dungeon.create("Training Grounds", "Easy")
+dungeons = {
+  "The Sewers": "Easy",
+  "Tomb of Malchor": "Medium",
+  "Dragon's Lair": "Hard",
+  "Frozen Ice Cave": "Medium",
+  "Volcanic Caverns": "Hard",
+  "Training Grounds": "Easy",
+  "Flatiron Code Challenge Chamber": "Supa Hard"
+}
+
+dungeons.each do |name, difficulty|
+  puts "Creating #{name}"
+  Dungeon.create(name: name, difficulty: difficulty)
+end

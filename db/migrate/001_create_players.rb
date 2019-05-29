@@ -11,6 +11,7 @@ class CreatePlayers < ActiveRecord::Migration[5.0]
             t.integer :level
             t.string :battlecry
             t.integer :accuracy
+            t.string :weapon
         end
     end
 
