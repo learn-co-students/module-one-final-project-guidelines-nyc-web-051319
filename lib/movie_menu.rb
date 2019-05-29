@@ -7,7 +7,7 @@ def selected_movie_menu(movie)
     puts "\nRelease Date: #{movie.release_date.strftime("%B %d, %Y")}"
 
     #Rating
-    print "\nRating: "
+    print "\nAverage Rating: "
     print rating_to_eggplants(movie.rating)
     print " (#{movie.rating})"
 
