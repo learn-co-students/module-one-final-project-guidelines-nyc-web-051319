@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+require 'io/console'
 
 class ApplicationController
   $teacher
@@ -13,10 +14,10 @@ class ApplicationController
 
     case username
       when username
-        person = Teacher.find_by(name: username.downcase)
+        person = Teacher.find_by(name: username)
           if person != nil
             puts "Hi #{person.name}, what's your password?"
-            password = gets.strip.downcase
+            password = STDIN.noecho(&:gets).chomp #gets.strip.downcase
             weird_person = Teacher.find_by(password: person.password)
             if password == weird_person.password
               puts "Welcome #{person.name}, what would you like to do? "
@@ -31,9 +32,9 @@ class ApplicationController
             answer = gets.strip
             if answer == "y"
               puts "What's your username?"
-              username = gets.strip
+              username = gets.strip.capitalize
               puts "what's your password?"
-              password = gets.strip
+              password = STDIN.noecho(&:gets).chomp
               new_teacher = Teacher.create(name: username, password: password)
               new_teacher.save
               puts "New teacher #{username} has been added!"
@@ -139,8 +140,14 @@ class ApplicationController
         puts "Are you sure? (y/n)"
         answer = gets.strip
         if answer == "y"
-          $teacher.delete
-          puts "Deleted #{$teacher.name}."
+          if Teacher.all.include?($teacher)
+            $teacher.delete
+            puts "Deleted #{$teacher.name}."
+            main
+          else
+            puts "Teacher does not exist!"
+            main
+          end
         else
           puts "Invalid input. Please try again"
           input = gets.strip
@@ -205,10 +212,15 @@ class ApplicationController
         puts "What's the name of the student you want to delete?"
         name = gets.strip
         dead_student = User.find_by(name: name, teacher_id: $teacher.id)
-        dead_student.delete_user
-        $teacher.users.delete(dead_student)
-        puts "Student #{name} has been deleted!"
-        lists
+        if User.all.include?(dead_student)
+          dead_student.delete_user
+          $teacher.users.delete(dead_student)
+          puts "Student #{name} has been deleted!"
+          lists
+        else
+          puts "Student does not exist, try again!"
+          lists
+        end
       when "6"
         lists
       end
@@ -261,9 +273,14 @@ class ApplicationController
         puts "What's the title of the project you want to delete?"
         title = gets.strip
         dead_project = Project.find_by(title: title)
-        dead_project.delete_project
-        puts "Project #{title} has been deleted!"
-        lists
+        if Project.all.include?(dead_project)
+          dead_project.delete_project
+          puts "Project #{title} has been deleted!"
+          lists
+        else
+          puts "Project does not exist!"
+          lists
+        end
       when "6"
         puts "What's the id of the project you'd like to extend?"
         id = gets.strip
