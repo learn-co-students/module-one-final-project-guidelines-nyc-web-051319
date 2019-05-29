@@ -55,5 +55,18 @@ def get_monster_info
     monster_hash = JSON.parse(monster_string)
     monster_info = monster_hash["results"]
     monster_info
-    binding.pry
 end
+
+def get_monster_stats
+  monsters = get_monster_info.map do |monster|
+    JSON.parse(RestClient.get(monster["url"]))
+  end
+  monsters
+end
+<<<<<<< HEAD:lib/api_communicator.rb
+=======
+
+
+
+get_monster_stats
+>>>>>>> aaron:app/api_communicator.rb
