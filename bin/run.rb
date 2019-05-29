@@ -4,14 +4,21 @@ require_relative '../config/environment'
 def main_menu(user)
     sleep 0.3
     #menu_input = '0' for main menu
-    puts "\n"
-    puts "  🍆 Welcome to Ripe Eggplant 🍆  ".light_magenta.on_white #including user name after logged in
+    puts "\n\n"
+    puts " 🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆  " .on_white.blink
+    puts " 🍆                              🍆  ".on_white.blink
+    print " 🍆 ".on_white.blink
+    print " Welcome to Ripe Eggplant ".on_white.light_magenta
+    puts "   🍆  ".on_white.blink 
+    puts " 🍆                              🍆  ".on_white.blink
+    puts " 🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆  ".on_white.blink
+    puts "\n\n" #including user name after logged in
 
     #greets user if logged in
     puts "\nHello, " + "#{user.name}!".magenta if user
     puts "\n"
-    puts " Choose from menu below ".light_magenta.on_white
-
+    puts "   Choose from menu below   ".light_magenta.on_white
+    puts "\n"
     puts "1. Top 10 Movies of All Time".magenta
     puts "2. Latest 10 Releases"
     puts "3. Browse Movies".magenta
@@ -72,8 +79,29 @@ def main
         when "4" #check login
             sleep 0.4
             if logged_in
-                user.write_review
-                menu_input = "0"
+                sleep 0.3
+                
+                movie = find_movie_by_name_menu
+                if movie
+                    print "\nPlease rate #{movie.name} (#{movie.release_year}) between 1 - 5: "
+                    rating = gets.strip.to_i #validate correct input
+                
+                    print "\nPlease write your review:"
+                    content = gets.strip
+                
+                    user.add_review(movie, rating, content)
+                    
+                    puts "\n"
+                    puts "Movie Name: #{movie.name}"
+                    puts "Your Rating: #{rating}"
+                    puts "Your Review: #{content}"
+                    sleep 0.3
+                    puts "\nThank you for taking the time to review!".blue
+                    menu_input = '0'
+                else
+                    puts "\n No movies found with that name.".red
+                    menu_input = '4'
+                end
             else
                 sleep 0.4
                 puts "\nPlease Login before leaving a review.".light_yellow
@@ -90,9 +118,11 @@ def main
                 while(pwd_retry < 3 && !logged_in)
                     print "\nPlease enter your password: "
                     password = gets.strip
-                    if login.password == password
+                    if has_email.password == password
                         logged_in = true
-                        user = User.find(login.user_id)
+                        user = User.find(has_email.user_id)
+                        puts "\nLogin Successful".blue
+                        sleep 0.5
                         menu_input = "0"
                     else
                         puts "Incorrect password. Please try again.".light_red
@@ -109,8 +139,7 @@ def main
             end
         when "6" #already logs you in
             sleep 0.4
-            puts "\n CREATING NEW ACCOUNT"
-            puts "="*40
+            puts "\n ========== CREATING NEW ACCOUNT ==========".blue
             print "\nPlease enter your email: "
             email = gets.strip.downcase  #duplicate email
         

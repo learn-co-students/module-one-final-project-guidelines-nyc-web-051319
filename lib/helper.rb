@@ -1,5 +1,7 @@
 def rating_to_eggplants(rating)
-    if rating <= 1.5 
+    if rating == 0.0
+        "No one review this movie yet."
+    elsif rating <= 1.5 
         "🍆"
     elsif rating <= 2.5
         "🍆🍆"

@@ -13,6 +13,28 @@ def selected_movie_menu(movie)
 
     #Latest Review
     movie.print_latest_review
+    movie
+end
+
+def find_movie_by_name_menu
+    selected_movie = nil
+    print "\nPlease enter name of movie: "
+    movie_name = gets.strip.downcase #name in lowercase
+    matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
+    #show movie name ordered by release date
+    if matched_movies.empty?
+        puts "No movies found for \"#{movie_name}.\""
+    else
+        puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\""
+        matched_movies.each_with_index do |movie, index|
+            puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
+        end
+        print "\nPlease select a movie: "
+        movie_picked = gets.strip
+        selected_movie = matched_movies[movie_picked.to_i - 1]
+        selected_movie_menu(selected_movie)
+    end
+    selected_movie
 end
 
 def movie_menu
@@ -25,21 +47,7 @@ def movie_menu
 
     case menu_input
     when "1" #find movies by name
-        print "\nPlease enter name of movie: "
-        movie_name = gets.strip.downcase #name in lowercase
-        matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
-        #show movie name ordered by release date
-        if matched_movies.empty?
-            puts "No movies found for \"#{movie_name}.\""
-        else
-            puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\""
-            matched_movies.each_with_index do |movie, index|
-                puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
-            end
-            print "\nPlease select a movie to learn more: "
-            selected_movie = gets.strip
-            selected_movie_menu(matched_movies[selected_movie.to_i - 1])
-        end
+        find_movie_by_name
         true
     when "2" #find movies by rating
         #returns movies greater than selection
