@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'pry'
 require_relative '../config/environment'
 
 puts "*" * 60
@@ -8,16 +9,19 @@ puts "Greetings, Adventurer! What would you like to do?"
 puts "\s\s\s1. Create Character"
 puts "\s\s\s2. Load Character"
 
-user_input = gets.chomp
+
+def create_player(name_input, battlecry_input)
+  Player.create(:name => name_input, :max_hp => 200, :current_hp => 200, :min_dmg => 6, :max_dmg => 12, :alive => true, :level => 1, :battlecry => battlecry_input, :accuracy => 50)
+end
 
 def character_select(user_input)
-  if user_input == 1
+  if user_input == "1"
     puts "Please enter a name"
     name_input = gets.chomp
     puts "Please enter a battlecry"
     battlecry_input = gets.chomp
     create_player(name_input, battlecry_input)
-  elsif user_input == 2
+  elsif user_input == "2"
     puts "Please select a character"
     character_list = Player.each_with_index do |player, n|
       puts "#{n + 1}. #{player.name}"
@@ -32,3 +36,7 @@ def character_select(user_input)
     "That is not a valid command. Stop it."
   end
 end
+
+user_input = gets.chomp
+
+character_select(user_input)
