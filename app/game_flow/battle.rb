@@ -30,6 +30,7 @@ class Battle
       attack_menu
     else
       monster_attack
+      sleep(2)
     end
     @player_turn = !@player_turn
   end
@@ -54,6 +55,7 @@ class Battle
       #
       if fight_choice == "1"
           player_attack
+          sleep(2)
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
