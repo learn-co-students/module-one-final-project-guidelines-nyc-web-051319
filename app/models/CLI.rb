@@ -2,18 +2,22 @@ class CLI < ActiveRecord::Base
 
   #displays title screen
   def self.title
-    title = "Working Title!"
+    title = "Legend of Rubyerion: The Seven Paths"
+    puts " "
     puts "*" * 60
     puts title.center(60, ".")
     puts "*" * 60
+    puts " "
   end
 
   #greeting and menu prompt
   def self.greeting
     puts "Greetings, Adventurer! What would you like to do?"
+    puts " "
     puts "   1. Create Character"
     puts "   2. Load Character"
-    puts "   3. Quit"
+    puts "   3. Delete Character"
+    puts "   4. Quit"
     user_input = gets.chomp
     puts " "
     character_select(user_input)
@@ -54,11 +58,11 @@ class CLI < ActiveRecord::Base
       puts " "
       @current_player = Player.find_by_name(player_array[character_selection - 1])
       self.choose_dungeon
-    elsif user_input != "1" && user_input != "2" && user_input != "3"
+    elsif user_input != "1" && user_input != "2" && user_input != "3" && user_input != "4"
       puts "That is not a valid command. Stop it."
       puts " "
       self.greeting
-    elsif user_input == "3"
+    elsif user_input == "4"
       puts "Pathetic! Come back when you're feeling braver..."
       sleep(2)
       exit
