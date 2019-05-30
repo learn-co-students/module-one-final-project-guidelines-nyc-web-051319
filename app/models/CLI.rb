@@ -20,16 +20,18 @@ class CLI < ActiveRecord::Base
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
     @current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 50, weapon: weapon_input)
+    puts "Okay, #{@current_player.name}. Ready yourself..."
+    sleep(2)
   end
 
   #allows player to create new character, pick an existent one, or reloads if they fail to do either -- choice leads to dungeon selection menu
   def self.character_select(user_input)
     if user_input == "1"
-      puts "Please enter a name"
+      puts "Please enter a name:"
       name_input = gets.chomp
-      puts "Please enter a battlecry"
+      puts "Please enter a battlecry:"
       battlecry_input = gets.chomp
-      puts "Please enter a melee weapon"
+      puts "Please enter a melee weapon:"
       weapon_input = gets.chomp
       self.create_player(name_input, battlecry_input, weapon_input)
       choose_dungeon
@@ -41,8 +43,8 @@ class CLI < ActiveRecord::Base
         puts "   #{n + 1}. #{player.name}"
       end
       character_selection = gets.chomp.to_i
-      puts "You picked #{Player.find_by_name(player_array[character_selection - 1]).name}!"
-      sleep(1)
+      puts "Okay, #{Player.find_by_name(player_array[character_selection - 1]).name}. You know the drill..."
+      sleep(2)
       @current_player = Player.find_by_name(player_array[character_selection - 1])
       self.choose_dungeon
     elsif user_input != "1" && user_input != "2"
@@ -59,7 +61,8 @@ class CLI < ActiveRecord::Base
     end
     dungeon_input = gets.chomp.to_i
     @current_dungeon = Dungeon.all[dungeon_input - 1]
-    puts "Abandon all hope..."
+    puts "A sorry choice..."
+    sleep(2)
     self.start_dungeon_crawl
   end
 
