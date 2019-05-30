@@ -14,6 +14,7 @@ class Battle
 
   def battle_music
     music = Audite.new
+    music.stop_stream
     music.load('./app/sound/battle.mp3')
     music.start_stream
   end
