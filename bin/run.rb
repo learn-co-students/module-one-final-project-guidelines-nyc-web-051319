@@ -2,6 +2,11 @@ require_relative '../config/environment'
 require 'io/console'
 
 class ApplicationController
+
+  def initialize
+    @project_ids_to_index = {}
+  end
+
   $teacher
   def call
     main
@@ -304,7 +309,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         students
       when "List of Projects"
-        puts Project.all_project_names
+        print_projects
         puts ""
         puts ""
         projects
@@ -312,7 +317,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts "***********************************".colorize(:light_red)
         puts "Projects:"
         puts "***********************************".colorize(:light_blue)
-        puts Project.all_project_names
+        print_projects
         puts "***********************************".colorize(:light_green)
         puts ""
         puts ""
@@ -615,7 +620,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts "-----------------------------------------------"
         puts ""
-        id = gets.strip.to_i
+        id = @project_ids_to_index[gets.strip.to_i]
         puts ""
         puts "-----------------------------------------------"
         if Project.all_ids.include?(id)
@@ -789,6 +794,16 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts "Invalid input. Please try again".colorize(:red)
         puts ""
         projects
+      end
+    end
+
+    def print_projects
+      @project_ids_to_index.clear
+      i = 0
+      Project.all.each do |project|
+        i += 1
+        puts "#{i}. #{project.title}"
+        @project_ids_to_index[i] = project.id
       end
     end
 end

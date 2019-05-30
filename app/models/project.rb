@@ -3,10 +3,8 @@ class Project < ActiveRecord::Base
   has_many :users, through: :commits
 
   def self.all_project_names
-    i = 0
     self.all.map do |project|
-      i += 1
-      "#{i}. #{project.title}"
+      "#{project.id}. #{project.title}"
     end
   end
 
