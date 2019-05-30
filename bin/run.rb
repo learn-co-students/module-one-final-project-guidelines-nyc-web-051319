@@ -115,6 +115,7 @@ def main
             sleep 0.2
             puts "Goodbye!!".light_magenta
             leave_app = true
+            the_eggplant
         ##WHEN DELETE ACCOUNT
         else
             puts "Invalid input. Please select a number 1 - 7.".red
