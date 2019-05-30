@@ -431,11 +431,11 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         person = User.find_by(name: name)
         if $teacher.users.include?(person)
           puts ""
-          puts ""
+          puts "******************".colorize(:light_red)
           puts "Projects:"
-          puts "******************"
+          puts "******************".colorize(:light_blue)
           puts person.projecttitles
-          puts "******************"
+          puts "******************".colorize(:light_green)
           puts ""
           puts "======================================================================"
           puts "Would you like to see which projects are submitted on time? (y/n)".colorize(:blue)
@@ -457,7 +457,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           elsif answer == "n"
             puts ""
             puts "================================================================="
-            puts "Would you like to see which projects are submitted late? (y/n)"
+            puts "Would you like to see which projects are submitted late? (y/n)".colorize(:blue)
             puts "================================================================="
             puts ""
             puts "-----------------------------------------------"
@@ -478,18 +478,24 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
               puts ""
               students
               puts ""
+            elsif answer == "exit"
+              exit!
             else
               puts ""
               puts "Invalid input. Please try again.".colorize(:red)
               puts ""
               students
             end
+          elsif answer == "exit"
+            exit!
           else
             puts ""
             puts "Invalid input. Please try again.".colorize(:red)
             puts ""
             students
           end
+        elsif name == "Exit"
+          exit!
         else
           puts ""
           puts "Invalid input. Please try again.".colorize(:red)
@@ -519,13 +525,13 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts "-----------------------------------------------"
         puts ""
-        name = gets.strip
+        name = gets.strip.capitalize
         puts ""
         puts "-----------------------------------------------"
         $teacher.users << User.create(name: name, teacher_id: $teacher.id)
         puts ""
         puts "**************************************************"
-        puts "Student #{name} has been added!".colorize(:color => :white, :background => :red)
+        puts "Student #{name} has been added!".colorize(:color => :white, :background => :green)
         puts "**************************************************"
         puts ""
         puts ""
@@ -538,7 +544,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts "-----------------------------------------------"
         puts ""
-        name = gets.strip
+        name = gets.strip.capitalize
         puts ""
         puts "-----------------------------------------------"
         puts ""
@@ -557,7 +563,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           puts ""
           puts "Student does not exist, try again!".colorize(:red)
           puts ""
-          lists
+          students
         end
       when "6"
         puts ""
@@ -604,7 +610,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts ""
         puts "===================================================="
-        puts "Which project would you like to see details for?".colorize(:blue)
+        puts "Which Project ID would you like to see details for?".colorize(:blue)
         puts "===================================================="
         puts ""
         puts "-----------------------------------------------"
@@ -627,7 +633,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           projects
         else
           puts ""
-          puts "Invalid id, please try again.".colorize(:red)
+          puts "Invalid id, please try again. If exiting, please go back to the main menu.".colorize(:red)
           puts ""
           projects
         end
