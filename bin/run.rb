@@ -614,6 +614,12 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
       when "1"
         puts ""
         puts ""
+        puts "***********************************".colorize(:light_red)
+        puts "Projects:"
+        puts "***********************************".colorize(:light_blue)
+        print_projects
+        puts "***********************************".colorize(:light_green)
+        puts ""
         puts "===================================================="
         puts "Which Project ID would you like to see details for?".colorize(:blue)
         puts "===================================================="
@@ -627,9 +633,10 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           puts ""
           puts "********************"
           project = Project.find_by(id: id)
-          puts project.title.colorize(:blue)
+          puts "Title: #{project.title}; Description: #{project.description}".colorize(:blue)
           puts "********************"
           puts ""
+          puts "Commits:".colorize(:blue)
           puts "*********************************************************************************************************"
           puts project.project_details
           puts "*********************************************************************************************************"
