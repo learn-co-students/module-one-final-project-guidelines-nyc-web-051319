@@ -7,20 +7,26 @@ class Battle
 
   def initialize(current_player, current_monster)
     @battle_over = false
+    @player_turn = true
     @current_player = current_player
     @current_monster = current_monster
   end
 
-  def begin_round
-    if @current_player.current_hp > 0 && @current_monster.hp > 0
-        attack_menu
-    elsif @current_player.current_hp <= 0
-        player_death
-    elsif @current_monster.hp <= 0
-        monster_death
-    else
-        puts "not sure whats going on here."
+  def begin_battle
+    puts "Prepare for battle..."
+    while !@battle_over
+      do_round
     end
+    puts "The battle is over!"
+  end
+
+  def do_round
+    if @player_turn
+      attack_menu
+    else
+      monster_attack
+    end
+    @player_turn = !@player_turn
   end
 
   def attack_menu
@@ -42,7 +48,7 @@ class Battle
 
       #
       if fight_choice == "1"
-          attack_round
+          player_attack
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
@@ -52,21 +58,16 @@ class Battle
           else
             puts "The #{@current_monster.name} seems unaffected."
             sleep(2)
-            monster_attack
-            begin_round
           end
       elsif fight_choice == "3"
           @current_player.print_status
           sleep(2)
-          begin_round
       elsif fight_choice == "4"
           @current_monster.inspect_monster
           sleep(2)
-          begin_round
       elsif fight_choice == "5"
           player_flee
           sleep(2)
-          next_round
       else
           puts "That is not a valid command!"
       end
@@ -74,16 +75,6 @@ class Battle
 
       # Battle status for menu repopping up
       # battle_over = false
-
-  def attack_round
-      player_attack
-      if @current_monster.alive == true
-        monster_attack
-        begin_round
-      else
-        begin_round
-      end
-  end
 
   def player_attack
     player_damage = @current_player.attack(@current_monster)
@@ -100,14 +91,13 @@ class Battle
   def attack_of_opportunity
     player_attack
     player_attack
-    begin_round
   end
 
       #Run this when monster recieves damage from player
   def monster_take_damage(damage)
       @current_monster.hp -= damage
       if @current_monster.hp <= 0
-          !@current_monster.alive
+        monster_death
       end
   end
 

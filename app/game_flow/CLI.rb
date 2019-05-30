@@ -1,6 +1,6 @@
 class CLI
 
-  @player_array = []
+  @@player_array = []
 
   #displays title screen
   def self.title
@@ -27,8 +27,8 @@ class CLI
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 65, weapon: weapon_input)
-    puts "Okay, #{@current_player.name}. Ready yourself..."
+    @@current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 65, weapon: weapon_input)
+    puts "Okay, #{@@current_player.name}. Ready yourself..."
     sleep(2)
     puts " "
   end
@@ -52,28 +52,28 @@ class CLI
     elsif user_input == "2"
       puts "Which character would you like to play as?"
       self.list_players
-      puts "   #{@player_array.length + 1}. Return to Main Menu"
+      puts "   #{@@player_array.length + 1}. Return to Main Menu"
       character_selection = gets.chomp.to_i
-      if character_selection == @player_array.length + 1
+      if character_selection == @@player_array.length + 1
         self.greeting
       else
-        puts "Okay, #{Player.find_by_name(@player_array[character_selection - 1]).name}. You know the drill..."
+        puts "Okay, #{Player.find_by_name(@@player_array[character_selection - 1]).name}. You know the drill..."
         sleep(2)
         puts " "
-        @current_player = Player.find_by_name(@player_array[character_selection - 1])
+        @@current_player = Player.find_by_name(@@player_array[character_selection - 1])
         self.choose_dungeon #end select player
       end
       #begin delete player
     elsif user_input == "3"
       puts "Which character would you like to delete?"
       self.list_players
-      puts "   #{@player_array.length + 1}. Return to Main Menu"
+      puts "   #{@@player_array.length + 1}. Return to Main Menu"
       delete_input = gets.chomp.to_i
-      if character_selection == (@player_array.length + 1)
+      if character_selection == (@@player_array.length + 1)
         self.greeting
-      elsif character_selection != (@player_array.length + 1) #not done with this conditional
-        Player.where(name: @player_array[delete_input - 1]).destroy_all
-        puts "Not #{@player_array[delete_input - 1]}. Anyone but #{@player_array[delete_input - 1]}..."
+      elsif character_selection != (@@player_array.length + 1) #not done with this conditional
+        Player.where(name: @@player_array[delete_input - 1]).destroy_all
+        puts "Not #{@@player_array[delete_input - 1]}. Anyone but #{@@player_array[delete_input - 1]}..."
         sleep(2)
         puts " "
         self.greeting
@@ -93,7 +93,7 @@ class CLI
 
   def self.list_players
     Player.all.each_with_index do |player, n|
-      @player_array << player.name
+      @@player_array << player.name
       puts "   #{n + 1}. #{player.name}"
     end
   end
@@ -106,33 +106,60 @@ class CLI
       puts "   #{n + 1}. #{dungeon.name} -- #{dungeon.difficulty}"
     end
     dungeon_input = gets.chomp.to_i
-    @current_dungeon = Dungeon.all[dungeon_input - 1]
+    @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "A sorry choice..."
     sleep(2)
     self.start_dungeon_crawl
   end
 
   def self.start_dungeon_crawl
-    DungeonCrawl.create(player_id: @current_player.id, dungeon_id: @current_dungeon.id)
+    DungeonCrawl.create(player_id: @@current_player.id, dungeon_id: @@current_dungeon.id)
     self.start_monster_infestation
   end
 
   def self.start_monster_infestation
-    @monster_array = []
-    m1 = rand(1..325)
-    m2 = rand(1..325)
-    m3 = rand(1..325)
-    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m1).id)
-    @monster_array << Monster.find(m1)
-    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m2).id)
-    @monster_array << Monster.find(m2)
-    MonsterInfestation.create(dungeon_id: @current_dungeon.id, monster_id: Monster.find(m3).id)
-    @monster_array << Monster.find(m3)
-    current_monster = @monster_array.first
-    battle = Battle.new(@current_player, current_monster)
-    battle.begin_round
-    # if @battle_over == true
-    #   @monster_array.shift
-    #   current_monster = @monster
+    monster_array = []
+    num_monsters = 3
+    (0..num_monsters-1).each do |x|
+      monster = Monster.find(rand(1..325))
+      MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
+      monster_array << monster
+    end
+
+    run = DungeonRun.new(@@current_player, monster_array)
+    run.begin_run
   end
+
+  def self.monster_query(num_monsters)
+    num_monsters.times do
+      case @@current_dungeon.difficulty
+        when "Very Easy"
+          # 0 - 2
+          Monster.where("difficulty > 0").where("difficulty < 2").order("RANDOM()").first(3)
+        when "Easy"
+          # 6 - 10
+          Monster.where("difficulty > 3").where("difficulty < 6").order("RANDOM()").first(3)
+        when "Mediocre"
+          # 11 - 15
+          Monster.where("difficulty > 7").where("difficulty < 11").order("RANDOM()").first(3)
+        when "Medium"
+          # 16 - 20
+          Monster.where("difficulty > 12").where("difficulty < 20").order("RANDOM()").first(3)
+        when "Hard"
+          # 21 - 25
+          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
+        when "Extreme"
+          # 26 - 30
+          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
+        when "Insane"
+          # 31
+          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
+
+    end
+
+    end
+
+
+  end
+
 end
