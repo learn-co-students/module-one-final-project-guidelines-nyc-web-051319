@@ -12,10 +12,17 @@ class Battle
     @current_monster = current_monster
   end
 
+  def battle_music
+    music = Audite.new
+    music.load('./app/sound/battle.mp3')
+    music.start_stream
+  end
+
   def begin_battle
     puts "Wait, what was that?!?!"
     sleep(2)
     puts "A #{@current_monster.name} bursts into the room!!!"
+    battle_music
     sleep(2)
     puts "Prepare for battle..."
     sleep(2)
