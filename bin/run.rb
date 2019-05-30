@@ -30,35 +30,19 @@ def main_menu(user)
     #puts "6. Log Out" NEED TO IMPLEMENT
 end
 
-def top_10_movies
+def print_movie_list(sort_by) #sort_by string to order by
     sleep 0.4
-    puts "\nTop 10 Movies of All Time"
-    puts "========================================".blue
-    top_10 = Movie.order(rating: :desc).limit(10)
-    
-    top_10.each_with_index do |movie, index|
-        puts "#{index + 1}. #{movie.name} (#{movie.release_year}) - Rating: #{movie.rating}"
-    end
-    puts "========================================".blue
 
-    top_10 
-end
-
-def latest_10_movies
-    sleep 0.4
-    puts "\nLatest 10 Releases"
     puts "========================================".blue
-    latest_releases = Movie.order(release_date: :desc).limit(10)
+    matched_movies = Movie.order("#{sort_by} DESC").limit(10)
     
-    latest_releases.each_with_index do |movie, index|
+    matched_movies.each_with_index do |movie, index|
         puts "\n#{index + 1}. #{movie.name} - Relase Date: #{movie.long_release_date}"
         puts "    Rating: #{movie.rating}"
     end
-    puts "========================================".blue
+    puts "\n========================================".blue
 
-    latest_releases
-    ###NOT DONE
-
+    matched_movies
 end
 
 def see_more_menu(list_of_movies)
@@ -99,15 +83,19 @@ def main
             menu_input = gets.strip
         when "1"
             see_more = true
+            top_10_movie_list = print_movie_list('rating')
+            puts "\nTop 10 Movies of All Time"
             while(see_more)
-                see_more = see_more_menu(top_10_movies)
+                see_more = see_more_menu(top_10_movie_list)
                 sleep 0.4
             end
             menu_input = '0'
         when "2"
             see_more = true
+            latest_10_releases = print_movie_list('release_date')
+            puts "\nLatest 10 Releases"
             while(see_more)
-                see_more = see_more_menu(latest_10_movies)
+                see_more = see_more_menu(latest_10_releases)
                 sleep 0.4
             end
             menu_input = '0'
