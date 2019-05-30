@@ -107,7 +107,7 @@ class CLI
     end
     dungeon_input = gets.chomp.to_i
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
-    puts "A sorry choice..."
+    puts "The air is musty and your torch flickers..."
     sleep(2)
     self.start_dungeon_crawl
   end

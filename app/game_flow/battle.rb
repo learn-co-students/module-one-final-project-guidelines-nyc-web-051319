@@ -13,7 +13,12 @@ class Battle
   end
 
   def begin_battle
+    puts "Wait, what was that?!?!"
+    sleep(2)
+    puts "A #{@current_monster.name} bursts into the room!!!"
+    sleep(2)
     puts "Prepare for battle..."
+    sleep(2)
     while !@battle_over
       do_round
     end
