@@ -76,7 +76,7 @@ case user_option
       current_user.plans[plan_to_update.to_i - 1].delete
       puts "Plan updated!"
     elsif thing_to_update == 2
-      puts "Please enter new date: (yyyy/mm/dd)"
+      puts "Please enter new date: (yy/mm/dd)"
       new_date = gets.chomp
       Plan.update(current_user.plans[plan_to_update.to_i - 1].id, :date => new_date)
       binding.pry
@@ -86,6 +86,34 @@ case user_option
     current_user.view_plans
   when "remove"
     puts "The tank is almost full."
+  when "new"
+    Activity.set_location(Activity.new_activity)
   else
     puts "Sorry #{current_user.name}, thats not an option. Please choose one of the following options."
+end
+
+puts "Welcome to your Travel Planner"
+puts "Please enter your name:"
+
+traveler_name = gets.chomp.split.map(&:capitalize).join(" ")
+current_user = ""
+Traveler.all.each do |trav|
+  if trav.name == traveler_name
+    current_user = trav
+  end
+end
+
+if current_user == ""
+  current_user = Traveler.create(name: traveler_name)
+end
+puts "[1] Plan"
+puts "[2] Activities"
+puts "[3] Locations"
+input = gets.chomp
+
+case input
+  when 1
+
+  when 2
+
 end

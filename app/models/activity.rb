@@ -20,27 +20,34 @@ class Activity < ActiveRecord::Base
     new_act
   end
 
-  def set_location(new_act)
+  def self.set_location(new_act)
     puts "Where is this activity located?"
     puts "1. View Locations"
     puts "2. Add New Location"
     user_input = gets.chomp
     case user_input
       when "1"
-        Location.all.map {|location| puts "#{Location.index(location) + 1}. #{location.name}"}
+        Location.all.map {|location| puts "#{Location.all.index(location) + 1}. #{location.name}"}
         puts "Please enter location to assign to newly created activity:"
         location = gets.chomp
         Location.all.each do |location|
-          if location.id == (Location.index(location) - 1)
+          if location.id == (Location.all.index(location) - 1)
             location.activities << new_act
           end
         end
         puts "Location set!"
       when "2"
         new_location = Location.new_location
-        new_location.activity << new_act
+        new_location.activities << new_act
         puts "New location set!"
     end
   end
 
+  def self.top_rated
+    top = self.all.select {|act| act.rating >= 4}
+    puts "These are the top rated activities:"
+    top.map do |act|
+      puts "#{top.index(act) + 1}. #{act.name} - #{act.rating}"
+    end
+  end
 end
