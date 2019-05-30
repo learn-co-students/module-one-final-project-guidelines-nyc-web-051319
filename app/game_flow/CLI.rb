@@ -2,8 +2,15 @@ class CLI
 
   @@player_array = []
 
+  def self.title_music
+    @@theme = Audite.new
+    @@theme.load('./app/sound/theme.mp3')
+    @@theme.start_stream
+  end
+
   #displays title screen
   def self.title
+    self.title_music
     title = "Legend of Rubyerion: The Seven Paths"
     puts " "
     puts "*" * 60
@@ -27,7 +34,7 @@ class CLI
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @@current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
+    @@current_player = Player.create(name: name_input, max_hp: 100, current_hp: 100, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
     puts "Okay, #{@@current_player.name}. Ready yourself..."
     sleep(2)
     puts " "
@@ -108,6 +115,7 @@ class CLI
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "The air is musty and your torch flickers..."
     sleep(2)
+    @@theme.stop_stream
     self.start_dungeon_crawl
   end
 
@@ -139,16 +147,16 @@ class CLI
         Monster.where("difficulty > 3").where("difficulty < 6").order(Arel.sql("random()")).first(num_monsters)
       when "Mediocre"
         # 11 - 15
-        Monster.where("difficulty > 7").where("difficulty < 11").order(Arel.sql("random()")).first(num_monsters)
+        Monster.where("difficulty > 7").where("difficulty < 10").order(Arel.sql("random()")).first(num_monsters)
       when "Medium"
         # 16 - 20
-        Monster.where("difficulty > 12").where("difficulty < 20").order(Arel.sql("random()")).first(num_monsters)
+        Monster.where("difficulty > 11").where("difficulty < 13").order(Arel.sql("random()")).first(num_monsters)
       when "Hard"
         # 21 - 25
-        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+        Monster.where("difficulty > 14").where("difficulty < 17").order(Arel.sql("random()")).first(num_monsters)
       when "Extreme"
         # 26 - 30
-        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+        Monster.where("difficulty > 18").where("difficulty < 20").order(Arel.sql("random()")).first(num_monsters)
       when "Insane"
         # 31
         Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)

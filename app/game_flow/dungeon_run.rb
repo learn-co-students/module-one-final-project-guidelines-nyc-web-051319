@@ -3,6 +3,7 @@ class DungeonRun
   def initialize(player, monsters)
     @player = player
     @monsters = monsters
+    binding.pry
   end
 
   def begin_run
