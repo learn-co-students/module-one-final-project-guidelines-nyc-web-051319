@@ -1,4 +1,4 @@
-# Legend of Rubyerion: The 7 Paths
+# Legend of Rubyerion: The Seven Paths
 
 Welcome to the world of Rubyerion. In Legend of Rubyerion, you play as a brave warrior who must battle through a variety of dungeons. This game is a roguelike adventure, where if you lose, that character is forever lost to the depths of the dungeon.
 
