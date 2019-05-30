@@ -1,14 +1,54 @@
-# UNTITLED DUNGEON CRAWLER
+# Legend of Rubyerion: The 7 Paths
 
-Welcome to the world of NAME. In UNTITLED, you play as a brave warrior who must battle through grim dungeon levels of monsters. This game is a roguelike adventure where if you lose, that character is forever lost to the depths of the dungeon.
+Welcome to the world of Rubyerion. In Legend of Rubyerion, you play as a brave warrior who must battle through a variety of dungeons. This game is a roguelike adventure, where if you lose, that character is forever lost to the depths of the dungeon.
 
 ## Starting out
+
+### Create a Character
 
 Every adventurer needs to etch his/her destiny so that songs and tales can be passed down from generation to generation. Provide your champions name, weapon of choice and famous battlecry, which you're known for screaming whilst charging into the fray!
 
 Name: Name of your choosing plus titles, class, whatever!
 Melee Weapon: This experience works best if you use a hand-held melee weapon
 Battlecry: Something you want your character to scream into battle!
+
+### Load a Character
+
+If your character is lucky enough to have survived previous delves into the dungeon, and still live to tell their tale, they can be found here at the inn, ready for the next adeventure. Characters who have been slain can be visited in the graveyard.
+
+### Explore a Dungeon
+
+There are 7 dungeons to choose from. Each dungeon is ranked on a difficulty scale. Monsters from the easier dungeons will be easier to slay, and thus award less XP. Likewise, a harder dungeon will present a harder challenge for adventurers, but possess the highest amount of rewards and XP. 
+
+* The Dungeons are as follows:
+
+1. Training Grounds - Difficulty: Very Easy - Level up granted: 0
+First time picking up a sword? First time leaving your mom's basement? This is probably your best bet to show off those attack moves you've been practicing with a broomstick in front of the mirror while listening to the 'John Wick' original motion picture soundtrack. 
+
+2. The Sewers - Difficulty: Easy - Level up granted: 1
+Most heroes will find themselves starting their adventure here in the musty sewers below Rubyerion. Small, vile, bottom-feeder creatures and those git branches you -d will end up here, scavenging for fresh food...
+
+3. Tomb of Malchor - Difficulty: Medicore - Level up granted: 2
+Malchor was a mighty code-mage many centuries ago. Some say he failed his code challenge in Mod 3, and was banished to the online program. Since then he has fallen into the dark arts: Coding everything purely in Brainfuck. 
+
+"--[------->++<]>--.----[->+++<]>-.[->+++++++<]>.++++++.-[---->+<]>+++.++++++[->++<]>+.+[--->++++<]>+.++++++++++..+[---->+<]>+++.[-->+++<]>+.-..-----------.-----.+++++[->+++<]>.---------.[--->+<]>--.---[->++++<]>.------------.---.--[--->+<]>-.---[->++++<]>-.-----------.+++++++.+++++.-.+[---->+<]>+++.--[->++++<]>+.----------.++++++.-[---->+<]>+++.+[->+++<]>+.+++++++++++.-.[++>---<]>++.[->+++<]>-.[---->+<]>+++.---[->++++<]>.+[->+++<]>++.++++++++++.------.[->+++<]>-.------------.--.--[-->+++<]>.-[->++<]>-.++++++++++.+[--->+<]>+++.+[->+++<]>.---------.--[--->+<]>-.+++[->++<]>+.+++[->+++++<]>.-------------.[--->+<]>---.++++++.-[->+++<]>.[--->+<]>.-[---->+<]>++.--[-->+++<]>.------[->++<]>-.+[--->++++<]>+.------.+++++.-------.++++.+++++++.[++>---<]>--.>-[--->+<]>--.-[------>+<]>.++++++++++++.+++++.." - Malchor, probably.
+
+4. Frozen Ice Cave - Difficulty: Medium - Level up granted: 3
+XXXXXX
+
+5. Volcanic Caverns - Difficulty: Hard - Level up granted: 4
+XXXXX
+
+6. Dragon's Lair - Difficulty: Extreme - Level up granted: 5
+XXXXX
+
+7. Flatiron Code Challenge Chamber - Difficulty: Insane - Level up granted: 10
+XXXXX
+
+
+
+
+
 
 
 
