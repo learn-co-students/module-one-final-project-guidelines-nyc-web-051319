@@ -9,4 +9,47 @@ class User < ActiveRecord::Base
         movie.save
     end
     
+    def all_of_my_reviews
+        puts "\n========== My Reviews ==========".green
+        Review.where(user_id: self.id).order(updated_at: :desc)
+        .each_with_index do |review, index|
+            movie = Movie.find(review.movie_id)
+            puts "\n#{index + 1}.    Movie Name: #{movie.name} (#{movie.release_year})"
+            puts "      Rating: #{rating_to_eggplants(review.rating)} (#{review.rating})"
+            puts "      Content: #{review.content}"
+            puts "\n========================================".blue
+        end
+    end
+
+    def self.create_new_account
+        user = nil
+        puts "\n ========== CREATING NEW ACCOUNT ==========".blue
+        print "\nPlease enter your email: "
+        email = gets.strip.downcase  #duplicate email
+        
+        if valid_email?(email)
+            if Login.check_existing_login(email)
+                puts "\nAn account already exists for this email. Please log into your account with your email.\nGoing back to main menu.".red
+                sleep 0.4
+            else
+                print "\nNo email associated with this account. Do you want to create a new account? [y/n]  ".light_yellow
+                ans = gets.strip
+                
+                case ans
+                when "y"
+                    puts "\n Awesome! Let's get you setup right away!".green
+                    user = Login.create_account(email)
+                when "n"
+                    puts "No problem. Going back to main menu."
+                else
+                    puts "\nInvalid input. Going back to main menu.".red
+                    sleep 0.4
+                end
+            end
+        else
+            puts "Invalid email format. Please input a valid email.".light_yellow
+        end
+        user
+    end
+    
 end

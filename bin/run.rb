@@ -76,81 +76,38 @@ def main
             end
         when "5" #check login
             sleep 0.4
-            if logged_in
-                puts "You are already logged in. Going back to main menu.".light_yellow
-                menu_input = '0'
+            if logged_in ##see my review
+                user.all_of_my_reviews
+                sleep 0.4
             else
-                puts "\n================= LOGIN =================".blue
-                pwd_retry = 0
-                email_retry = 0
-                print "\nPlease enter your email: " #check if email is in database
-                email = gets.strip
-                while(!valid_email?(email) && email_retry < 3)
-                        print "\nIncorrect email format. Please enter a valid email: ".light_yellow
-                        email = gets.strip
-                        email_retry += 1
-                end
-                if !valid_email?(email)
-                    puts "\nYou've entered an incorrect email format too many times. Going back to Main Menu.".light_red
-                    menu_input = '0'
-                else
-                    has_email = Login.find_by(email: email)
-                    if has_email
-                        while(pwd_retry < 3 && !logged_in)
-                            print "\nPlease enter your password: "
-                            password = gets.strip
-                            if has_email.password == password
-                                logged_in = true
-                                user = User.find(has_email.user_id)
-                                puts "\nLogin Successful".blue
-                                sleep 0.5
-                                menu_input = "0"
-                            else
-                                puts "Incorrect password. Please try again.".light_red
-                                pwd_retry += 1
-                            end
-                        end
-                    else #cannot find email
-                        puts "No account is associated with this email. Please create an account.".light_red
-                        menu_input = "6" 
-                    end
-                    if pwd_retry >= 3
-                        puts "Too many incorrect login attempts. Going back to main menu.".light_red
-                        menu_input = "0"
-                    end
-                end
+                user = Login.login_checker
+                logged_in = true if user
             end
+            menu_input = '0'
         when "6" #already logs you in
             sleep 0.4
-            valid_email = false
-            while(!valid_email)
-                puts "\n ========== CREATING NEW ACCOUNT ==========".blue
-                print "\nPlease enter your email: "
-                email = gets.strip.downcase  #duplicate email
-                valid_email = valid_email?(email)
-                if valid_email
-                    if Login.check_existing_login(email)
-                        puts "\nAn account already exists for this email. Please log into your account with your email.\nGoing back to main menu.".red
-                        menu_input = "0"
-                    else
-                        print "\nNo email associated with this account. Do you want to create a new account? [y/n]  ".light_yellow
-                        ans = gets.strip
-                        
-                        case ans
-                        when "y"
-                            puts "\n Awesome! Let's get you setup right away!".green
-                            user = Login.create_account(email)
-                        when "n"
-                            puts "No problem. Going back to main menu."
-                        else
-                            puts "\nInvalid input. Going back to main menu.".red
-                        end
-                        menu_input = "0"
-                    end
+            if logged_in ##Log out
+                print "\nSee you next time, "
+                puts "#{user.name}!".magenta
+                user = nil
+                logged_in = false
+                sleep 0.4
+            else
+                retry_count = 0
+                while(retry_count < 3 && !user)
+                    user = User.create_new_account
+                    retry_count += 1
+                end
+                if user
+                    print "\nAccount created. Welcome abroad, "
+                    puts "#{user.name}!".magenta
+                    logged_in = true 
                 else
-                    puts "Invalid email format. Please input a valid email.".red
+                    puts "\nYou've entered an invalid email format too many times. Going back to Main Menu.".red
                 end
             end
+            sleep 0.4
+            menu_input = '0'
         when "7"
             sleep 0.2
             puts "Goodbye!!".light_magenta

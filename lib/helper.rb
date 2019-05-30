@@ -23,8 +23,13 @@ def main_menu(user)
     puts "2. Latest 10 Releases"
     puts "3. Browse Movies".magenta
     puts "4. Write a Review for a Movie"
-    puts "5. Log In".magenta
-    puts "6. Create an Account"
+    if !user
+        puts "5. Log In".magenta 
+        puts "6. Create an Account"
+    else
+        puts "5. See My Reviews".magenta
+        puts "6. Log Out"
+    end
     puts "7. Leave App".magenta
     #puts "6. Log Out" NEED TO IMPLEMENT
 end
@@ -77,3 +82,4 @@ def valid_number_selection?(selection, min, max)
     valid_options = (min..max).to_a.map {|num| num.to_s}
     valid_options.include?(selection)
 end
+
