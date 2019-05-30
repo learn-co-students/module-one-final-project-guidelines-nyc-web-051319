@@ -14,37 +14,40 @@ def main
             print "\nWhat would you like to do? "
             menu_input = gets.strip
         when "1" #top 10 movies of all time
+    
             see_more = true
             
             while(see_more)
+                system "clear"
                 puts "\nTop 10 Movies of All Time"
                 top_10_movie_list = Movie.print_10_movies_by('rating')
                 see_more = see_more_menu(top_10_movie_list)
-                sleep 0.4
+               
             end
             menu_input = '0'
         when "2" #latest 10 releases
             see_more = true
             
             while(see_more)
+                system "clear"
                 puts "\nLatest 10 Releases"
                 latest_10_releases = Movie.print_10_movies_by('release_date')
                 see_more = see_more_menu(latest_10_releases)
-                sleep 0.4
+              
             end
             menu_input = '0'
         when "3" #browse movies > goes to browse submenu
-            sleep 0.4
+          
             go_movie_menu = true
             while(go_movie_menu)
-                sleep 0.5
+                system "clear"
                 go_movie_menu = movie_menu
             end
             menu_input = '0'
         when "4" #write a reivew
-            sleep 0.4
+           
             if logged_in #check if user is logged in
-                sleep 0.3
+                system "clear"
                 
                 movie = find_movie_by_name_menu
                 if movie
@@ -85,13 +88,12 @@ def main
             end
             menu_input = '0'
         when "6" #already logs you in
-            sleep 0.4
+            system "clear"
             if logged_in ##Log out
                 print "\nSee you next time, "
                 puts "#{user.name}!".magenta
                 user = nil
                 logged_in = false
-                sleep 0.4
             else
                 retry_count = 0
                 while(retry_count < 3 && !user)
@@ -102,8 +104,10 @@ def main
                     print "\nAccount created. Welcome abroad, "
                     puts "#{user.name}!".magenta
                     logged_in = true 
+                   
                 else
                     puts "\nYou've entered an invalid email format too many times. Going back to Main Menu.".red
+                   
                 end
             end
             menu_input = '0'

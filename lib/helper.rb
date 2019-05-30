@@ -1,7 +1,8 @@
 require 'uri'
 
 def main_menu(user)
-    sleep 0.3
+    sleep 1
+    system "clear"
     #menu_input = '0' for main menu
     puts "\n\n"
     puts " 🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆  " .on_white.blink

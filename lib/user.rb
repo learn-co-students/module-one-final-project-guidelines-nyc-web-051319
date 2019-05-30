@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     belongs_to :login
 
     def add_review(movie, rating, content)
+        system "clear"
         Review.create(movie_id: movie.id, user_id: self.id, rating: rating, content: content, updated_at: Time.now)
         #update movie rating
         movie.rating = movie.reviews.average(:rating).to_f.round(2)
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
     end
     
     def all_of_my_reviews
+        system "clear"
         puts "\n========== My Reviews ==========".green
         Review.where(user_id: self.id).order(updated_at: :desc)
         .each_with_index do |review, index|
@@ -22,6 +24,7 @@ class User < ActiveRecord::Base
     end
 
     def self.create_new_account
+  
         user = nil
         puts "\n ========== CREATING NEW ACCOUNT ==========".blue
         print "\nPlease enter your email: "
@@ -30,7 +33,6 @@ class User < ActiveRecord::Base
         if valid_email?(email)
             if Login.check_existing_login(email)
                 puts "\nAn account already exists for this email. Please log into your account with your email.\nGoing back to main menu.".red
-                sleep 0.4
             else
                 print "\nNo email associated with this account. Do you want to create a new account? [y/n]  ".light_yellow
                 ans = gets.strip
@@ -43,7 +45,6 @@ class User < ActiveRecord::Base
                     puts "No problem. Going back to main menu."
                 else
                     puts "\nInvalid input. Going back to main menu.".red
-                    sleep 0.4
                 end
             end
         else

@@ -15,11 +15,12 @@ class Login < ActiveRecord::Base
         Login.create(email: email, password: password, user_id: new_user.id)
         
         puts "\nYour account has been successfully created.".green
-        sleep 0.5
+        
         new_user
     end
 
     def self.login_checker
+        system "clear"
         user = nil
         puts "\n================= LOGIN =================".blue
         pwd_retry = 0
@@ -44,7 +45,7 @@ class Login < ActiveRecord::Base
                     if has_email.password == password
                         user = User.find(has_email.user_id)
                         puts "\nLogin Successful".blue
-                        sleep 0.5
+                    
                         menu_input = "0"
                         logged_in = true
                     else
