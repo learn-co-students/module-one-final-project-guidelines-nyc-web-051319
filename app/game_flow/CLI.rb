@@ -2,8 +2,14 @@ class CLI
 
   @@player_array = []
 
+  def self.title_music
+    @@theme = Audite.new
+    @@theme.load('./app/sound/theme.mp3')
+    @@theme.start_stream
+  end
   #displays title screen
   def self.title
+    self.title_music
     title = "Legend of Rubyerion: The Seven Paths"
     puts " "
     puts "*" * 60
@@ -109,6 +115,7 @@ class CLI
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "The air is musty and your torch flickers..."
     sleep(2)
+    @@theme.stop_stream
     self.start_dungeon_crawl
   end
 
