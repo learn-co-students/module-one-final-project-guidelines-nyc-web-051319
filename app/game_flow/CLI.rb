@@ -86,7 +86,6 @@ class CLI
     elsif user_input == "4"
       #begin quit
       puts "Pathetic! Come back when you're feeling braver..."
-      sleep(2)
       exit #end quit
     end
   end
@@ -118,48 +117,43 @@ class CLI
   end
 
   def self.start_monster_infestation
-    monster_array = []
-    num_monsters = 3
-    (0..num_monsters-1).each do |x|
-      monster = Monster.find(rand(1..325))
-      MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
-      monster_array << monster
-    end
+    # monster_array = []
+    #
+    # (0..num_monsters-1).each do |x|
+    #   monster = Monster.find(rand(1..325))
+    #   MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
+    #
+    # end
 
-    run = DungeonRun.new(@@current_player, monster_array)
+    run = DungeonRun.new(@@current_player, monster_query(3))
     run.begin_run
   end
 
   def self.monster_query(num_monsters)
-    num_monsters.times do
-      case @@current_dungeon.difficulty
-        when "Very Easy"
-          # 0 - 2
-          Monster.where("difficulty > 0").where("difficulty < 2").order("RANDOM()").first(3)
-        when "Easy"
-          # 6 - 10
-          Monster.where("difficulty > 3").where("difficulty < 6").order("RANDOM()").first(3)
-        when "Mediocre"
-          # 11 - 15
-          Monster.where("difficulty > 7").where("difficulty < 11").order("RANDOM()").first(3)
-        when "Medium"
-          # 16 - 20
-          Monster.where("difficulty > 12").where("difficulty < 20").order("RANDOM()").first(3)
-        when "Hard"
-          # 21 - 25
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-        when "Extreme"
-          # 26 - 30
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-        when "Insane"
-          # 31
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-
-    end
-
-    end
-
-
+    case @@current_dungeon.difficulty
+      when "Very Easy"
+        # 0 - 2
+        Monster.where("difficulty > 0").where("difficulty < 2").order(Arel.sql("random()")).first(num_monsters)
+      when "Easy"
+        # 6 - 10
+        Monster.where("difficulty > 3").where("difficulty < 6").order(Arel.sql("random()")).first(num_monsters)
+      when "Mediocre"
+        # 11 - 15
+        Monster.where("difficulty > 7").where("difficulty < 11").order(Arel.sql("random()")).first(num_monsters)
+      when "Medium"
+        # 16 - 20
+        Monster.where("difficulty > 12").where("difficulty < 20").order(Arel.sql("random()")).first(num_monsters)
+      when "Hard"
+        # 21 - 25
+        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+      when "Extreme"
+        # 26 - 30
+        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+      when "Insane"
+        # 31
+        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+      end
   end
+
 
 end
