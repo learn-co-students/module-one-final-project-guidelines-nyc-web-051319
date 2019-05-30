@@ -30,20 +30,6 @@ def main_menu(user)
     #puts "6. Log Out" NEED TO IMPLEMENT
 end
 
-def print_movie_list(sort_by) #sort_by string to order by
-    sleep 0.4
-
-    puts "========================================".blue
-    matched_movies = Movie.order("#{sort_by} DESC").limit(10)
-    
-    matched_movies.each_with_index do |movie, index|
-        puts "\n#{index + 1}. #{movie.name} - Relase Date: #{movie.long_release_date}"
-        puts "    Rating: #{movie.rating}"
-    end
-    puts "\n========================================".blue
-
-    matched_movies
-end
 
 def see_more_menu(list_of_movies)
     print "\nDo you want to see more about one of the movies above? [y/n] "
@@ -83,7 +69,7 @@ def main
             menu_input = gets.strip
         when "1"
             see_more = true
-            top_10_movie_list = print_movie_list('rating')
+            top_10_movie_list = Movie.print_10_movies_by('rating')
             puts "\nTop 10 Movies of All Time"
             while(see_more)
                 see_more = see_more_menu(top_10_movie_list)
@@ -92,7 +78,7 @@ def main
             menu_input = '0'
         when "2"
             see_more = true
-            latest_10_releases = print_movie_list('release_date')
+            latest_10_releases = Movie.print_10_movies_by('release_date')
             puts "\nLatest 10 Releases"
             while(see_more)
                 see_more = see_more_menu(latest_10_releases)

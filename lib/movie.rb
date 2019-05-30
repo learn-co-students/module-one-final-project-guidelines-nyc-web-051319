@@ -105,4 +105,19 @@ class Movie < ActiveRecord::Base
     def release_year
       self.release_date.strftime("%Y")
     end
+
+    def self.print_10_movies_by(sort_by)
+      sleep 0.4
+
+      puts "========================================".blue
+      matched_movies = Movie.order("#{sort_by} DESC").limit(10)
+      
+      matched_movies.each_with_index do |movie, index|
+          puts "\n#{index + 1}. #{movie.name} - Relase Date: #{movie.long_release_date}"
+          puts "    Rating: #{movie.rating}"
+      end
+      puts "\n========================================".blue
+  
+      matched_movies
+    end
 end
