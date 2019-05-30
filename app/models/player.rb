@@ -25,9 +25,9 @@ class Player < ActiveRecord::Base
     def rest
         self.current_hp = self.max_hp
         puts "A warm hearth and a stein of mead at an Inn reinvigors you!"
-        sleep(1)
+        sleep(2)
         puts "Current health: #{self.current_hp}/#{self.max_hp}"
-        sleep(1)
+        sleep(2)
     end
     # Damage is a testing method during development
     # def damage
@@ -42,8 +42,8 @@ class Player < ActiveRecord::Base
     def attack(current_monster)
         swing = rand(1..100)
         if swing < self.accuracy
-            puts "You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!"
             player_damage = rand(self.min_dmg..self.max_dmg)
+            puts "You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!"
         else
             puts "You missed! WHOOSH!"
             player_damage = 0
