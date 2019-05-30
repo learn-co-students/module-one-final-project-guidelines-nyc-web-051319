@@ -2,7 +2,7 @@
 #will contain all of the round logic, pass values to operate on other class's data
 # IE - Subtract player_damage from current_monster.hp
 # Will also iterate the 3 battle rounds per dungeon run
-def test_battle_round(current_player, current_monster)
+def battle_engine(current_player, current_monster)
 
     # Battle status for menu repopping up
     battle_over = false

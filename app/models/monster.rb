@@ -1,8 +1,8 @@
+# Want to implement pulling the challenge rating from the API as a method to scale dungeon difficulty
 require 'pry'
 class Monster < ActiveRecord::Base
     has_many :dungeons, through: :monster_infestations
     #All instances pulled from D&D API
-
 
     # View all current stats of a monster
     def inspect
