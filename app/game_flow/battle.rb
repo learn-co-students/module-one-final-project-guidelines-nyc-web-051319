@@ -23,7 +23,6 @@ class Battle
     puts "Wait, what was that?!?!"
     sleep(2)
     puts "A #{@current_monster.name} bursts into the room!!!"
-    battle_music
     sleep(2)
     puts "Prepare for battle..."
     sleep(2)
@@ -149,9 +148,15 @@ class Battle
       puts "ANNNNNDDD ....."
       sleep(1)
       #conditional for escaping. Easier to run if you're a higher level and/or monster is injured.
-      if rand(0..200) > (@current_player.level * 20) - @current_monster.hp
+      if rand(0..100) < (@current_player.level * 20) - @current_monster.hp
           puts "SLIPPED AWAY!"
+          sleep(2)
+          puts "You head to the nearest inn."
+          sleep(2)
           @battle_over = true
+          @current_player.rest
+          CLI.title
+          CLI.greeting
       else
           puts "couldn't escape!"
       end

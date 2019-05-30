@@ -24,7 +24,7 @@ class Player < ActiveRecord::Base
     # Rest function resets current health to max health. Will be called when leveled up.
     def rest
         self.current_hp = self.max_hp
-        puts "A warm hearth and a stein of mead at an Inn reinvigors you!"
+        puts "A warm hearth and a stein of mead reinvigorate you!"
         sleep(2)
         puts "Current health: #{self.current_hp}/#{self.max_hp}"
         sleep(2)
