@@ -2,14 +2,8 @@ class CLI
 
   @@player_array = []
 
-  def self.title_music
-    @@theme = Audite.new
-    @@theme.load('./app/sound/theme.mp3')
-    @@theme.start_stream
-  end
   #displays title screen
   def self.title
-    self.title_music
     title = "Legend of Rubyerion: The Seven Paths"
     puts " "
     puts "*" * 60
@@ -33,7 +27,7 @@ class CLI
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @@current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 65, weapon: weapon_input)
+    @@current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
     puts "Okay, #{@@current_player.name}. Ready yourself..."
     sleep(2)
     puts " "
@@ -115,7 +109,6 @@ class CLI
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "The air is musty and your torch flickers..."
     sleep(2)
-    @@theme.stop_stream
     self.start_dungeon_crawl
   end
 
