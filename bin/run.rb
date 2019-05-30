@@ -1,60 +1,6 @@
 
 require_relative '../config/environment'
 
-def main_menu(user)
-    sleep 0.3
-    #menu_input = '0' for main menu
-    puts "\n\n"
-    puts " 🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆  " .on_white.blink
-    puts " 🍆                              🍆  ".on_white.blink
-    print " 🍆 ".on_white.blink
-    print " Welcome to Ripe Eggplant ".on_white.light_magenta
-    puts "   🍆  ".on_white.blink 
-    puts " 🍆                              🍆  ".on_white.blink
-    puts " 🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆  ".on_white.blink
-    puts "\n\n" #including user name after logged in
-
-    #greets user if logged in
-    puts "\nHello, " + "#{user.name}!".magenta if user
-    puts "\n"
-    puts "Please select an option from below [1 - 7]"
-    puts "============================================".light_magenta
-    puts "\n"
-    puts "1. Top 10 Movies of All Time".magenta
-    puts "2. Latest 10 Releases"
-    puts "3. Browse Movies".magenta
-    puts "4. Write a Review for a Movie"
-    puts "5. Log In".magenta
-    puts "6. Create an Account"
-    puts "7. Leave App".magenta
-    #puts "6. Log Out" NEED TO IMPLEMENT
-end
-
-
-def see_more_menu(list_of_movies)
-    print "\nDo you want to see more about one of the movies above? [y/n] "
-    answer = gets.strip
-
-    case answer
-    when "y"
-            print "\nWhich movie do you want more info on? (1 - 10) "
-            movie_num = gets.strip.to_i
-            if movie_num <= list_of_movies.count && movie_num > 0
-                selected_movie_menu(list_of_movies[movie_num - 1])
-            else
-                puts "Invalid option. Please selection 1 - 10 from above.".red
-            end
-        true
-    when "n"
-        puts "Okay. Going back to main menu.".blue
-        false
-    else
-        puts "Invalid input. Please select y or n.".red
-        true
-    end
-
-end
-
 def main
     leave_app = false
     logged_in = false
@@ -63,11 +9,11 @@ def main
 
     while (!leave_app)
         case menu_input
-        when "0"
+        when "0" #main menu
             main_menu(user)
             print "\nWhat would you like to do? "
             menu_input = gets.strip
-        when "1"
+        when "1" #top 10 movies of all time
             see_more = true
             top_10_movie_list = Movie.print_10_movies_by('rating')
             puts "\nTop 10 Movies of All Time"
@@ -76,7 +22,7 @@ def main
                 sleep 0.4
             end
             menu_input = '0'
-        when "2"
+        when "2" #latest 10 releases
             see_more = true
             latest_10_releases = Movie.print_10_movies_by('release_date')
             puts "\nLatest 10 Releases"
@@ -85,7 +31,7 @@ def main
                 sleep 0.4
             end
             menu_input = '0'
-        when "3"
+        when "3" #browse movies > goes to browse submenu
             sleep 0.4
             go_movie_menu = true
             while(go_movie_menu)
@@ -93,9 +39,9 @@ def main
                 go_movie_menu = movie_menu
             end
             menu_input = '0'
-        when "4" #check login
+        when "4" #write a reivew
             sleep 0.4
-            if logged_in
+            if logged_in #check if user is logged in
                 sleep 0.3
                 
                 movie = find_movie_by_name_menu

@@ -77,12 +77,19 @@ def movie_menu
     when "2" #find movies by rating
         #returns movies greater than selection
         sleep 0.3
-        print "\nPlease enter rating: "
-        rating = gets.strip
-        if ['1','2','3','4','5'].include?(rating)
-            Movie.print_movies_by_rating(rating.to_i)
-        else
-            puts "Invalid Rating. Please input a rating between 1 to 5.".red
+        valid_input = false
+        while(!valid_input)
+            print "\nPlease enter rating or 0 to go back: "
+            input = gets.strip
+            if input == '0'
+                puts "\nGoing back to Browse Movies Menu".blue
+                valid_input = true
+            elsif valid_number_selection?(input, 1, 5)
+                Movie.print_movies_by_rating(input.to_i)
+                valid_input = true
+            else
+                puts "Invalid Input. Please input a rating between 1 to 5 or 0 to go back.".red
+            end
         end
         true
     when "3"
