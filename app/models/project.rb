@@ -97,4 +97,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.all_ids
+    Project.all.map do |project|
+      project.id
+    end
+  end
+
 end

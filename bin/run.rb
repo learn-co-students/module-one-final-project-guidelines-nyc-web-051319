@@ -290,11 +290,11 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
     case input
       when "1"
         puts ""
-        puts "***********************************"
-        puts "Names:".colorize(:blue)
-        puts "***********************************"
+        puts "***********************************".colorize(:light_red)
+        puts "Names:"
+        puts "***********************************".colorize(:light_blue)
         puts $teacher.find_students
-        puts "***********************************"
+        puts "***********************************".colorize(:light_green)
         puts ""
         puts ""
         students
@@ -309,17 +309,35 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         projects
       when "2"
-        puts "***********************************"
-        puts "Projects:".colorize(:blue)
-        puts "***********************************"
+        puts "***********************************".colorize(:light_red)
+        puts "Projects:"
+        puts "***********************************".colorize(:light_blue)
         puts Project.all_project_names
-        puts "***********************************"
+        puts "***********************************".colorize(:light_green)
         puts ""
         puts ""
         projects
       when "3"
         main
+      when "Log Out"
+        main
       when "4"
+        puts "================================================"
+        puts "What would you like your new password to be?".colorize(:blue)
+        puts "================================================"
+        puts ""
+        puts "-----------------------------------------------"
+        puts ""
+        password = STDIN.noecho(&:gets).strip
+        puts ""
+        puts "***********************************"
+        puts "PASSWORD UPDATED".colorize(:green)
+        puts "***********************************"
+        puts "-----------------------------------------------"
+        puts ""
+        $teacher.update(:password => password)
+        lists
+      when "Change Password"
         puts "================================================"
         puts "What would you like your new password to be?".colorize(:blue)
         puts "================================================"
@@ -365,6 +383,13 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           puts ""
           puts "-----------------------------------------------"
         end
+      when "exit"
+        exit!
+      else
+        puts ""
+        puts "Invalid input. Please try again".colorize(:red)
+        puts ""
+        lists
       end
   end
 
@@ -538,6 +563,13 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         lists
         puts ""
+      when "exit"
+        exit!
+      else
+        puts ""
+        puts "Invalid input. Please try again".colorize(:red)
+        puts ""
+        students
       end
   end
 
@@ -577,21 +609,28 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts "-----------------------------------------------"
         puts ""
-        id = gets.strip
+        id = gets.strip.to_i
         puts ""
         puts "-----------------------------------------------"
-        puts ""
-        puts "********************"
-        project = Project.find_by(id: id)
-        puts project.title.colorize(:blue)
-        puts "********************"
-        puts ""
-        puts "*********************************************************************************************************"
-        puts project.project_details
-        puts "*********************************************************************************************************"
-        puts ""
-        puts ""
-        projects
+        if Project.all_ids.include?(id)
+          puts ""
+          puts "********************"
+          project = Project.find_by(id: id)
+          puts project.title.colorize(:blue)
+          puts "********************"
+          puts ""
+          puts "*********************************************************************************************************"
+          puts project.project_details
+          puts "*********************************************************************************************************"
+          puts ""
+          puts ""
+          projects
+        else
+          puts ""
+          puts "Invalid id, please try again.".colorize(:red)
+          puts ""
+          projects
+        end
       when "2"
         puts ""
         puts ""
@@ -683,7 +722,7 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
           lists
         else
           puts "Project does not exist!".colorize(:red)
-          lists
+          projects
         end
       when "6"
         puts ""
@@ -694,42 +733,56 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts ""
         puts "-----------------------------------------------"
         puts ""
-        id = gets.strip
-        puts ""
-        puts "-----------------------------------------------"
-        puts ""
-        puts "================================================"
-        puts "How many days would you like to extend it by?".colorize(:blue)
-        puts "================================================"
-        puts ""
-        puts "-----------------------------------------------"
-        puts ""
-        number_of_days = gets.strip.to_i
-        puts ""
-        puts "-----------------------------------------------"
-        change_project = Project.find_by(id: id)
-        puts ""
-        puts ""
-        puts "***********************************************************************"
-        puts "Original Date: #{change_project.due_date}".colorize(:yellow)
-        puts "***********************************************************************"
-        puts ""
-        puts ""
-        change_project.extend_due_date(number_of_days.days)
-        puts ""
-        puts ""
-        puts "***********************************************************************"
-        puts "Project due date has been extended until #{change_project.due_date + number_of_days.days}!".colorize(:green)
-        puts "***********************************************************************"
-        puts ""
-        puts ""
-        lists
+        id = gets.strip.to_i
+        if Project.all_ids.include?(id)
+          puts ""
+          puts "-----------------------------------------------"
+          puts ""
+          puts "================================================"
+          puts "How many days would you like to extend it by?".colorize(:blue)
+          puts "================================================"
+          puts ""
+          puts "-----------------------------------------------"
+          puts ""
+          number_of_days = gets.strip.to_i
+          puts ""
+          puts "-----------------------------------------------"
+          change_project = Project.find_by(id: id)
+          puts ""
+          puts ""
+          puts "***********************************************************************"
+          puts "Original Date: #{change_project.due_date}".colorize(:yellow)
+          puts "***********************************************************************"
+          puts ""
+          puts ""
+          change_project.extend_due_date(number_of_days.days)
+          puts ""
+          puts ""
+          puts "***********************************************************************"
+          puts "Project due date has been extended until #{change_project.due_date + number_of_days.days}!".colorize(:green)
+          puts "***********************************************************************"
+          puts ""
+          puts ""
+          lists
+        else
+          puts ""
+          puts "Invalid id. Please try again."
+          puts ""
+          projects
+        end
       when "7"
         puts ""
         puts ""
         lists
         puts ""
         puts ""
+      when "exit"
+        exit!
+      else
+        puts ""
+        puts "Invalid input. Please try again".colorize(:red)
+        puts ""
+        projects
       end
     end
 end

@@ -13,16 +13,16 @@
 ActiveRecord::Schema.define(version: 4) do
 
   create_table "commits", force: :cascade do |t|
-    t.string   "commit_message"
+    t.string "commit_message"
     t.datetime "commit_date"
-    t.boolean  "on_time"
-    t.integer  "user_id"
-    t.integer  "project_id"
+    t.boolean "on_time"
+    t.integer "user_id"
+    t.integer "project_id"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
+    t.string "title"
+    t.string "description"
     t.datetime "due_date"
   end
 
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "name"
+    t.string "name"
     t.integer "teacher_id"
   end
 

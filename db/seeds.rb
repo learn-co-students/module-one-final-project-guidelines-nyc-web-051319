@@ -1,7 +1,7 @@
 #Teachers
-Teacher.create(name: "Charlie", password:"admin")
-Teacher.create(name: "Rishi", password:"squishy")
-Teacher.create(name: "Matt", password:"matt")
+Teacher.create(name: "Charlie", password:"password")
+Teacher.create(name: "Rishi", password:"password")
+Teacher.create(name: "Matt", password:"password")
 #Charlie Students
 User.create(name: "David",teacher_id: 1)
 User.create(name: "Kevin",teacher_id: 1)

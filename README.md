@@ -27,12 +27,5 @@ A commit has a commit message, commit date, on-time, user_id, and a project_id a
   4a. Create all of your model files inside this migrate folder (ex. 'user.rb')
 5. Run 'rake db:migrate' inside your terminal to migrate all of your tables.
 6. Run 'rake db:seed' inside your terminal to use all of the instances.
-7. Run the CLI to go testing!
-
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-```
+7. Run 'chmod +x bin/student.rb' to give permission to run the CLI
+8. Run the CLI by calling '.bin/student.rb' and go to testing!
