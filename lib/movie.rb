@@ -39,7 +39,7 @@ class Movie < ActiveRecord::Base
       if matched_movies.empty?
         puts "No movies found with rating #{rating} or greater.".red
       else
-        system "clear"
+         
         puts "\n#{matched_movies.count} Movie(s) Found With Rating #{rating} or Greater:".green
         puts "========================================".blue
         matched_movies.each_with_index do |movie, index|

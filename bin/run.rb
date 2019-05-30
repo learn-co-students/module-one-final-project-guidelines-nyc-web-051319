@@ -6,6 +6,7 @@ def main
     logged_in = false
     user = nil
     menu_input = "0"
+    clear = true
 
     while (!leave_app)
         case menu_input
@@ -38,15 +39,12 @@ def main
           
             go_movie_menu = true
             while(go_movie_menu)
-                system "clear"
                 go_movie_menu = movie_menu
             end
             menu_input = '0'
         when "4" #write a reivew
            
             if logged_in #check if user is logged in
-                system "clear"
-                
                 movie = find_movie_by_name_menu
                 if movie
                     print "\nPlease rate #{movie.name} (#{movie.release_year}) between 1 - 5: "
@@ -63,30 +61,33 @@ def main
                     puts "Your Review: #{content}"
                     sleep 0.3
                     puts "\nThank you for taking the time to review!".green
+                     sleep 0.4
                     menu_input = '0'
                 elsif movie == -1
                     menu_input = '4'
                 else
                     puts "\n No movies found with that name.".light_red
                     menu_input = '4'
+                     sleep 0.4
                 end
             else
                 sleep 0.4
                 puts "\nPlease Login before leaving a review.".light_yellow
                 menu_input = "5"
+                 sleep 0.4
             end
         when "5" #check login
             sleep 0.4
             if logged_in ##see my review
                 user.all_of_my_reviews
-                sleep 0.4
+                 sleep 0.4
             else
                 user = Login.login_checker
                 logged_in = true if user
             end
             menu_input = '0'
         when "6" #already logs you in
-            system "clear"
+         
             if logged_in ##Log out
                 print "\nSee you next time, "
                 puts "#{user.name}!".magenta

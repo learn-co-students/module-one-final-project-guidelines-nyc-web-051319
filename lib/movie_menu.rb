@@ -46,7 +46,7 @@ def find_movie_by_name_menu
             puts "0. Go back to Browse Movies"
             valid_option = false
             while(!valid_option)
-                system "clear"
+             
                 print "\nPlease select a movie: "
                 movie_picked = gets.strip
                 if valid_number_selection?(movie_picked, 1, matched_movies.count)
@@ -66,7 +66,7 @@ def find_movie_by_name_menu
 end
 
 def movie_menu
-    system "clear"
+  
     puts "\n========== Browse Movies ========== ".blue
     puts "1. Find Movies by Name" #duplicates
     puts "2. Find Movies by Rating" #allow range?
@@ -113,7 +113,6 @@ def movie_menu
         end
         true
     when "0"
-        system "clear"
         false #go back to main menu
     else
         puts "Invalid input. Please select options 1 - 4.".red

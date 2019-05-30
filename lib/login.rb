@@ -20,7 +20,7 @@ class Login < ActiveRecord::Base
     end
 
     def self.login_checker
-        system "clear"
+        
         user = nil
         puts "\n================= LOGIN =================".blue
         pwd_retry = 0

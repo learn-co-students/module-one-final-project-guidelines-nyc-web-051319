@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     belongs_to :login
 
     def add_review(movie, rating, content)
-        system "clear"
+         
         Review.create(movie_id: movie.id, user_id: self.id, rating: rating, content: content, updated_at: Time.now)
         #update movie rating
         movie.rating = movie.reviews.average(:rating).to_f.round(2)
@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
     end
     
     def all_of_my_reviews
-        system "clear"
+         
         puts "\n========== My Reviews ==========".green
-        Review.where(user_id: self.id).order(updated_at: :desc)
+        Review.where(user_id: self.id).order(updated_at: :asc)
         .each_with_index do |review, index|
             movie = Movie.find(review.movie_id)
             puts "\n#{index + 1}.    Movie Name: #{movie.name} (#{movie.release_year})"
@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
             puts "Invalid email format. Please input a valid email.".light_yellow
         end
         user
+         sleep 0.4
     end
     
 end
