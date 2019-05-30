@@ -53,7 +53,7 @@ class Movie < ActiveRecord::Base
                 selected_movie = matched_movies[movie_picked - 1]
                 selected_movie_menu(selected_movie)
                 valid_option = true
-            elsif movie_picked == 0
+            elsif movie_picked.zero?
                 selected_movie = -1
                 valid_option = true
             else
@@ -65,6 +65,7 @@ class Movie < ActiveRecord::Base
     end
 
     def self.print_movies_by_genre(genre)
+      selected_movie = nil
       matched_movies = Movie.all.select do |movie|
         movie.genres.include?(genre)
       end
@@ -77,7 +78,24 @@ class Movie < ActiveRecord::Base
         matched_movies.each_with_index do |movie, index|
           puts "#{index + 1}. #{movie.name} (#{movie.long_release_date}) - Rating: #{movie.rating}"
         end
+        puts "0. Go back to Browse Movies."
+        valid_option = false
+        while(!valid_option)
+          print "\nPlease select a movie:"
+          movie_picked = gets.strip.to_i
+          if movie_picked <= matched_movies.count && movie_picked > 0
+            selected_movie = matched_movies[movie_picked - 1]
+            selected_movie_menu(selected_movie)
+            valid_option = true
+          elsif movie_picked.zero?
+            selected_movie = -1
+            valid_option = true
+          else
+            puts "\nInvalid option. Please select a number from above.".red
+          end
+        end
       end
+      selected_movie
     end
 
     def long_release_date
