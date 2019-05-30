@@ -1,5 +1,7 @@
 class CLI < ActiveRecord::Base
 
+  @player_array = []
+
   #displays title screen
   def self.title
     title = "Legend of Rubyerion: The Seven Paths"
@@ -33,7 +35,7 @@ class CLI < ActiveRecord::Base
 
   #allows player to create new character, pick an existent one, or reloads if they fail to do either -- choice leads to dungeon selection menu
   def self.character_select(user_input)
-    if user_input == "1"
+    if user_input == "1" #begin create player
       puts "Please enter a name:"
       name_input = gets.chomp
       puts " "
@@ -44,28 +46,40 @@ class CLI < ActiveRecord::Base
       weapon_input = gets.chomp
       puts " "
       self.create_player(name_input, battlecry_input, weapon_input)
-      choose_dungeon
-    elsif user_input == "2"
+      choose_dungeon #end create player
+    elsif user_input == "2" #begin select player
       puts "Which character would you like to play as?"
-      player_array = []
-      Player.all.each_with_index do |player, n|
-        player_array << player.name
-        puts "   #{n + 1}. #{player.name}"
-      end
+      self.list_players
       character_selection = gets.chomp.to_i
-      puts "Okay, #{Player.find_by_name(player_array[character_selection - 1]).name}. You know the drill..."
+      puts "Okay, #{Player.find_by_name(@player_array[character_selection - 1]).name}. You know the drill..."
       sleep(2)
       puts " "
-      @current_player = Player.find_by_name(player_array[character_selection - 1])
-      self.choose_dungeon
-    elsif user_input != "1" && user_input != "2" && user_input != "3" && user_input != "4"
-      puts "That is not a valid command. Stop it."
+      @current_player = Player.find_by_name(@player_array[character_selection - 1])
+      self.choose_dungeon #end select player
+    elsif user_input == "3" #begin delete player
+      puts "Which character would you like to delete?"
+      self.list_players
+      delete_input = gets.chomp.to_i
+      Player.where(name: @player_array[delete_input - 1]).destroy_all
+      puts "Not #{@player_array[delete_input - 1]}. Anyone but #{@player_array[delete_input - 1]}..."
+      sleep(2)
       puts " "
       self.greeting
-    elsif user_input == "4"
+    elsif user_input != "1" && user_input != "2" && user_input != "3" && user_input != "4" #begin invalid selection
+      puts "That is not a valid command. Stop it."
+      puts " "
+      self.greeting #end invalid selection
+    elsif user_input == "4" #begin quit
       puts "Pathetic! Come back when you're feeling braver..."
       sleep(2)
-      exit
+      exit #end quit
+    end
+  end
+
+  def self.list_players
+    Player.all.each_with_index do |player, n|
+      @player_array << player.name
+      puts "   #{n + 1}. #{player.name}"
     end
   end
 
