@@ -8,11 +8,17 @@ class Player < ActiveRecord::Base
     # View all current stats of a character
     def print_status
         puts "LEVEL #{self.level}"
+        sleep(2)
         puts "Health: #{self.current_hp}/#{self.max_hp}"
+        sleep(2)
         puts "Damage: #{self.min_dmg} to #{self.max_dmg} DMG per attack."
+        sleep(2)
         puts "Accuracy Modifer: #{self.accuracy}% to hit."
+        sleep(2)
         puts "Weapon: #{self.weapon}"
-        puts "#{self.battlecry}!!!"
+        sleep(2)
+        puts "Battlecry: #{self.battlecry}!!!"
+        sleep(2)
     end
 
     # Rest function resets current health to max health. Will be called when leveled up.
@@ -23,20 +29,20 @@ class Player < ActiveRecord::Base
         puts "Current health: #{self.current_hp}/#{self.max_hp}"
         sleep(1)
     end
-
-    def damage
-        self.current_hp -= 20
-        puts "You take 20 damage!"
-        sleep(1)
-        puts "Current health: #{self.current_hp}/#{self.max_hp}"
-        sleep(1)
-    end
+    # Damage is a testing method during development
+    # def damage
+    #     self.current_hp -= 20
+    #     puts "You take 20 damage!"
+    #     sleep(1)
+    #     puts "Current health: #{self.current_hp}/#{self.max_hp}"
+    #     sleep(1)
+    # end
 
     # Basic attack logic. % Chance to hit (Accuracy Stat), random damage within range if successful (min -> max dmg) return value is damage number, which will be sent to fight method
     def attack(current_monster)
         swing = rand(1..100)
         if swing < self.accuracy
-            puts "You swing your #{self.weapon} and hit the #{current_monster.name}!"
+            puts "You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!"
             player_damage = rand(self.min_dmg..self.max_dmg)
         else
             puts "You missed! WHOOSH!"
