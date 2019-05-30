@@ -12,7 +12,13 @@ def main
         when "0" #main menu
             main_menu(user)
             print "\nWhat would you like to do? "
-            menu_input = gets.strip
+            ans = gets.strip
+            if valid_number_selection?(ans, 0, 7)
+                menu_input = ans
+            else
+                puts "\nInvalid Input. Please select 1 - 7.".light_red
+                sleep 0.3
+            end
         when "1" #top 10 movies of all time
             see_more = true
             

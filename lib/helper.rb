@@ -31,7 +31,6 @@ def main_menu(user)
         puts "6. Log Out"
     end
     puts "7. Leave App".magenta
-    #puts "6. Log Out" NEED TO IMPLEMENT
 end
 
 def see_more_menu(list_of_movies)
@@ -41,9 +40,9 @@ def see_more_menu(list_of_movies)
     case answer
     when "y"
             print "\nWhich movie do you want more info on? (1 - 10) "
-            movie_num = gets.strip.to_i
-            if movie_num <= list_of_movies.count && movie_num > 0
-                selected_movie_menu(list_of_movies[movie_num - 1])
+            movie_num = gets.strip
+            if valid_number_selection?(movie_num, 1, 10)
+                selected_movie_menu(list_of_movies[movie_num.to_i - 1])
             else
                 puts "Invalid option. Please selection 1 - 10 from above.".red
             end
