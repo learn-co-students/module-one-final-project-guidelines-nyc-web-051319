@@ -7,14 +7,15 @@ end
 
 seed_monsters
 
+# Add XP level calls as per difficulty
 dungeons = {
+  "Training Grounds": "Very Easy",
   "The Sewers": "Easy",
-  "Tomb of Malchor": "Medium",
-  "Dragon's Lair": "Hard",
+  "Tomb of Malchor": "Medicore",
   "Frozen Ice Cave": "Medium",
   "Volcanic Caverns": "Hard",
-  "Training Grounds": "Easy",
-  "Flatiron Code Challenge Chamber": "Supa Hard"
+  "Dragon's Lair": "Extreme",
+  "Flatiron Code Challenge Chamber": "Insane"
 }
 
 dungeons.each do |name, difficulty|

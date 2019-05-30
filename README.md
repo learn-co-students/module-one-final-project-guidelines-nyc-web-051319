@@ -20,32 +20,66 @@ If your character is lucky enough to have survived previous delves into the dung
 
 There are 7 dungeons to choose from. Each dungeon is ranked on a difficulty scale. Monsters from the easier dungeons will be easier to slay, and thus award less XP. Likewise, a harder dungeon will present a harder challenge for adventurers, but possess the highest amount of rewards and XP. 
 
-* The Dungeons are as follows:
+* The 7 Paths:
+
+![alt text](http://url/to/img.png)
 
 1. Training Grounds - Difficulty: Very Easy - Level up granted: 0
-First time picking up a sword? First time leaving your mom's basement? This is probably your best bet to show off those attack moves you've been practicing with a broomstick in front of the mirror while listening to the 'John Wick' original motion picture soundtrack. 
+First time picking up a sword? First time leaving your mom's basement? This is probably your best bet to show off those attack moves you've been practicing with a broomstick in front of the mirror while listening to the 'John Wick' original motion picture soundtrack.
+
+![alt text](http://url/to/img.png)
 
 2. The Sewers - Difficulty: Easy - Level up granted: 1
 Most heroes will find themselves starting their adventure here in the musty sewers below Rubyerion. Small, vile, bottom-feeder creatures and those git branches you -d will end up here, scavenging for fresh food...
 
+![alt text](http://url/to/img.png)
+
 3. Tomb of Malchor - Difficulty: Medicore - Level up granted: 2
 Malchor was a mighty code-mage many centuries ago. Some say he failed his code challenge in Mod 3, and was banished to the online program. Since then he has fallen into the dark arts: Coding everything purely in Brainfuck. 
-```
-"--[------->++<]>--.----[->+++<]>-.[->+++++++<]>.++++++.-[---->+<]>+++.++++++[->++<]>+.+[--->++++<]>+.++++++++++..+[---->+<]>+++.[-->+++<]>+.-..-----------.-----.+++++[->+++<]>.---------.[--->+<]>--.---[->++++<]>.------------.---.--[--->+<]>-.---[->++++<]>-.-----------.+++++++.+++++.-.+[---->+<]>+++.--[->++++<]>+.----------.++++++.-[---->+<]>+++.+[->+++<]>+.+++++++++++.-.[++>---<]>++.[->+++<]>-.[---->+<]>+++.---[->++++<]>.+[->+++<]>++.++++++++++.------.[->+++<]>-.------------.--.--[-->+++<]>.-[->++<]>-.++++++++++.+[--->+<]>+++.+[->+++<]>.---------.--[--->+<]>-.+++[->++<]>+.+++[->+++++<]>.-------------.[--->+<]>---.++++++.-[->+++<]>.[--->+<]>.-[---->+<]>++.--[-->+++<]>.------[->++<]>-.+[--->++++<]>+.------.+++++.-------.++++.+++++++.[++>---<]>--.>-[--->+<]>--.-[------>+<]>.++++++++++++.+++++.." 
-```
+
+> "++[---------->+<]>.--[->+++++<]>.-[->+++<]>-.+++++++.-------.[->+++<]>--." 
+
                                                              -Malchor, probably.
 
+![alt text](http://url/to/img.png)                                                             
 4. Frozen Ice Cave - Difficulty: Medium - Level up granted: 3
-XXXXXX
+Some say there lives a white bear, so large, he can swallow a man whole. Some say this man-eating bear lives in the frozen ice cave. Some say this ice cave-dwelling man-eating bear may not even exist; he is but a myth. What do we say about this bear?
+Be sure to bring a coat and a sharp blade.
+
+![alt text](http://url/to/img.png)
 
 5. Volcanic Caverns - Difficulty: Hard - Level up granted: 4
 XXXXX
 
+![alt text](http://url/to/img.png)
+
 6. Dragon's Lair - Difficulty: Extreme - Level up granted: 5
 XXXXX
 
+![alt text](http://url/to/img.png)
+
 7. Flatiron Code Challenge Chamber - Difficulty: Insane - Level up granted: 10
 XXXXX
+
+## Monsters
+
+All 326 monsters are random encounters in the dungeon. Everytime you start a new run, you will be matched up with 3 monsters based on the difficulty of the dungeon you selected.
+
+All monsters are generated from the D&D 5th Edition API
+(Created by Adrian Padua) 
+
+## Combat
+
+talk about the menu, and describe each choice
+
+# Overview game as project
+
+closing 
+
+special thanks
+
+created by 
+Aaron Smith and Constantine Chutis
 
 
 
