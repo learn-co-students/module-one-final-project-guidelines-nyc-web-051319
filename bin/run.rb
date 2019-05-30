@@ -15,18 +15,20 @@ def main
             menu_input = gets.strip
         when "1" #top 10 movies of all time
             see_more = true
-            top_10_movie_list = Movie.print_10_movies_by('rating')
-            puts "\nTop 10 Movies of All Time"
+            
             while(see_more)
+                puts "\nTop 10 Movies of All Time"
+                top_10_movie_list = Movie.print_10_movies_by('rating')
                 see_more = see_more_menu(top_10_movie_list)
                 sleep 0.4
             end
             menu_input = '0'
         when "2" #latest 10 releases
             see_more = true
-            latest_10_releases = Movie.print_10_movies_by('release_date')
-            puts "\nLatest 10 Releases"
+            
             while(see_more)
+                puts "\nLatest 10 Releases"
+                latest_10_releases = Movie.print_10_movies_by('release_date')
                 see_more = see_more_menu(latest_10_releases)
                 sleep 0.4
             end
@@ -80,31 +82,42 @@ def main
             else
                 puts "\n================= LOGIN =================".blue
                 pwd_retry = 0
+                email_retry = 0
                 print "\nPlease enter your email: " #check if email is in database
                 email = gets.strip
-                has_email = Login.find_by(email: email)
-                if has_email
-                    while(pwd_retry < 3 && !logged_in)
-                        print "\nPlease enter your password: "
-                        password = gets.strip
-                        if has_email.password == password
-                            logged_in = true
-                            user = User.find(has_email.user_id)
-                            puts "\nLogin Successful".blue
-                            sleep 0.5
-                            menu_input = "0"
-                        else
-                            puts "Incorrect password. Please try again.".light_red
-                            pwd_retry += 1
-                        end
-                    end
-                else #cannot find email
-                    puts "No account is associated with this email. Please create an account.".light_red
-                    menu_input = "6" 
+                while(!valid_email?(email) && email_retry < 3)
+                        print "\nIncorrect email format. Please enter a valid email: ".light_yellow
+                        email = gets.strip
+                        email_retry += 1
                 end
-                if pwd_retry >= 3
-                    puts "Too many incorrect login attempts. Going back to main menu.".light_red
-                    menu_input = "0"
+                if !valid_email?(email)
+                    puts "\nYou've entered an incorrect email format too many times. Going back to Main Menu.".light_red
+                    menu_input = '0'
+                else
+                    has_email = Login.find_by(email: email)
+                    if has_email
+                        while(pwd_retry < 3 && !logged_in)
+                            print "\nPlease enter your password: "
+                            password = gets.strip
+                            if has_email.password == password
+                                logged_in = true
+                                user = User.find(has_email.user_id)
+                                puts "\nLogin Successful".blue
+                                sleep 0.5
+                                menu_input = "0"
+                            else
+                                puts "Incorrect password. Please try again.".light_red
+                                pwd_retry += 1
+                            end
+                        end
+                    else #cannot find email
+                        puts "No account is associated with this email. Please create an account.".light_red
+                        menu_input = "6" 
+                    end
+                    if pwd_retry >= 3
+                        puts "Too many incorrect login attempts. Going back to main menu.".light_red
+                        menu_input = "0"
+                    end
                 end
             end
         when "6" #already logs you in

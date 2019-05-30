@@ -40,16 +40,16 @@ def find_movie_by_name_menu
         matched_movies.each_with_index do |movie, index|
             puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
         end
-        puts "0. Go back to Browse Movies."
+        puts "0. Go back to Browse Movies"
         valid_option = false
         while(!valid_option)
             print "\nPlease select a movie: "
-            movie_picked = gets.strip.to_i
-            if movie_picked <= matched_movies.count && movie_picked > 0
-                selected_movie = matched_movies[movie_picked - 1]
+            movie_picked = gets.strip
+            if valid_number_selection?(movie_picked, 1, matched_movies.count)
+                selected_movie = matched_movies[movie_picked.to_i - 1]
                 selected_movie_menu(selected_movie)
                 valid_option = true
-            elsif movie_picked == 0
+            elsif movie_picked == '0'
                 selected_movie = -1
                 valid_option = true
             else
