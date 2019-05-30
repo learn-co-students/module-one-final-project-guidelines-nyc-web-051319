@@ -108,7 +108,7 @@ class Movie < ActiveRecord::Base
     end
 
     def self.print_10_movies_by(sort_by)
-      sleep 0.4
+    
 
       puts "========================================".blue
       matched_movies = Movie.order("#{sort_by} DESC").limit(10)

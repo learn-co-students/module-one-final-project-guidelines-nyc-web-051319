@@ -51,7 +51,6 @@ class User < ActiveRecord::Base
             puts "Invalid email format. Please input a valid email.".light_yellow
         end
         user
-         sleep 0.4
     end
     
 end

@@ -71,13 +71,12 @@ def main
                      sleep 0.4
                 end
             else
-                sleep 0.4
                 puts "\nPlease Login before leaving a review.".light_yellow
                 menu_input = "5"
                  sleep 0.4
             end
         when "5" #check login
-            sleep 0.4
+            
             if logged_in ##see my review
                 user.all_of_my_reviews
                  sleep 0.4
@@ -111,9 +110,11 @@ def main
             end
             menu_input = '0'
         when "7"
-            sleep 0.2
-            puts "Goodbye!!".light_magenta
+            sleep 0.4
+            system "clear"
+            puts "\nGoodbye!!".light_magenta
             leave_app = true
+            sleep 0.3
             the_eggplant
         ##WHEN DELETE ACCOUNT
         else

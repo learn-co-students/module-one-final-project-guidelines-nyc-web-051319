@@ -54,7 +54,6 @@ def see_more_menu(list_of_movies)
         puts "Invalid input. Please select y or n.".red
         true
     end
-     sleep 0.4
 end
 
 def rating_to_eggplants(rating)
