@@ -1,7 +1,6 @@
 #BROWSE MOVIES MENU
 
 def selected_movie_menu(movie)
-    system "clear"
     #Name
     print "\nMovie Name: ".green
     puts "#{movie.name}"
@@ -28,7 +27,7 @@ def selected_movie_menu(movie)
 end
 
 def find_movie_by_name_menu
-    system "clear"
+
     selected_movie = nil
     puts "\n============== Find Movie By Name ===============".green
     print "\nPlease enter name of movie or 0 to go back: "
@@ -78,12 +77,11 @@ def movie_menu
 
     case menu_input
     when "1" #find movies by name
-        system "clear"
         find_movie_by_name_menu
         true
     when "2" #find movies by rating
         #returns movies greater than selection
-        system "clear"
+       
         puts "\n============== Find Movie By Rating ===============".blue
         valid_input = false
         while(!valid_input)
@@ -101,7 +99,6 @@ def movie_menu
         end
         true
     when "3"
-        system "clear"
         puts "\n========== List of Genres ==========".blue
         Genre.all.each do |genre|
             puts "#{genre.genre}"

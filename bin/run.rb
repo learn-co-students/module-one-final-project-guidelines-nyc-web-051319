@@ -18,7 +18,6 @@ def main
             see_more = true
             
             while(see_more)
-                system "clear"
                 puts "\nTop 10 Movies of All Time"
                 top_10_movie_list = Movie.print_10_movies_by('rating')
                 see_more = see_more_menu(top_10_movie_list)
@@ -29,7 +28,6 @@ def main
             see_more = true
             
             while(see_more)
-                system "clear"
                 puts "\nLatest 10 Releases"
                 latest_10_releases = Movie.print_10_movies_by('release_date')
                 see_more = see_more_menu(latest_10_releases)
