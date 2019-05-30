@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.integer "hp"
     t.integer "dmg"
     t.integer "difficulty"
+    t.boolean "alive"
   end
 
   create_table "players", force: :cascade do |t|

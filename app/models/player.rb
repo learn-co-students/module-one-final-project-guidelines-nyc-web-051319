@@ -33,24 +33,24 @@ class Player < ActiveRecord::Base
     end
 
     # Basic attack logic. % Chance to hit (Accuracy Stat), random damage within range if successful (min -> max dmg) return value is damage number, which will be sent to fight method
-    def attack
+    def attack(current_monster)
         swing = rand(1..100)
         if swing < self.accuracy
-            puts "You swing your #{self.weapon} and hit the #{current_monster}!"
+            puts "You swing your #{self.weapon} and hit the #{current_monster.name}!"
             player_damage = rand(self.min_dmg..self.max_dmg)
         else
             puts "You missed! WHOOSH!"
             player_damage = 0
         end
-    player_damage
+        player_damage
     end
 
     # Battle option for potential for monster to miss a turn
     def intimidate
-        puts "You raise your #{self.weapon} and roar with beastial vigor!"
-        sleep(1)
+        puts "You raise your #{self.weapon} and roar with bestial vigor!"
+        sleep(2)
         puts "#{self.battlecry}!!!"
-        sleep(1)
+        sleep(2)
     end
     # Every successful run will increase level and up stats
     def level_up
