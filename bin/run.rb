@@ -12,13 +12,7 @@ def main
         when "0" #main menu
             main_menu(user)
             print "\nWhat would you like to do? "
-            ans = gets.strip
-            if valid_number_selection?(ans, 0, 7)
-                menu_input = ans
-            else
-                puts "\nInvalid Input. Please select 1 - 7.".light_red
-                sleep 0.3
-            end
+            menu_input = gets.strip
         when "1" #top 10 movies of all time
             see_more = true
             
@@ -112,7 +106,6 @@ def main
                     puts "\nYou've entered an invalid email format too many times. Going back to Main Menu.".red
                 end
             end
-            sleep 0.4
             menu_input = '0'
         when "7"
             sleep 0.2

@@ -35,10 +35,10 @@ end
 
 def see_more_menu(list_of_movies)
     print "\nDo you want to see more about one of the movies above? [y/n] "
-    answer = gets.strip
+    answer = gets.strip.downcase
 
     case answer
-    when "y"
+    when 'y', 'yes'
             print "\nWhich movie do you want more info on? (1 - 10) "
             movie_num = gets.strip
             if valid_number_selection?(movie_num, 1, 10)
@@ -47,7 +47,7 @@ def see_more_menu(list_of_movies)
                 puts "Invalid option. Please selection 1 - 10 from above.".red
             end
         true
-    when "n"
+    when 'n', 'no'
         puts "Okay. Going back to main menu.".blue
         false
     else

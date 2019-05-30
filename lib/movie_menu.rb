@@ -28,32 +28,35 @@ end
 
 def find_movie_by_name_menu
     selected_movie = nil
-    print "\nPlease enter name of movie: "
+    puts "\n============== Find Movie By Name ===============".green
+    print "\nPlease enter name of movie or 0 to go back: "
     movie_name = gets.strip.downcase #name in lowercase
-    matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
-    #show movie name ordered by release date
-    if matched_movies.empty?
-        puts "No movies found for \"#{movie_name}.\"".red
-    else
-        puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\"".green
-        puts "===================================".blue
-        matched_movies.each_with_index do |movie, index|
-            puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
-        end
-        puts "0. Go back to Browse Movies"
-        valid_option = false
-        while(!valid_option)
-            print "\nPlease select a movie: "
-            movie_picked = gets.strip
-            if valid_number_selection?(movie_picked, 1, matched_movies.count)
-                selected_movie = matched_movies[movie_picked.to_i - 1]
-                selected_movie_menu(selected_movie)
-                valid_option = true
-            elsif movie_picked == '0'
-                selected_movie = -1
-                valid_option = true
-            else
-                puts "\nInvalid option. Please selection a number from above.".red
+    if movie_name != '0'
+        matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
+        #show movie name ordered by release date
+        if matched_movies.empty?
+            puts "No movies found for \"#{movie_name}.\"".red
+        else
+            puts "\n#{matched_movies.count} movies found with name \"#{movie_name}\"".green
+            puts "===================================".blue
+            matched_movies.each_with_index do |movie, index|
+                puts "#{index + 1}. #{movie.name} (#{movie.long_release_date})"
+            end
+            puts "0. Go back to Browse Movies"
+            valid_option = false
+            while(!valid_option)
+                print "\nPlease select a movie: "
+                movie_picked = gets.strip
+                if valid_number_selection?(movie_picked, 1, matched_movies.count)
+                    selected_movie = matched_movies[movie_picked.to_i - 1]
+                    selected_movie_menu(selected_movie)
+                    valid_option = true
+                elsif movie_picked == '0'
+                    selected_movie = -1
+                    valid_option = true
+                else
+                    puts "\nInvalid option. Please selection a number from above.".red
+                end
             end
         end
     end
@@ -65,7 +68,7 @@ def movie_menu
     puts "1. Find Movies by Name" #duplicates
     puts "2. Find Movies by Rating" #allow range?
     puts "3. Find Movies by Genre"
-    puts "4. Back to Main Menu"
+    puts "0. Back to Main Menu"
     print "\nWhat would you like to do? "
     menu_input = gets.strip
 
@@ -77,6 +80,7 @@ def movie_menu
     when "2" #find movies by rating
         #returns movies greater than selection
         sleep 0.3
+        puts "\n============== Find Movie By Rating ===============".blue
         valid_input = false
         while(!valid_input)
             print "\nPlease enter rating or 0 to go back: "
@@ -98,12 +102,16 @@ def movie_menu
         Genre.all.each do |genre|
             puts "#{genre.genre}"
         end
-        print "\nPlease enter genre you want to search by: "
-        genre_name = gets.strip 
-        genre = Genre.find_by("lower(genre) LIKE ?", "%#{genre_name}%")#get genre id
-        Movie.print_movies_by_genre(genre)
+
+        puts "\n============== Find Movie By Genre ===============".blue
+        print "\nPlease enter genre you want to search by or 0 to go back: "
+        ans = gets.strip 
+        if ans != '0'
+            genre = Genre.find_by("lower(genre) LIKE ?", "%#{ans}%")#get genre id
+            Movie.print_movies_by_genre(genre)
+        end
         true
-    when "4"
+    when "0"
         false #go back to main menu
     else
         puts "Invalid input. Please select options 1 - 4.".red
