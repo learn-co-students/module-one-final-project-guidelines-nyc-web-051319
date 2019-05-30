@@ -1,4 +1,4 @@
-# Legend of Rubyerion: The 7 Paths
+# Legend of Rubyerion: The Seven Paths
 
 Welcome to the world of Rubyerion. In Legend of Rubyerion, you play as a brave warrior who must battle through a variety of dungeons. This game is a roguelike adventure, where if you lose, that character is forever lost to the depths of the dungeon.
 
@@ -27,7 +27,7 @@ There are 7 dungeons to choose from. Each dungeon is ranked on a difficulty scal
 1. Training Grounds - Difficulty: Very Easy - Level up granted: 0
 First time picking up a sword? First time leaving your mom's basement? This is probably your best bet to show off those attack moves you've been practicing with a broomstick in front of the mirror while listening to the 'John Wick' original motion picture soundtrack.
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/02-sewerx8.png)
 
 2. The Sewers - Difficulty: Easy - Level up granted: 1
 Most heroes will find themselves starting their adventure here in the musty sewers below Rubyerion. Small, vile, bottom-feeder creatures and those git branches you -d will end up here, scavenging for fresh food...
