@@ -46,7 +46,9 @@ def main
            
             if logged_in #check if user is logged in
                 movie = find_movie_by_name_menu
-                if movie
+                if movie == -1
+                    menu_input = '4'
+                elsif movie
                     print "\nPlease rate #{movie.name} (#{movie.release_year}) between 1 - 5: "
                     rating = gets.strip.to_i #validate correct input
                 
@@ -63,8 +65,6 @@ def main
                     puts "\nThank you for taking the time to review!".green
                      sleep 0.4
                     menu_input = '0'
-                elsif movie == -1
-                    menu_input = '4'
                 else
                     puts "\n No movies found with that name.".light_red
                     menu_input = '4'
