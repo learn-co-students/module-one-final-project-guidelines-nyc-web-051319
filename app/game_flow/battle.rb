@@ -38,8 +38,8 @@ class Battle
   def attack_menu
       puts "-"*60
       puts " "
-      puts "#{@current_player.name}: #{@current_player.current_hp}/#{@current_player.max_hp} HP"
-      puts "#{@current_monster.name}: #{@current_monster.hp} HP"
+      puts Rainbow("#{@current_player.name}: #{@current_player.current_hp}/#{@current_player.max_hp} HP").green
+      puts Rainbow("#{@current_monster.name}: #{@current_monster.hp} HP").red
       puts " "
       puts "-"*60
       puts " "
@@ -108,7 +108,7 @@ class Battle
       # Conditional method when monster's HP is reduced to 0
   def monster_death
       @battle_over = true
-      puts "You have slain #{@current_monster.name}!"
+      puts Rainbow("You have slain #{@current_monster.name}!").green
       SFX.death
       #delete monster
   end
@@ -124,7 +124,7 @@ class Battle
       # Conditional method when player's HP is reduced to 0
   def player_death
       @battle_over = true
-      puts "Oh no! #{@current_player.name} has died alone in the dark! Forgotten in the violent depths below the earth!"
+      puts Rainbow("Oh no! #{@current_player.name} has died alone in the dark! Forgotten in the violent depths below the earth!").red
       SFX.death
       #delete player
   end
@@ -141,7 +141,7 @@ class Battle
       sleep(1)
       #conditional for escaping. Easier to run if you're a higher level and/or monster is injured.
       if rand(0..100) < (@current_player.level * 20) - @current_monster.hp
-          puts "SLIPPED AWAY!"
+          puts Rainbow("SLIPPED AWAY!").green
           SFX.flee
           sleep(2)
           puts "You head to the nearest inn."
@@ -151,7 +151,7 @@ class Battle
           CLI.title
           CLI.greeting
       else
-          puts "couldn't escape!"
+          puts Rainbow("couldn't escape!").red
       end
   end
 end
