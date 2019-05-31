@@ -7,13 +7,13 @@ class Monster < ActiveRecord::Base
     # View all current stats of a monster
     def inspect_monster
         puts "Monster: #{self.name}"
-        sleep(2)
+        sleep(1)
         puts "Type: #{self.creature_type}"
-        sleep(2)
+        sleep(1)
         puts "Current Health: #{self.hp}"
-        sleep(2)
-        puts "Damage Modifier: #{self.dmg} DMG per attack."
-        sleep(2)
+        sleep(1)
+        puts "Damage: #{self.dmg-5} to #{self.dmg+5} DMG per attack."
+        sleep(1)
     end
     # Test method for monster getting damaged
     # def damage

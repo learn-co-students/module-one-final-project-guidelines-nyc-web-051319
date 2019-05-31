@@ -8,34 +8,39 @@ class SFX
     end
 
     def self.monster_hit
-        player_hit = Audite.new
-        player_hit.load('./app/sound/monster_attack.mp3')
-        player_hit.start_stream
+        monster_hit = Audite.new
+        monster_hit.load('./app/sound/monster_attack.mp3')
+        monster_hit.start_stream
     end
 
     def self.miss
-        player_hit = Audite.new
-        player_hit.load('./app/sound/miss.mp3')
-        player_hit.start_stream
+        miss = Audite.new
+        miss.load('./app/sound/miss.mp3')
+        miss.start_stream
+    end
 
+    def self.intimidate
+        intimidate = Audite.new
+        intimidate.load('./app/sound/intimidate.mp3')
+        intimidate.start_stream
     end
 
     def self.flee
-        player_hit = Audite.new
-        player_hit.load('./app/sound/flee.mp3')
-        player_hit.start_stream
+        flee = Audite.new
+        flee.load('./app/sound/flee.mp3')
+        flee.start_stream
     end
 
     def self.death
-        player_hit = Audite.new
-        player_hit.load('./app/sound/death.mp3')
-        player_hit.start_stream
+        death = Audite.new
+        death.load('./app/sound/death.mp3')
+        death.start_stream
     end
 
     def self.level_up
-        player_hit = Audite.new
-        player_hit.load('./app/sound/level_up.mp3')
-        player_hit.start_stream
+        level_up = Audite.new
+        level_up.load('./app/sound/level_up.mp3')
+        level_up.start_stream
     end
 
     def self.title_music

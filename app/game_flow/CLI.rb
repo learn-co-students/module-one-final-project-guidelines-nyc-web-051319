@@ -126,6 +126,7 @@ class CLI
       monster = Monster.find(rand(1..325))
       MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
       monster_array << monster
+      #if monsters = 0, level up, return to dungeon select or main menu
     end
 
     run = DungeonRun.new(@@current_player, monster_array)

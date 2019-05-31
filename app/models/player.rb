@@ -8,26 +8,26 @@ class Player < ActiveRecord::Base
     # View all current stats of a character
     def print_status
         puts "LEVEL #{self.level}"
-        sleep(2)
+        sleep(1)
         puts "Health: #{self.current_hp}/#{self.max_hp}"
-        sleep(2)
+        sleep(1)
         puts "Damage: #{self.min_dmg} to #{self.max_dmg} DMG per attack."
-        sleep(2)
+        sleep(1)
         puts "Accuracy Modifer: #{self.accuracy}% to hit."
-        sleep(2)
+        sleep(1)
         puts "Weapon: #{self.weapon}"
-        sleep(2)
+        sleep(1)
         puts "Battlecry: #{self.battlecry}!!!"
-        sleep(2)
+        sleep(1)
     end
 
     # Rest function resets current health to max health. Will be called when leveled up.
     def rest
         self.current_hp = self.max_hp
         puts "A warm hearth and a stein of mead reinvigorate you!"
-        sleep(2)
+        sleep(1)
         puts "Current health: #{self.current_hp}/#{self.max_hp}"
-        sleep(2)
+        sleep(1)
     end
     # Damage is a testing method during development
     # def damage
@@ -56,9 +56,10 @@ class Player < ActiveRecord::Base
     # Battle option for potential for monster to miss a turn
     def intimidate
         puts "You raise your #{self.weapon} and roar with bestial vigor!"
-        sleep(2)
+        SFX.intimidate
+        sleep(1)
         puts "#{self.battlecry}!!!"
-        sleep(2)
+        sleep(1)
     end
     # Every successful run will increase level and up stats
     def level_up

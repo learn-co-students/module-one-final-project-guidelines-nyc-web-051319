@@ -15,7 +15,7 @@ class Battle
   def begin_battle
     puts "Wait, what was that?!?!"
     sleep(2)
-    SFX.battle_music
+    # SFX.battle_music
     puts "A #{@current_monster.name} bursts into the room!!!"
     sleep(2)
     puts "Prepare for battle..."
@@ -31,7 +31,6 @@ class Battle
       attack_menu
     else
       monster_attack
-      sleep(1)
     end
     @player_turn = !@player_turn
   end
@@ -57,7 +56,6 @@ class Battle
       #
       if fight_choice == "1"
           player_attack
-          sleep(2)
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
@@ -70,7 +68,6 @@ class Battle
           end
       elsif fight_choice == "3"
           @current_player.print_status
-          !@player_turn
           sleep(2)
       elsif fight_choice == "4"
           @current_monster.inspect_monster
@@ -82,9 +79,6 @@ class Battle
           puts "That is not a valid command!"
       end
   end
-
-      # Battle status for menu repopping up
-      # battle_over = false
 
   def player_attack
     player_damage = @current_player.attack(@current_monster)
@@ -160,14 +154,4 @@ class Battle
           puts "couldn't escape!"
       end
   end
-
-
 end
-
-
-
-
-
-
-
-    # Define back and forth attacks for both player and monster - Need logic still to stop if HP = 0
