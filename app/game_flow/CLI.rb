@@ -6,7 +6,8 @@ class CLI
   #displays title screen
   def self.title
     SFX.title_music
-    #Title image here
+    Printer.logo
+    puts " "
     title = "Legend of Rubyerion: The Seven Paths"
     puts " "
     puts "*" * 60
