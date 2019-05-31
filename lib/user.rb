@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
                     
                     case ans
                     when "y"
-                        puts "\n Awesome! Let's get you setup right away!".green
+                        puts "\nAwesome! Let's get you setup right away!".green
                         user = Login.create_account(email)
                     when "n"
                         puts "No problem. Going back to main menu."
