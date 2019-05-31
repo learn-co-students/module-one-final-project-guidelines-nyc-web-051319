@@ -6,9 +6,10 @@ class DungeonRun
   end
 
   def begin_run
-    @monsters.each do |monster|
-      b = Battle.new(@player, monster)
+    # @monsters.each do |monster|
+      # binding.pry
+      b = Battle.new(@player, @monsters)
       b.begin_battle #turns out this begins and ends a round
-    end
+    # end
   end
 end

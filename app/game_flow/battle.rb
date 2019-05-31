@@ -4,35 +4,62 @@
 # Will also iterate the 3 battle rounds per dungeon run
 
 class Battle
+  attr_accessor :music
 
-  def initialize(current_player, current_monster)
+  def initialize(current_player, all_monsters)
     @battle_over = false
     @player_turn = true
     @current_player = current_player
-    @current_monster = current_monster
+    @all_monsters = all_monsters
+    # @current_monster = current_monster
+    @music = Audite.new
+  end
+
+  def battle_music
+    @music.load('./app/sound/battle.mp3')
+    @music.start_stream
   end
 
   def begin_battle
+    @music.stop_stream
     puts "Wait, what was that?!?!"
     sleep(2)
     SFX.battle_music
     puts "A #{@current_monster.name} bursts into the room!!!"
     sleep(2)
     puts "Prepare for battle..."
-    sleep(2)
-    while !@battle_over
-      do_round
+    # sleep(2)
+    fight = 3
+    while fight > 0 && @current_player.alive
+      @all_monsters.each do |monster|
+        @current_monster = monster
+        binding.pry
+        # binding.pry
+        do_round
+        fight -= 1
+        binding.pry
+      end
     end
     puts "The battle is over!"
+    sleep(2)
+    if @current_player.alive
+      @current_player.level_up
+      puts "#{@current_player.name} has leveled up!"
+      CLI.title
+      CLI.greeting
+      @music.stop_stream
+    end
+    # need to trigger level up here, but only if three monsters defeated...
   end
 
   def do_round
-    if @player_turn
+    while @current_player.alive && @current_monster.alive
       attack_menu
-    else
+    # else
       monster_attack
+      #sleep(2)
     end
-    @player_turn = !@player_turn
+    # @player_turn = !@player_turn
   end
 
   def attack_menu
@@ -56,25 +83,26 @@ class Battle
       #
       if fight_choice == "1"
           player_attack
+          #sleep(2)
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
             puts "#{@current_monster.name} cowers before your might!"
-            sleep(2)
+            #sleep(2)
             attack_of_opportunity
           else
             puts "The #{@current_monster.name} seems unaffected."
-            sleep(2)
+            #sleep(2)
           end
       elsif fight_choice == "3"
           @current_player.print_status
-          sleep(2)
+          #sleep(2)
       elsif fight_choice == "4"
           @current_monster.inspect_monster
-          sleep(2)
+          #sleep(2)
       elsif fight_choice == "5"
           player_flee
-          sleep(2)
+          #sleep(2)
       else
           puts "That is not a valid command!"
       end
@@ -83,7 +111,7 @@ class Battle
   def player_attack
     player_damage = @current_player.attack(@current_monster)
     monster_take_damage(player_damage)
-    sleep(2)
+    #sleep(2)
   end
 
   def monster_attack
@@ -107,6 +135,7 @@ class Battle
 
       # Conditional method when monster's HP is reduced to 0
   def monster_death
+      @current_monster.alive = false
       @battle_over = true
       puts Rainbow("You have slain #{@current_monster.name}!").green
       SFX.death
@@ -126,7 +155,10 @@ class Battle
       @battle_over = true
       puts Rainbow("Oh no! #{@current_player.name} has died alone in the dark! Forgotten in the violent depths below the earth!").red
       SFX.death
-      #delete player
+      sleep(2)
+      @current_player.destroy
+      CLI.title
+      CLI.greeting
   end
 
       # Method that will start chance to flee (forfieting a round of attack if failed)

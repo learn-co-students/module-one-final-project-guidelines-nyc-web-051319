@@ -31,7 +31,7 @@ class CLI
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @@current_player = Player.create(name: name_input, max_hp: 200, current_hp: 200, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
+    @@current_player = Player.create(name: name_input, max_hp: 100, current_hp: 100, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
     puts "Okay, #{@@current_player.name}. Ready yourself..."
     sleep(2)
     puts " "
@@ -48,7 +48,7 @@ class CLI
       battlecry_input = gets.chomp
       puts " "
       puts "Please enter a melee weapon:"
-      weapon_input = gets.chomp
+      weapon_input = gets.chomp.downcase
       puts " "
       self.create_player(name_input, battlecry_input, weapon_input)
       choose_dungeon #end create player
@@ -90,7 +90,6 @@ class CLI
     elsif user_input == "4"
       #begin quit
       puts "Pathetic! Come back when you're feeling braver..."
-      sleep(2)
       exit #end quit
     end
   end
@@ -113,6 +112,7 @@ class CLI
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "The air is musty and your torch flickers..."
     sleep(2)
+    @@theme.stop_stream
     self.start_dungeon_crawl
   end
 
@@ -122,49 +122,43 @@ class CLI
   end
 
   def self.start_monster_infestation
-    monster_array = []
-    num_monsters = 3
-    (0..num_monsters-1).each do |x|
-      monster = Monster.find(rand(1..325))
-      MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
-      monster_array << monster
-      #if monsters = 0, level up, return to dungeon select or main menu
-    end
+    # monster_array = []
+    #
+    # (0..num_monsters-1).each do |x|
+    #   monster = Monster.find(rand(1..325))
+    #   MonsterInfestation.create(dungeon_id: @@current_dungeon.id, monster_id: monster.id)
+    #
+    # end
 
-    run = DungeonRun.new(@@current_player, monster_array)
+    run = DungeonRun.new(@@current_player, monster_query(3))
     run.begin_run
   end
 
   def self.monster_query(num_monsters)
-    num_monsters.times do
-      case @@current_dungeon.difficulty
-        when "Very Easy"
-          # 0 - 2
-          Monster.where("difficulty > 0").where("difficulty < 2").order("RANDOM()").first(3)
-        when "Easy"
-          # 6 - 10
-          Monster.where("difficulty > 3").where("difficulty < 6").order("RANDOM()").first(3)
-        when "Mediocre"
-          # 11 - 15
-          Monster.where("difficulty > 7").where("difficulty < 11").order("RANDOM()").first(3)
-        when "Medium"
-          # 16 - 20
-          Monster.where("difficulty > 12").where("difficulty < 20").order("RANDOM()").first(3)
-        when "Hard"
-          # 21 - 25
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-        when "Extreme"
-          # 26 - 30
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-        when "Insane"
-          # 31
-          Monster.where("difficulty > 21").where("difficulty < 30").order("RANDOM()").first(3)
-
-    end
-
-    end
-
-
+    case @@current_dungeon.difficulty
+      when "Very Easy"
+        # 0 - 2
+        Monster.where("difficulty > 0").where("difficulty < 2").order(Arel.sql("random()")).first(num_monsters)
+      when "Easy"
+        # 3 - 6
+        Monster.where("difficulty > 3").where("difficulty < 6").order(Arel.sql("random()")).first(num_monsters)
+      when "Mediocre"
+        # 7 - 10
+        Monster.where("difficulty > 7").where("difficulty < 10").order(Arel.sql("random()")).first(num_monsters)
+      when "Medium"
+        # 11 - 13
+        Monster.where("difficulty > 11").where("difficulty < 13").order(Arel.sql("random()")).first(num_monsters)
+      when "Hard"
+        # 14 - 17
+        Monster.where("difficulty > 14").where("difficulty < 17").order(Arel.sql("random()")).first(num_monsters)
+      when "Extreme"
+        # 18 - 20
+        Monster.where("difficulty > 18").where("difficulty < 20").order(Arel.sql("random()")).first(num_monsters)
+      when "Insane"
+        # 21 - 30
+        Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
+      end
   end
+
 
 end
