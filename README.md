@@ -1,3 +1,5 @@
+![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR.png)
+
 # Legend of Rubyerion: The Seven Paths
 
 Welcome to the world of Rubyerion. In Legend of Rubyerion, you play as a brave warrior who must battle through a variety of dungeons. This game is a roguelike adventure, where if you lose, that character is forever lost to the depths of the dungeon.
@@ -104,3 +106,5 @@ D&D API by Adrian Padua
 Pixel Art by Constantine
 8-bit Music by 
 Dungeons & Dragons is a registered
+
+![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR-Discs.png)
