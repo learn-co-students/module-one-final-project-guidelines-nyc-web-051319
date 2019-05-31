@@ -101,13 +101,11 @@ Special thanks to Rishi for being stoked on the concept and helping flesh out so
 
 ## Credits
 
-Made with love by 
-Aaron Smith and Constantine Chutis
-at Flatiron School // 2019
-D&D API by Adrian Padua
-Pixel Art by Constantine
-8-bit Music by 
-Dungeons & Dragons is a registered
+Made with love :heart: by </br>
+[**Aaron Smith**](https://github.com/smitham50) and [**Constantine Chutis**](https://github.com/cchutis)</br>
+at [Flatiron School](https://flatironschool.com/) **//** 2019</br>
+[D&D API by Adrian Padua](http://www.dnd5eapi.co/)</br>
+Pixel Art by Constantine</br>
 
 <p align="center">
   <img width="800" src="https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR-Discs.png">
