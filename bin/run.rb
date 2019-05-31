@@ -61,6 +61,9 @@ case user_option_1
         puts ""
         Activity.top_rated
         cli.main_options
+      when "back"
+        puts ""
+        cli.main_options
       else
         cli.error_message
         cli.main_options
@@ -81,6 +84,12 @@ case user_option_1
       when "number"
         puts ""
         Location.num_of_activities_by_location
+        cli.main_options
+      when "back"
+        puts ""
+        cli.main_options
+      else
+        cli.error_message
         cli.main_options
     end
   when 4

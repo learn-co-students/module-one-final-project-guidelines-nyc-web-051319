@@ -23,11 +23,15 @@ class CLI
   def view_planner
     puts ""
     view_plans
-    puts "Which plan would you like to know the opening and closing times for?"
-    a_index = gets.chomp.to_i
-    puts ""
-    get_opening_and_closing_time(a_index)
-    time_left(a_index)
+    if @current_user.plans.size == 0
+      puts "You have no plans. Please add some."
+    else
+      puts "Which plan would you like to know the opening and closing times for?"
+      a_index = gets.chomp.to_i
+      puts ""
+      get_opening_and_closing_time(a_index)
+      time_left(a_index)
+    end
   end
 
   def get_opening_and_closing_time(a_index)
@@ -70,6 +74,7 @@ class CLI
     puts "[Create] New Activity"
     puts "[View] Activities"
     puts "[Top] Activities"
+    puts "[Back] To Main Menu"
     puts ""
   end
 
@@ -78,6 +83,7 @@ class CLI
     puts "[Create] New Location"
     puts "[View] Locations"
     puts "[Number] of Activities By Location"
+    puts "[Back] To Main Menu"
     puts ""
   end
 
@@ -131,12 +137,14 @@ class CLI
       Activity.all[a_index - 1].plans << new_plan
       @current_user.plans << new_plan
       @current_user.plans[plan_to_update.to_i - 1].delete
+      @current_user.reload
       puts ""
       puts "Plan updated!"
     elsif thing_to_update == 2
       puts "Please enter new date: (MM/DD/YYYY)"
       new_date = gets.chomp
       @current_user.plans.update(@current_user.plans[plan_to_update.to_i - 1].id, :date => new_date)
+      @current_user.reload
       puts ""
       puts "Date updated!"
     end
@@ -155,6 +163,7 @@ class CLI
   def delete
     remove_index = gets.chomp.to_i
     @current_user.plans.all[remove_index -1].delete
+    @current_user.reload
   end
 
 
@@ -167,13 +176,18 @@ class CLI
     if act_hour < 6
       act_hour += 12
       now_hour -= 11
+      if act_min == 0
+        puts "There are #{((act_hour - now_hour).abs - 1)} hour(s) and #{(60 - now_min).abs} minute(s) left"
+      end
       if act_min - now_min == 0
         now_hour += 1
         puts "There are #{(now_hour - act_hour).abs} hour(s) and 0 minute(s) left"
       end
       puts "There are #{(now_hour - act_hour).abs} hour(s) and #{(60 - now_min).abs} minute(s) left"
+    elsif act_min == 0
+        puts "There are #{((act_hour - now_hour).abs - 1)} hour(s) and #{(60 - now_min).abs} minute(s) left"
     else
-    puts "There are #{(act_hour - now_hour).abs} hour(s) and #{(act_min - now_min).abs} minute(s) left"
+      puts "There are #{(act_hour - now_hour).abs} hour(s) and #{(act_min - now_min).abs} minute(s) left"
     end
   end
 

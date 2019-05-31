@@ -15,4 +15,8 @@ class Location < ActiveRecord::Base
   def self.num_of_activities_by_location
     Location.all.map {|location| puts "[#{Location.all.index(location) + 1}] #{location.name} - #{location.activities.count}"}
   end
+
+  def self.show_activity_and_location
+    
+  end
 end
