@@ -57,9 +57,9 @@ class Player < ActiveRecord::Base
     def intimidate
         puts "You raise your #{self.weapon} and roar with bestial vigor!"
         SFX.intimidate
-        sleep(1)
+        sleep(2)
         puts "#{self.battlecry}!!!"
-        sleep(1)
+        sleep(2)
     end
     # Every successful run will increase level and up stats
     def level_up

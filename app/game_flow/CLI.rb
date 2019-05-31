@@ -6,7 +6,7 @@ class CLI
   #displays title screen
   def self.title
     SFX.title_music
-    catpix(app/images/dragon.png)
+    #Title image here
     title = "Legend of Rubyerion: The Seven Paths"
     puts " "
     puts "*" * 60
