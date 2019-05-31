@@ -22,6 +22,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.laziest_instance
+    all_commits = self.all.map do |user|
+      user.commits.count
+    end
+    least_commits = all_commits.sort.first
+    self.all.map do |user|
+      if user.commits.count == least_commits
+        return user
+      end
+    end
+  end
+
   def self.busiest
     all_commits = self.all.map do |user|
       user.commits.count
@@ -30,6 +42,18 @@ class User < ActiveRecord::Base
     self.all.map do |user|
       if user.commits.count == most_commits
         return user.name
+      end
+    end
+  end
+
+  def self.busiest_instance
+    all_commits = self.all.map do |user|
+      user.commits.count
+    end
+    most_commits = all_commits.sort.last
+    self.all.map do |user|
+      if user.commits.count == most_commits
+        return user
       end
     end
   end

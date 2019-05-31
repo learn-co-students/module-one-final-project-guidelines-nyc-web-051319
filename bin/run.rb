@@ -656,6 +656,10 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts "MOST COMMITTED PROJECT: #{Project.least_committed_project} (#{Project.least_committed_instance.commits.count} commits)".colorize(:green)
         puts "***************************************************"
         puts ""
+        puts "***************************************************"
+        puts "Your student's commits:".colorize(:green)
+        puts "***************************************************"
+        puts Project.least_committed_instance.project_details
         puts ""
         projects
       when "3"
@@ -665,6 +669,10 @@ xllllc;...........,:::::cccl:cdxxxxxkkkkkkxxddc;;,;;,............','.'''..'"
         puts "LEAST COMMITTED PROJECT: #{Project.most_committed_project} (#{Project.most_committed_instance.commits.count} commits)".colorize(:yellow)
         puts "***************************************************"
         puts ""
+        puts "***************************************************"
+        puts "Your student's commits:".colorize(:green)
+        puts "***************************************************"
+        puts Project.most_committed_instance.project_details
         puts ""
         projects
       when "4"
