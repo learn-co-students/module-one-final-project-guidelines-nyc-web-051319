@@ -12,7 +12,7 @@ class Monster < ActiveRecord::Base
         sleep(1)
         puts "Current Health: #{self.hp}"
         sleep(1)
-        puts "Damage: #{self.dmg-5} to #{self.dmg+5} DMG per attack."
+        puts "Damage: #{self.dmg} to #{self.dmg+5} DMG per attack."
         sleep(1)
     end
     # Test method for monster getting damaged
@@ -28,7 +28,7 @@ class Monster < ActiveRecord::Base
     def attack(current_player)
         swing = rand(1..100)
         if swing < 60
-            monster_damage = rand(self.dmg-5..self.dmg+5)
+            monster_damage = rand(self.dmg..self.dmg+5)
             puts Rainbow("#{self.name} attacks! It struck #{current_player.name} for #{monster_damage} Damage!").red
             SFX.monster_hit
         else
