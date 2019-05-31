@@ -12,9 +12,9 @@ Welcome to the world of Rubyerion. In Legend of Rubyerion, you play as a brave w
 
 Every adventurer needs to etch his/her destiny so that songs and tales can be passed down from generation to generation. Provide your champions name, weapon of choice and famous battlecry, which you're known for screaming whilst charging into the fray!
 
-Name: Name of your choosing plus titles, class, whatever!
-Melee Weapon: This experience works best if you use a hand-held melee weapon
-Battlecry: Something you want your character to scream into battle!
+**Name:** Name of your choosing plus titles, class, whatever!</br>
+**Melee Weapon:** This experience works best if you use a hand-held melee weapon</br>
+**Battlecry:** Something you want your character to scream into battle!</br>
 
 ### Load a Character
 
@@ -24,21 +24,21 @@ If your character is lucky enough to have survived previous delves into the dung
 
 There are 7 dungeons to choose from. Each dungeon is ranked on a difficulty scale. Monsters from the easier dungeons will be easier to slay, and thus award less XP. Likewise, a harder dungeon will present a harder challenge for adventurers, but possess the highest amount of rewards and XP. 
 
-* The 7 Paths:
+* **The 7 Paths:**
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/01_traininggroundsx8.png)
 
-1. Training Grounds - Difficulty: Very Easy - Level up granted: 0
+1. **Training Grounds** - Difficulty: Very Easy - Level up granted: 0</br>
 First time picking up a sword? First time leaving your mom's basement? This is probably your best bet to show off those attack moves you've been practicing with a broomstick in front of the mirror while listening to the 'John Wick' original motion picture soundtrack.
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/02-sewerx8.png)
 
-2. The Sewers - Difficulty: Easy - Level up granted: 1
+2. **The Sewers** - Difficulty: Easy - Level up granted: 1</br>
 Most heroes will find themselves starting their adventure here in the musty sewers below Rubyerion. Small, vile, bottom-feeder creatures and those git branches you -d will end up here, scavenging for fresh food...
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/03_tomb_of_malchorx8.png)
 
-3. Tomb of Malchor - Difficulty: Medicore - Level up granted: 2
+3. **Tomb of Malchor** - Difficulty: Medicore - Level up granted: 2</br>
 Malchor was a mighty code-mage many centuries ago. Some say he failed his code challenge in Mod 3, and was banished to the online program. Since then he has fallen into the dark arts: Coding everything purely in Brainfuck. 
 
 > "++[---------->+<]>.--[->+++++<]>.-[->+++<]>-.+++++++.-------.[->+++<]>--." 
@@ -46,22 +46,22 @@ Malchor was a mighty code-mage many centuries ago. Some say he failed his code c
                                                              -Malchor, probably.
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/04-icecavex8.png)                                                             
-4. Frozen Ice Cave - Difficulty: Medium - Level up granted: 3
+4. **Frozen Ice Cave** - Difficulty: Medium - Level up granted: 3</br>
 Be sure to bring a coat and a sharp blade. and maybe some mittens. and pocket warmers. maybe even a scarf. Okay, so we're bringing alot of things, so maybe a backpack or some kind of duffle bag? Something with alot of compartments.
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/05-volcanic-cavernx8.png)
 
-5. Volcanic Caverns - Difficulty: Hard - Level up granted: 4
+5. **Volcanic Caverns** - Difficulty: Hard - Level up granted: 4</br>
 Fire and Brimstone! Prepare for a hot affair in which many red-hot enemies await. Are you feeling warmed up yet? Don't get burned trying to fight your way to the end of this. This dungeon is lit. Literally. :fire:
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/06-dragons-lairx8.png)
 
-6. Dragon's Lair - Difficulty: Extreme - Level up granted: 5
+6. **Dragon's Lair** - Difficulty: Extreme - Level up granted: 5</br>
 At the basin of Mount Eleven Broadway (the 2nd level, actually) lies an entrance way into the Dragon's Lair. Some know it as "Hopper ClassRoom". I've never been, so it may as well be the Dragon's Lair. Your mettle will be tested here.
 
 ![alt text](https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/07-flatiron-animatedx8.gif)
 
-7. Flatiron Code Challenge Chamber - Difficulty: Insane - Level up granted: 10
+7. **Flatiron Code Challenge Chamber** - Difficulty: Insane - Level up granted: 10</br>
 The final level. Fight for the glory of Rubyerion. Also just try not to mess up your relationship tables here. It can prove deadly. This dungeon HAS MANY deaths THROUGH teeth and fangs.
 
 ## Monsters
