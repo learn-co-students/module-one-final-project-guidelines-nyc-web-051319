@@ -143,22 +143,22 @@ class CLI
         # 0 - 2
         Monster.where("difficulty > 0").where("difficulty < 2").order(Arel.sql("random()")).first(num_monsters)
       when "Easy"
-        # 6 - 10
+        # 3 - 6
         Monster.where("difficulty > 3").where("difficulty < 6").order(Arel.sql("random()")).first(num_monsters)
       when "Mediocre"
-        # 11 - 15
+        # 7 - 10
         Monster.where("difficulty > 7").where("difficulty < 10").order(Arel.sql("random()")).first(num_monsters)
       when "Medium"
-        # 16 - 20
+        # 11 - 13
         Monster.where("difficulty > 11").where("difficulty < 13").order(Arel.sql("random()")).first(num_monsters)
       when "Hard"
-        # 21 - 25
+        # 14 - 17
         Monster.where("difficulty > 14").where("difficulty < 17").order(Arel.sql("random()")).first(num_monsters)
       when "Extreme"
-        # 26 - 30
+        # 18 - 20
         Monster.where("difficulty > 18").where("difficulty < 20").order(Arel.sql("random()")).first(num_monsters)
       when "Insane"
-        # 31
+        # 21 - 30
         Monster.where("difficulty > 21").where("difficulty < 30").order(Arel.sql("random()")).first(num_monsters)
       end
   end
