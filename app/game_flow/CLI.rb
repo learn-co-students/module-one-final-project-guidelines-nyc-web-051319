@@ -51,7 +51,7 @@ class CLI
       battlecry_input = gets.chomp
       puts " "
       puts "Please enter a melee weapon:"
-      weapon_input = gets.chomp
+      weapon_input = gets.chomp.downcase
       puts " "
       self.create_player(name_input, battlecry_input, weapon_input)
       choose_dungeon #end create player

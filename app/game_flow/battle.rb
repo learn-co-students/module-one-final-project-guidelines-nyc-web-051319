@@ -13,9 +13,9 @@ class Battle
   end
 
   def battle_music
-    @@music = Audite.new
-    @@music.load('./app/sound/battle.mp3')
-    @@music.start_stream
+    @music = Audite.new
+    @music.load('./app/sound/battle.mp3')
+    @music.start_stream
   end
 
   def begin_battle
@@ -134,7 +134,11 @@ class Battle
   def player_death
       @battle_over = true
       puts "Oh no! #{@current_player.name} has died alone in the dark! Forgotten in the violent depths below the earth!"
-      #delete player
+      sleep(2)
+      @current_player.destroy
+      CLI.title
+      CLI.greeting
+      @music.stop_stream
   end
 
       # Method that will start chance to flee (forfieting a round of attack if failed)
