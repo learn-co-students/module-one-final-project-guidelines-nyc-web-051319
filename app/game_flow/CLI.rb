@@ -112,7 +112,6 @@ class CLI
     @@current_dungeon = Dungeon.all[dungeon_input - 1]
     puts "The air is musty and your torch flickers..."
     sleep(2)
-    @@theme.stop_stream
     self.start_dungeon_crawl
   end
 

@@ -21,24 +21,20 @@ class Battle
   end
 
   def begin_battle
-    @music.stop_stream
     puts "Wait, what was that?!?!"
     sleep(2)
     SFX.battle_music
-    puts "A #{@current_monster.name} bursts into the room!!!"
+    puts "A #{@all_monsters.first.name} bursts into the room!!!"
     sleep(2)
     puts "Prepare for battle..."
-    # sleep(2)
+    sleep(2)
     fight = 3
     while fight > 0 && @current_player.alive
       @all_monsters.each do |monster|
         @current_monster = monster
-        binding.pry
-        # binding.pry
         do_round
         fight -= 1
-        binding.pry
-      end
+        end
     end
     puts "The battle is over!"
     sleep(2)
@@ -57,7 +53,7 @@ class Battle
       attack_menu
     # else
       monster_attack
-      #sleep(2)
+      sleep(2)
     end
     # @player_turn = !@player_turn
   end
@@ -83,26 +79,26 @@ class Battle
       #
       if fight_choice == "1"
           player_attack
-          #sleep(2)
+          sleep(2)
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
             puts "#{@current_monster.name} cowers before your might!"
-            #sleep(2)
+            sleep(2)
             attack_of_opportunity
           else
             puts "The #{@current_monster.name} seems unaffected."
-            #sleep(2)
+            sleep(2)
           end
       elsif fight_choice == "3"
           @current_player.print_status
-          #sleep(2)
+          sleep(2)
       elsif fight_choice == "4"
           @current_monster.inspect_monster
-          #sleep(2)
+          sleep(2)
       elsif fight_choice == "5"
           player_flee
-          #sleep(2)
+          sleep(2)
       else
           puts "That is not a valid command!"
       end
@@ -111,7 +107,7 @@ class Battle
   def player_attack
     player_damage = @current_player.attack(@current_monster)
     monster_take_damage(player_damage)
-    #sleep(2)
+    sleep(2)
   end
 
   def monster_attack
