@@ -43,107 +43,64 @@ Malchor was a mighty code-mage many centuries ago. Some say he failed his code c
 
 ![alt text](http://url/to/img.png)                                                             
 4. Frozen Ice Cave - Difficulty: Medium - Level up granted: 3
-Some say there lives a white bear, so large, he can swallow a man whole. Some say this man-eating bear lives in the frozen ice cave. Some say this ice cave-dwelling man-eating bear may not even exist; he is but a myth. What do we say about this bear?
-Be sure to bring a coat and a sharp blade.
+Be sure to bring a coat and a sharp blade. and maybe some mittens. and pocket warmers. maybe even a scarf. Okay, so we're bringing alot of things, so maybe a backpack or some kind of duffle bag? Something with alot of compartments.
 
 ![alt text](http://url/to/img.png)
 
 5. Volcanic Caverns - Difficulty: Hard - Level up granted: 4
-XXXXX
+Fire and Brimstone! Prepare for a hot affair in which many red-hot enemies await. Are you feeling warmed up yet? Don't get burned trying to fight your way to the end of this. This dungeon is lit. Literally. :fire:
 
 ![alt text](http://url/to/img.png)
 
 6. Dragon's Lair - Difficulty: Extreme - Level up granted: 5
-XXXXX
+At the basin of Mount Eleven Broadway (the 2nd level, actually) lies an entrance way into the Dragon's Lair. Some know it as "Hopper ClassRoom". I've never been, so it may as well be the Dragon's Lair. Your mettle will be tested here.
 
 ![alt text](http://url/to/img.png)
 
 7. Flatiron Code Challenge Chamber - Difficulty: Insane - Level up granted: 10
-XXXXX
+The final level. Fight for the glory of Rubyerion. Also just try not to mess up your relationship tables here. It can prove deadly. This dungeon HAS MANY deaths THROUGH teeth and fangs.
 
 ## Monsters
 
-All 326 monsters are random encounters in the dungeon. Everytime you start a new run, you will be matched up with 3 monsters based on the difficulty of the dungeon you selected.
+All 325 monsters are random encounters in the dungeon. Everytime you start a new run, you will be matched up with 3 monsters based on the difficulty of the dungeon you selected.
 
-All monsters are generated from the D&D 5th Edition API
-(Created by Adrian Padua) 
+Feel free to Google some of the weirder ones if you'd like to see what these monsters look like, and learn about them!
+
+All monsters are generated from the Dungeons & Dragons (D&D) 5th Edition API.
 
 ## Combat
 
-talk about the menu, and describe each choice
+Every dungeon run is 3 randomly generated monsters, based on the selected difficulty. If you complete the run, and kill all 3 monsters, You level up, increasing your stats for future runs/harder dungeons. If your HP is reduced to 0 in the dungeon, your character is slain and is gone forever. Characters can be loaded at anytime, and will retain all previous experience and stats.
+
+Every round of combat, you have choices to make.
+1. Attack Monster
+  - Chance to hit the monster with your weapon and cause damage. Your Accuracy is baseline 70% chance to hit. This will increase everytime you level up.
+  If you hit the monster, your damage will vary, based on the strength of your strike. Damage will be between 6 to 12 Damage at level 1. Both Values will increase everytime you level up.
+2. Intimidate Monster
+  - Chance to Intimidate the monster by yelling and screaming. Always has a 50% chance to scare/distract the Monster for a turn, allowing you to attempt to strike it 2 times. If this fails, the monster will be able to attack you as normal.
+3. Check You Status
+  - View your Stats:
+    * Level, Name, Current Health/Max Health, Minimum Damage/Maximum Damage, Accuracy %, Your currently equipped weapon, and your current Battlecry. This self reflection will open yourself up to an attack from the monster.
+4. Inspect Monster
+  - View monster's stats
+    * Monster's name, Type of monster, monster's current health, and monster's damage range per attack. This inspection will provide the enemy with an oppertunity to attack.
+5. Flee Dungeon
+  - If the situation is becoming grim, and you really don't want to lose the character you've put so much time and effort into, you can attempt to flee. The higher your level and/or the weaker the monster currently is will play into if you can flee or not. If successful, your character will flee the dungeon, be awarded NO levels or benefits, but will stop by his nearest inn to get some rest and reset his health for future runs. If this flee attempt fails, you open yourself up to free attacks as you try to escape.
 
 # Overview game as project
 
-closing 
+This project was an ambitious project by us. We both love high-fantasy content, and our original app project idea eventually got so much functionality and logic added on, that it's now a turned based roguelke RPG in command line, all coded within 3 days of class.
 
-special thanks
+## Special thanks
 
-created by 
+Special thanks to Rishi for being stoked on the concept and helping flesh out some of the more technical aspects of it. Special thanks to Charlie for guidance and helping us debug weird Ruby issues.
+
+## Credits
+
+Made with love by 
 Aaron Smith and Constantine Chutis
-
-
-
-
-
-
-
-
-<!-- # Module One Final Project Guidelines
-
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
-
-For your final project, we'll be building a Command Line database application.
-
-## Project Requirements
-
-### Option One - Data Analytics Project
-
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
-
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
-
-### Option Two - Command Line CRUD App
-
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
-
-### Brainstorming and Proposing a Project Idea
-
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
-
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
-
-## Instructions
-
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
-
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-``` -->
+at Flatiron School // 2019
+D&D API by Adrian Padua
+Pixel Art by Constantine
+8-bit Music by 
+Dungeons & Dragons is a registered
