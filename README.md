@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="600" src="https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR.png">
+  <img width="800" src="https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR.png">
 </p>
 
 # Legend of Rubyerion: The Seven Paths
@@ -110,5 +110,5 @@ Pixel Art by Constantine
 Dungeons & Dragons is a registered
 
 <p align="center">
-  <img width="600" src="https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR-Discs.png">
+  <img width="800" src="https://github.com/cchutis/module-one-final-project-guidelines-nyc-web-051319/blob/dean/app/images/LoR-Discs.png">
 </p>
