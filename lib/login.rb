@@ -25,41 +25,43 @@ class Login < ActiveRecord::Base
         puts "\n================= LOGIN =================".blue
         pwd_retry = 0
         email_retry = 0
-        print "\nPlease enter your email: " #check if email is in database
+        print "\nPlease enter your email or 0 to go back: " #check if email is in database
         email = gets.strip
-        while(!valid_email?(email) && email_retry < 3)
-                print "\nIncorrect email format. Please enter a valid email: ".light_yellow
-                email = gets.strip
-                email_retry += 1
-        end
-        if !valid_email?(email)
-            puts "\nYou've entered an incorrect email format too many times. Going back to Main Menu.".light_red
-            #menu_input = '0'
-        else
-            has_email = Login.find_by(email: email)
-            if has_email
-                logged_in = false
-                while(pwd_retry < 3 && !logged_in)
-                    print "\nPlease enter your password: "
-                    password = gets.strip
-                    if has_email.password == password
-                        user = User.find(has_email.user_id)
-                        puts "\nLogin Successful".blue
-                    
-                        menu_input = "0"
-                        logged_in = true
-                    else
-                        puts "Incorrect password. Please try again.".light_red
-                        pwd_retry += 1
-                    end
-                end
-            else #cannot find email
-                puts "No account is associated with this email. Please create an account.".light_red
-                #menu_input = "6" 
+        if email != '0'
+            while(!valid_email?(email) && email_retry < 3)
+                    print "\nIncorrect email format. Please enter a valid email: ".light_yellow
+                    email = gets.strip
+                    email_retry += 1
             end
-            if pwd_retry >= 3
-                puts "Too many incorrect login attempts. Going back to main menu.".light_red
-                #menu_input = "0"
+            if !valid_email?(email)
+                puts "\nYou've entered an incorrect email format too many times. Going back to Main Menu.".light_red
+                #menu_input = '0'
+            else
+                has_email = Login.find_by(email: email)
+                if has_email
+                    logged_in = false
+                    while(pwd_retry < 3 && !logged_in)
+                        print "\nPlease enter your password: "
+                        password = gets.strip
+                        if has_email.password == password
+                            user = User.find(has_email.user_id)
+                            puts "\nLogin Successful".blue
+                        
+                            menu_input = "0"
+                            logged_in = true
+                        else
+                            puts "Incorrect password. Please try again.".light_red
+                            pwd_retry += 1
+                        end
+                    end
+                else #cannot find email
+                    puts "No account is associated with this email. Please create an account.".light_red
+                    #menu_input = "6" 
+                end
+                if pwd_retry >= 3
+                    puts "Too many incorrect login attempts. Going back to main menu.".light_red
+                    #menu_input = "0"
+                end
             end
         end
         user

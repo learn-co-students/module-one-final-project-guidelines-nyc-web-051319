@@ -27,28 +27,31 @@ class User < ActiveRecord::Base
   
         user = nil
         puts "\n ========== CREATING NEW ACCOUNT ==========".blue
-        print "\nPlease enter your email: "
+        print "\nPlease enter your email or 0 to go back: "
         email = gets.strip.downcase  #duplicate email
-        
-        if valid_email?(email)
-            if Login.check_existing_login(email)
-                puts "\nAn account already exists for this email. Please log into your account with your email.\nGoing back to main menu.".red
-            else
-                print "\nNo email associated with this account. Do you want to create a new account? [y/n]  ".light_yellow
-                ans = gets.strip
-                
-                case ans
-                when "y"
-                    puts "\n Awesome! Let's get you setup right away!".green
-                    user = Login.create_account(email)
-                when "n"
-                    puts "No problem. Going back to main menu."
+        if email != '0'
+            if valid_email?(email)
+                if Login.check_existing_login(email)
+                    puts "\nAn account already exists for this email. Please log into your account with your email.\nGoing back to main menu.".red
                 else
-                    puts "\nInvalid input. Going back to main menu.".red
+                    print "\nNo email associated with this account. Do you want to create a new account? [y/n]  ".light_yellow
+                    ans = gets.strip
+                    
+                    case ans
+                    when "y"
+                        puts "\n Awesome! Let's get you setup right away!".green
+                        user = Login.create_account(email)
+                    when "n"
+                        puts "No problem. Going back to main menu."
+                    else
+                        puts "\nInvalid input. Going back to main menu.".red
+                    end
                 end
+            else
+                puts "Invalid email format. Please input a valid email.".light_yellow
             end
         else
-            puts "Invalid email format. Please input a valid email.".light_yellow
+            user = '0'
         end
         user
     end

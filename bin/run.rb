@@ -2,6 +2,7 @@
 require_relative '../config/environment'
 
 def main
+    system "clear"
     leave_app = false
     logged_in = false
     user = nil
@@ -47,7 +48,7 @@ def main
             if logged_in #check if user is logged in
                 movie = find_movie_by_name_menu
                 if movie == -1
-                    menu_input = '4'
+                    menu_input = '0'
                 elsif movie
                     print "\nPlease rate #{movie.name} (#{movie.release_year}) between 1 - 5: "
                     rating = gets.strip.to_i #validate correct input
@@ -66,8 +67,8 @@ def main
                      sleep 0.4
                     menu_input = '0'
                 else
-                    puts "\n No movies found with that name.".light_red
-                    menu_input = '4'
+                    #puts "\n No movies found with that name.".light_red
+                    menu_input = '0'
                      sleep 0.4
                 end
             else
@@ -92,13 +93,16 @@ def main
                 puts "#{user.name}!".magenta
                 user = nil
                 logged_in = false
+                sleep 0.4
             else
                 retry_count = 0
-                while(retry_count < 3 && !user)
+                while(retry_count < 3 && !user && user != '0')
                     user = User.create_new_account
                     retry_count += 1
                 end
-                if user
+                if user == '0'
+                    user = nil
+                elsif user
                     print "\nAccount created. Welcome abroad, "
                     puts "#{user.name}!".magenta
                     logged_in = true 
