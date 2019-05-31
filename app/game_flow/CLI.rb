@@ -1,12 +1,18 @@
 class CLI
 
   @@player_array = []
-
-    
   #displays title screen
+
+  def self.intro
+    puts "In a land far away..."
+    sleep(2)
+    puts "An evil stirs..."
+    sleep(2)
+    Printer.logo
+  end
+
   def self.title
     SFX.title_music
-    Printer.logo
     puts " "
     title = Rainbow("Legend of Rubyerion: The Seven Paths").red
     puts " "

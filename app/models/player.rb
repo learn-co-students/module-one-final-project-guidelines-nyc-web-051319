@@ -63,13 +63,24 @@ class Player < ActiveRecord::Base
     end
     # Every successful run will increase level and up stats
     def level_up
-        self.max_hp = self.max_hp + rand(50..75)
-        rest
-        self.min_dmg = self.min_dmg * 1.2
-        self.max_dmg = self.max_dmg * 1.4
-        self.accuracy += 2
+        binding.pry
         self.level += 1
+        puts Rainbow("#{self.name} has risen to Level #{self.level}!").blue
+        sleep(2)
+        self.max_hp = self.max_hp + rand(50..75)
+        puts "Max HP went up to #{self.max_hp}!"
+        sleep(2)
+        self.min_dmg = self.min_dmg * 1.2
+        puts "Minimum Damage went up to #{self.min_dmg}!"
+        sleep(2)
+        self.max_dmg = self.max_dmg * 1.4
+        puts "Maximum Damage went up to #{self.max_dmg}!"
+        sleep(2)
+        self.accuracy += 2
+        puts "Accuracy went up to #{self.accuracy}%!"
+        sleep(2)
         SFX.level_up
+        rest
     end
 
 

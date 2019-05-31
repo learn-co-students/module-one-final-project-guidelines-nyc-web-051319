@@ -14,17 +14,17 @@ class Battle
   end
 
   def begin_battle
-    puts "Wait, what was that?!?!"
-    sleep(2)
-    SFX.battle_music
-    puts "A #{@all_monsters.first.name} bursts into the room!!!"
-    sleep(2)
-    puts "Prepare for battle..."
-    sleep(2)
     fight = 3
     while fight > 0 && @current_player.alive
       @all_monsters.each do |monster|
         @current_monster = monster
+        puts "Wait, what was that?!?!"
+        sleep(2)
+        SFX.battle_music
+        puts "A #{monster.name} bursts into the room!!!"
+        sleep(2)
+        puts "Prepare for battle..."
+        sleep(2)
         do_round
         fight -= 1
         end
@@ -35,8 +35,7 @@ class Battle
       puts Rainbow("#{@current_player.name} has leveled up!").green
       sleep(2)
       @current_player.level_up
-      CLI.title
-      CLI.greeting
+      CLI.choose_dungeon
     end
     # need to trigger level up here, but only if three monsters defeated...
   end
