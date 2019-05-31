@@ -43,10 +43,10 @@ class Player < ActiveRecord::Base
         swing = rand(1..100)
         if swing < self.accuracy
             player_damage = rand(self.min_dmg..self.max_dmg)
-            puts "You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!"
+            puts Rainbow("You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!").green
             SFX.player_hit
         else
-            puts "You missed! WHOOSH!"
+            puts Rainbow("You missed! WHOOSH!").green
             SFX.miss
             player_damage = 0
         end
@@ -55,10 +55,10 @@ class Player < ActiveRecord::Base
 
     # Battle option for potential for monster to miss a turn
     def intimidate
-        puts "You raise your #{self.weapon} and roar with bestial vigor!"
+        puts Rainbow("You raise your #{self.weapon} and roar with bestial vigor!").green
         SFX.intimidate
         sleep(2)
-        puts "#{self.battlecry}!!!"
+        puts Rainbow("#{self.battlecry}!!!").green
         sleep(2)
     end
     # Every successful run will increase level and up stats

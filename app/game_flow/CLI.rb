@@ -8,7 +8,7 @@ class CLI
     SFX.title_music
     # Printer.logo
     puts " "
-    title = "Legend of Rubyerion: The Seven Paths"
+    title = Rainbow("Legend of Rubyerion: The Seven Paths").red
     puts " "
     puts "*" * 60
     puts title.center(60, ".")
