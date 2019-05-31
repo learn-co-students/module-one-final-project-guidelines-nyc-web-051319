@@ -1,119 +1,96 @@
 require_relative '../config/environment'
 require_rel '../app'
+require_relative '../lib/command_line_interface'
 
-# puts "===================================================================================="
-#
-# puts "       ----  ---       ---      -----------      ------------           ------"
-# puts "    ----     ---       ---      ------------     ------------         ----  ----"
-# puts "  --         ---       ---      ---        ---        --            ----       ---"
-# puts "  --         ---       ---      ---        ---        --            ----"
-# puts "  --         ---       ---      ---       ---         --            -----"
-# puts "  --         -------------      -----------           --             -----"
-# puts "  --         -------------      ----------            --                -----"
-# puts "  --         -------------      ---     ---           --                  -----"
-# puts "  --         ---       ---      ---      ---          --                   -----"
-# puts "  ----       ---       ---      ---       ---         --          ----      -----"
-# puts "   ----      ---       ---      ---        ---   ------------       ----   -----"
-# puts "       ----  ---       ---      ---         ---  ------------         ------"
-#
-# puts "===================================================================================="
-# sleep 2
 
-puts "Please enter your name:"
-#need a method that finds user by name
-#if name is in database
-#puts welcome back
-traveler_name = gets.chomp.split.map(&:capitalize).join(" ")
-current_user = ""
-Traveler.all.each do |trav|
-  if trav.name == traveler_name
-    current_user = trav
-  end
-end
+cli = CLI.new
 
-if current_user == ""
-  current_user = Traveler.create(name: traveler_name)
-end
+cli.welcome
 
-puts "Hey #{current_user.name}, what would you like to do?"
-puts ""
-sleep 0.5
-puts "Create new plan ('new plan'), view plans ('view plans'), update plan ('update plan'), remove activity/plan ('remove')"
-user_option = gets.chomp.downcase
-# binding.pry
+sleep 0.3
 
-case user_option
-  when "new plan"
-    puts "Which activity would you like to add to your plan?"
-    puts ""
-    sleep 1
-      Activity.all.map {|activity| puts activity.name}
-      puts "---------------------------------------------------"
-      activity_name = gets.chomp.split.map(&:capitalize).join(" ")
-      new_plan = Plan.new
+cli.get_user
 
-      new_plan.date = Time.now.strftime('%y/%m/%d')
-      Activity.find_by(name: "#{activity_name}").plans << new_plan
-      current_user.plans << new_plan
-      binding.pry
-  when "update plan"
-    puts "Which plan would you like to update?"
-    current_user.view_plans
-    plan_to_update = gets.chomp
-    puts "What would you like to change?"
-    puts "1. Activity"
-    puts "2. Date"
-    thing_to_update = gets.chomp.to_i
-    if thing_to_update == 1
-      puts "Which activity would you like to do instead?"
-      Activity.all.map {|activity| puts activity.name}
-      puts "---------------------------------------------------"
-      activity_name = gets.chomp.split.map(&:capitalize).join(" ")
-      new_plan = Plan.new
-      new_plan.date = Time.now.strftime('%y/%m/%d')
-      Activity.find_by(name: "#{activity_name}").plans << new_plan
-      current_user.plans << new_plan
-      current_user.plans[plan_to_update.to_i - 1].delete
-      puts "Plan updated!"
-    elsif thing_to_update == 2
-      puts "Please enter new date: (yy/mm/dd)"
-      new_date = gets.chomp
-      Plan.update(current_user.plans[plan_to_update.to_i - 1].id, :date => new_date)
-      binding.pry
-      puts "Date updated!"
-    end
-  when "view plans"
-    current_user.view_plans
-  when "remove"
-    puts "The tank is almost full."
-  when "new"
-    Activity.set_location(Activity.new_activity)
-  else
-    puts "Sorry #{current_user.name}, thats not an option. Please choose one of the following options."
-end
-
-puts "Welcome to your Travel Planner"
-puts "Please enter your name:"
-
-traveler_name = gets.chomp.split.map(&:capitalize).join(" ")
-current_user = ""
-Traveler.all.each do |trav|
-  if trav.name == traveler_name
-    current_user = trav
-  end
-end
-
-if current_user == ""
-  current_user = Traveler.create(name: traveler_name)
-end
-puts "[1] Plan"
-puts "[2] Activities"
-puts "[3] Locations"
-input = gets.chomp
-
-case input
+sleep 0.3
+while user_option_1 = gets.chomp.to_i
+case user_option_1
   when 1
-
+    cli.plan_options
+    user_option_2 = gets.chomp.downcase
+    case user_option_2
+      when "create"
+        puts ""
+        Plan.new_plan(cli.current_user)
+        cli.main_options
+      when "view"
+        puts ""
+        cli.view_planner
+        cli.main_options
+      when "update"
+        puts ""
+        cli.prompt_user_for_plan
+        plan_to_update = gets.chomp
+        cli.prompt_user_for_change
+        thing_to_update = gets.chomp.to_i
+        cli.make_changes(thing_to_update, plan_to_update)
+        cli.main_options
+      when "delete"
+        puts ""
+        cli.delete_prompt
+        cli.main_options
+      when "back"
+        puts ""
+        cli.main_options
+      else
+        cli.error_message
+        cli.main_options
+    end
   when 2
-
+    cli.activity_options
+    user_option_3 = gets.chomp.downcase
+    case user_option_3
+      when "create"
+        puts ""
+        Activity.new_activity
+        cli.main_options
+      when "view"
+        puts ""
+        Activity.show_all_by_name
+        cli.main_options
+      when "top"
+        puts ""
+        Activity.top_rated
+        cli.main_options
+      else
+        cli.error_message
+        cli.main_options
+    end
+  when 3
+    cli.location_options
+    user_option_4 = gets.chomp.downcase
+    case user_option_4
+      when "create"
+        puts ""
+        Location.new_location
+        puts "Location created!"
+        cli.main_options
+      when "view"
+        puts ""
+        Location.show_all_by_name
+        cli.main_options
+      when "number"
+        puts ""
+        Location.num_of_activities_by_location
+        cli.main_options
+    end
+  when 4
+    puts ""
+    puts "Goodbye! Enjoy your travels :)"
+    puts ""
+    cli.exit_message
+    break
+  else
+    puts "Please enter a valid response."
+    cli.main_options
+  end
 end
