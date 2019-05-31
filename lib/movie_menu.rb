@@ -33,7 +33,7 @@ def find_movie_by_name_menu
     print "\nPlease enter name of movie or 0 to go back: "
     movie_name = gets.strip.downcase #name in lowercase
     if movie_name != '0'
-        matched_movies = Movie.order(release_date: :desc).where("lower(name)=?", movie_name)
+        matched_movies = Movie.order(release_date: :desc).where("lower(name) LIKE ?", "%#{movie_name}%")
         #show movie name ordered by release date
         if matched_movies.empty?
             puts "No movies found for \"#{movie_name}.\"".red
