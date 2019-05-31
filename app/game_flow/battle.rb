@@ -12,17 +12,10 @@ class Battle
     @current_monster = current_monster
   end
 
-  def self.battle_music
-    @@music = Audite.new
-    @@music.stop_stream
-    @@music.load('./app/sound/battle.mp3')
-    @@music.start_stream
-  end
-
   def begin_battle
     puts "Wait, what was that?!?!"
     sleep(2)
-    self.battle_music
+    SFX.battle_music
     puts "A #{@current_monster.name} bursts into the room!!!"
     sleep(2)
     puts "Prepare for battle..."
@@ -38,7 +31,7 @@ class Battle
       attack_menu
     else
       monster_attack
-      sleep(2)
+      sleep(1)
     end
     @player_turn = !@player_turn
   end
@@ -57,6 +50,7 @@ class Battle
       puts "   3. Check your status"
       puts "   4. Inspect #{@current_monster.name}"
       puts "   5. Flee and abandon this dungeon"
+      puts " "
       puts "-"*60
       fight_choice = gets.chomp
 
@@ -76,6 +70,7 @@ class Battle
           end
       elsif fight_choice == "3"
           @current_player.print_status
+          !@player_turn
           sleep(2)
       elsif fight_choice == "4"
           @current_monster.inspect_monster
@@ -120,6 +115,7 @@ class Battle
   def monster_death
       @battle_over = true
       puts "You have slain #{@current_monster.name}!"
+      SFX.death
       #delete monster
   end
 
@@ -135,6 +131,7 @@ class Battle
   def player_death
       @battle_over = true
       puts "Oh no! #{@current_player.name} has died alone in the dark! Forgotten in the violent depths below the earth!"
+      SFX.death
       #delete player
   end
 
@@ -151,6 +148,7 @@ class Battle
       #conditional for escaping. Easier to run if you're a higher level and/or monster is injured.
       if rand(0..100) < (@current_player.level * 20) - @current_monster.hp
           puts "SLIPPED AWAY!"
+          SFX.flee
           sleep(2)
           puts "You head to the nearest inn."
           sleep(2)

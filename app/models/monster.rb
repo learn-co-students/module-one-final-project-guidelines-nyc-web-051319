@@ -30,8 +30,10 @@ class Monster < ActiveRecord::Base
         if swing < 60
             monster_damage = rand(self.dmg-5..self.dmg+5)
             puts "#{self.name} attacks! It struck #{current_player.name} for #{monster_damage} Damage!"
+            SFX.monster_hit
         else
             puts "Look out! #{self.name} missed!"
+            SFX.miss
             monster_damage = 0
         end
     monster_damage

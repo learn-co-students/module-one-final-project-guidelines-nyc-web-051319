@@ -44,8 +44,10 @@ class Player < ActiveRecord::Base
         if swing < self.accuracy
             player_damage = rand(self.min_dmg..self.max_dmg)
             puts "You swing your #{self.weapon} and hit the #{current_monster.name} for #{player_damage} Damage!"
+            SFX.player_hit
         else
             puts "You missed! WHOOSH!"
+            SFX.miss
             player_damage = 0
         end
         player_damage
@@ -66,6 +68,7 @@ class Player < ActiveRecord::Base
         self.max_dmg = self.max_dmg * 1.4
         self.accuracy += 2
         self.level += 1
+        SFX.level_up
     end
 
 
