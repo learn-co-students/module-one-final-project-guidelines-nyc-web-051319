@@ -1,6 +1,8 @@
 class SFX
     # Test SFX Sound Library
 
+    @@current_song = nil
+
     def self.player_hit
         player_hit = Audite.new
         player_hit.load('./app/sound/player_attack.mp3')
@@ -44,15 +46,17 @@ class SFX
     end
 
     def self.title_music
-        theme = Audite.new
-        theme.load('./app/sound/theme.mp3')
-        theme.start_stream
+        @@current_song.stop_stream if @@current_song
+        @@current_song = Audite.new
+        @@current_song.load('./app/sound/theme.mp3')
+        @@current_song.start_stream
     end
 
     def self.battle_music
-        b_music = Audite.new
-        b_music.load('./app/sound/battle.mp3')
-        b_music.start_stream
+        @@current_song.stop_stream if @@current_song
+        @@current_song = Audite.new
+        @@current_song.load('./app/sound/battle.mp3')
+        @@current_song.start_stream
     end
 
 end

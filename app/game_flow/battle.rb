@@ -15,7 +15,7 @@ class Battle
   def begin_battle
     puts "Wait, what was that?!?!"
     sleep(2)
-    # SFX.battle_music
+    SFX.battle_music
     puts "A #{@current_monster.name} bursts into the room!!!"
     sleep(2)
     puts "Prepare for battle..."
