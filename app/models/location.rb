@@ -17,6 +17,12 @@ class Location < ActiveRecord::Base
   end
 
   def self.show_activity_and_location
-    
+    position = 1
+    Location.all.each do |location|
+      location.activities.each do |act|
+        puts "[#{position}] #{act.name} - #{location.name}"
+        position += 1
+      end
+    end
   end
 end

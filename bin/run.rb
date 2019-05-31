@@ -55,7 +55,7 @@ case user_option_1
         cli.main_options
       when "view"
         puts ""
-        Activity.show_all_by_name
+        Location.show_activity_and_location
         cli.main_options
       when "top"
         puts ""

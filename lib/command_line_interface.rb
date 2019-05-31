@@ -152,7 +152,7 @@ class CLI
 
   def delete_prompt
     puts "Which activity would you want to delete?"
-    puts @current_user.activities.map {|act| "[#{@current_user.activities.index(act) + 1}] #{act.name}"}
+    puts @current_user.plans.map {|plan| "[#{@current_user.plans.index(plan) + 1}] #{plan.activity.name} - #{plan.date}"}
     puts "---------------------------------------------------"
     delete
     puts ""
@@ -177,17 +177,14 @@ class CLI
       act_hour += 12
       now_hour -= 11
       if act_min == 0
-        puts "There are #{((act_hour - now_hour).abs - 1)} hour(s) and #{(60 - now_min).abs} minute(s) left"
+        puts "There are #{((act_hour - now_hour).abs)} hour(s) and #{(60 - now_min).abs} minute(s) left"
       end
       if act_min - now_min == 0
         now_hour += 1
         puts "There are #{(now_hour - act_hour).abs} hour(s) and 0 minute(s) left"
       end
-      puts "There are #{(now_hour - act_hour).abs} hour(s) and #{(60 - now_min).abs} minute(s) left"
-    elsif act_min == 0
-        puts "There are #{((act_hour - now_hour).abs - 1)} hour(s) and #{(60 - now_min).abs} minute(s) left"
     else
-      puts "There are #{(act_hour - now_hour).abs} hour(s) and #{(act_min - now_min).abs} minute(s) left"
+      puts "There are #{((act_hour - now_hour).abs - 1)} hour(s) and #{(60- now_min).abs} minute(s) left"
     end
   end
 
