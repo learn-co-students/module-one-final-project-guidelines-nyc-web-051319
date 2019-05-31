@@ -91,9 +91,9 @@ Every round of combat, you have choices to make.
 5. Flee Dungeon
   - If the situation is becoming grim, and you really don't want to lose the character you've put so much time and effort into, you can attempt to flee. The higher your level and/or the weaker the monster currently is will play into if you can flee or not. If successful, your character will flee the dungeon, be awarded NO levels or benefits, but will stop by his nearest inn to get some rest and reset his health for future runs. If this flee attempt fails, you open yourself up to free attacks as you try to escape.
 
-# Overview game as project
+# Overview of game as a project
 
-This project was an ambitious project by us. We both love high-fantasy content, and our original app project idea eventually got so much functionality and logic added on, that it's now a turned based roguelke RPG in command line, all coded within 3 days of class.
+This was an ambitious project by us. We both love high-fantasy content, and our original app idea got so much many features and logic added on, that it evolved into a turned based roguelke RPG in command line; developed within 3 days of class.
 
 ## Special thanks
 
