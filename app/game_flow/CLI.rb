@@ -37,7 +37,7 @@ class CLI
 
   #instantiates a new Player and adds them to ActiveRecord database
   def self.create_player(name_input, battlecry_input, weapon_input)
-    @@current_player = Player.create(name: name_input, max_hp: 70, current_hp: 70, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
+    @@current_player = Player.create(name: name_input, max_hp: 100, current_hp: 100, min_dmg: 6, max_dmg: 12, alive: true, level: 1, battlecry: battlecry_input, accuracy: 70, weapon: weapon_input)
     puts "Okay, #{@@current_player.name}. Ready yourself..."
     sleep(2)
     puts " "
