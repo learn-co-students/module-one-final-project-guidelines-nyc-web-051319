@@ -29,6 +29,6 @@ class Printer
     end
 
     def self.logo
-        Catpix::print_image "./app/images/LoR.png",  :limit_x => 2.0, :limit_y => 2.0
+        Catpix::print_image "./app/images/LoR.png",  :limit_x => 1.0, :limit_y => 0
     end
 end

@@ -4,7 +4,6 @@
 # Will also iterate the 3 battle rounds per dungeon run
 
 class Battle
-  attr_accessor :music
 
   def initialize(current_player, all_monsters)
     @battle_over = false
@@ -12,12 +11,6 @@ class Battle
     @current_player = current_player
     @all_monsters = all_monsters
     # @current_monster = current_monster
-    @music = Audite.new
-  end
-
-  def battle_music
-    @music.load('./app/sound/battle.mp3')
-    @music.start_stream
   end
 
   def begin_battle
@@ -39,11 +32,11 @@ class Battle
     puts "The battle is over!"
     sleep(2)
     if @current_player.alive
+      puts Rainbow("#{@current_player.name} has leveled up!").green
+      sleep(2)
       @current_player.level_up
-      puts "#{@current_player.name} has leveled up!"
       CLI.title
       CLI.greeting
-      @music.stop_stream
     end
     # need to trigger level up here, but only if three monsters defeated...
   end
@@ -53,7 +46,6 @@ class Battle
       attack_menu
     # else
       monster_attack
-      sleep(2)
     end
     # @player_turn = !@player_turn
   end
@@ -79,7 +71,6 @@ class Battle
       #
       if fight_choice == "1"
           player_attack
-          sleep(2)
       elsif fight_choice == "2"
           @current_player.intimidate
           if rand(1..100) > 50
