@@ -105,6 +105,7 @@ Made with love :heart: by </br>
 [**Aaron Smith**](https://github.com/smitham50) and [**Constantine Chutis**](https://github.com/cchutis)</br>
 at [Flatiron School](https://flatironschool.com/) **//** 2019</br>
 [D&D API by Adrian Padua](http://www.dnd5eapi.co/)</br>
+[Music by Adam Haynes](https://www.youtube.com/channel/UCjvrRp5J06REgUd91u8Xl3Q)
 Pixel Art by Constantine</br>
 
 <p align="center">

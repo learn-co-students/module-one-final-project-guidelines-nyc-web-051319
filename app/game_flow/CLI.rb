@@ -6,7 +6,7 @@ class CLI
   #displays title screen
   def self.title
     SFX.title_music
-    # Printer.logo
+    Printer.logo
     puts " "
     title = Rainbow("Legend of Rubyerion: The Seven Paths").red
     puts " "
