@@ -115,7 +115,7 @@ def movie_menu
     when "0"
         false #go back to main menu
     else
-        puts "Invalid input. Please select options 1 - 4.".red
+        puts "Invalid input. Please select options 1 - 3 or 0 to go back.".red
         true
     end
 end
