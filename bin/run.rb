@@ -55,7 +55,7 @@ case user_option_1
         cli.main_options
       when "view"
         puts ""
-        Location.show_activity_and_location
+        Activity.show_all_by_name_desc
         cli.main_options
       when "top"
         puts ""
@@ -94,7 +94,7 @@ case user_option_1
     end
   when 4
     puts ""
-    puts "Goodbye! Enjoy your travels :)"
+    puts "Goodbye! Enjoy your travels :)".colorize(:light_blue)
     puts ""
     cli.exit_message
     break

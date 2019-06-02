@@ -104,9 +104,9 @@ class CLI
   def user_exists?(traveler_name)
     if @current_user == nil
       @current_user = Traveler.create(name: traveler_name)
-      puts "Hey #{@current_user.name}, this is your first time here. Welcome!"
+      puts "Hey #{@current_user.name.colorize(:yellow)}, this is your first time here. Welcome!"
     else
-      puts "Welcome back #{@current_user.name}!"
+      puts "Welcome back #{@current_user.name.colorize(:yellow)}!"
     end
   end
 
@@ -189,7 +189,7 @@ class CLI
   end
 
   def welcome
-    puts "Welcome to your Travel Planner"
+    puts "Welcome to your Travel Planner".colorize(:blue)
   end
 
   def exit_message

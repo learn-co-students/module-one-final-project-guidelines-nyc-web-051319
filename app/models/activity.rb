@@ -2,8 +2,8 @@ class Activity < ActiveRecord::Base
   has_many :plans
   has_many :travelers , through: :plans
 
-  def self.show_all_by_name
-    Activity.all.map {|activity| puts "[#{Activity.all.index(activity) + 1}] #{activity.name}"}
+  def self.show_all_by_name_desc
+    Activity.all.map {|activity| puts "[#{Activity.all.index(activity) + 1}] #{activity.name} - #{activity.description}"}
   end
 
   def self.new_activity
